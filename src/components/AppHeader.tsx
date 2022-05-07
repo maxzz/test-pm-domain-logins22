@@ -1,4 +1,4 @@
-import { IconHero, IconHIDLogo } from './UI/UIIcons';
+import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
 import { a, easings, useSpring } from '@react-spring/web';
 import curvesSvg from '../assets/sources/curves.svg';
 
@@ -7,22 +7,26 @@ export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0
 
 export function AppHeader() {
     const styles = useSpring({
-        fill: 'transparent',
-        strokeWidth: .2,
-        stroke: 'transparent',
-        scale: 1,
         from: {
             fill: 'black',
             stroke: 'red',
             strokeWidth: 0,
             scale: 0
         },
+        to: {
+            // fill: 'transparent',
+            strokeWidth: .2,
+            stroke: 'transparent',
+            scale: 1,
+        },
         config: { easing: easings.easeOutCubic, duration: 3000 }
     });
     return (<>
-        <div className="bg-[#003165] shadow-sm cursor-default"
-            style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
+        <div className="relative bg-[#003165] shadow-sm cursor-default"
+            // style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
         > {/* bg-[#003f82] */}
+
+            <IconHeroLines className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-300/30 stroke-[.05vmin]" preserveAspectRatio="none slice" />
 
             <div className="px-6 py-5 flex items-center justify-between">
                 <div className="flex items-center space-x-4">
@@ -37,8 +41,8 @@ export function AppHeader() {
                             <div className="">PM Credential Test Pages</div>
                         </div>
 
-                        <a.div style={styles} className="">
-                            <IconHero />
+                        <a.div style={styles} className="origin-center">
+                            <IconHero className="h-24 " />
                         </a.div>
                     </div>
                 </div>
