@@ -22,16 +22,14 @@ export function AppHeader() {
         config: { easing: easings.easeOutCubic, duration: 3000 }
     });
     return (<>
-        <div className="relative bg-[#003165] shadow-sm cursor-default"
+        <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default"
             // style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
         > {/* bg-[#003f82] */}
 
-            <IconHeroLines className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-300/30 stroke-[.05vmin]" preserveAspectRatio="none slice" />
+            <IconHeroLines className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-500/20 stroke-[.05vmin]" preserveAspectRatio="none slice" />
 
             <div className="px-6 py-5 flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-
-
                     <div className="pb-1 text-3xl tracking-tighter font-light text-slate-100 uppercase whitespace-nowrap" style={textShadow}>
 
                         <div className="flex items-center space-x-3">
@@ -41,8 +39,8 @@ export function AppHeader() {
                             <div className="">PM Credential Test Pages</div>
                         </div>
 
-                        <a.div style={styles} className="origin-center">
-                            <IconHero className="h-24 " />
+                        <a.div style={styles} className="w-1/5 flex items-center justify-center">
+                            <IconHero className="" preserveAspectRatio="xMidyMid slice" />
                         </a.div>
                     </div>
                 </div>
