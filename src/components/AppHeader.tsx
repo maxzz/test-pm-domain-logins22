@@ -1,12 +1,15 @@
-import React from 'react';
-import { IconHIDLogo } from './UI/UIIcons';
+import React, { useRef } from 'react';
+import { IconHero, IconHIDLogo } from './UI/UIIcons';
 import curvesSvg from '../assets/curves.svg';
+import { a, useSpring } from '@react-spring/web';
 
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
 
 export function AppHeader() {
+    const styles = useSpring({fill: 'transparent', strokeWidth: 2, from: {fill: 'black', strokeWidth: 0}, config: {duration: 3000}});
+    const ref = useRef<SVGSVGElement>(null);
     return (<>
         <div className="bg-[#003165] shadow-sm cursor-default"
             style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
@@ -19,7 +22,14 @@ export function AppHeader() {
                     </div>
                     <div className="pb-1 text-3xl tracking-tighter font-light text-slate-100 uppercase whitespace-nowrap" style={textShadow}>
                         PM Credential Test Pages
-                        <IconHIDLogo />
+                        {/* <a.div style={styles} className="">
+                            <IconHIDLogo />
+                        </a.div> */}
+
+                        <a.div style={styles} className="">
+                            <IconHero ref={ref} />
+                        </a.div>
+
                     </div>
                 </div>
             </div>
