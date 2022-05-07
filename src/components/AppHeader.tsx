@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import { IconHero, IconHIDLogo } from './UI/UIIcons';
+import { IconHIDLogo } from './UI/UIIcons';
 import curvesSvg from '../assets/curves.svg';
-import { a, config, easings, useSpring } from '@react-spring/web';
+import { a, easings, useSpring } from '@react-spring/web';
 
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
@@ -21,7 +21,6 @@ export function AppHeader() {
         },
         config: { easing: easings.easeOutCubic, duration: 3000 }
     });
-    const ref = useRef<SVGSVGElement>(null);
     return (<>
         <div className="bg-[#003165] shadow-sm cursor-default"
             style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
@@ -37,11 +36,6 @@ export function AppHeader() {
                         <a.div style={styles} className="">
                             <IconHIDLogo />
                         </a.div>
-
-                        {/* <a.div style={styles} className="">
-                            <IconHero />
-                        </a.div> */}
-
                     </div>
                 </div>
             </div>
