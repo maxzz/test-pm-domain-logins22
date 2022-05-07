@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .hoverurl {
+        @apply border-b hover:border-b-2 border-url hover:text-url;
+    }
+
+    .extension-small-icon-outline {
+        @apply outline outline-1 sm:outline-2 outline-offset-1 outline-green-500 sm:outline-green-500/30;
+    }
+}
+
+@layer components {
+    #leva__root [type="text"],
+    .leva-override [type="text"] {
+        background-color: transparent;
+        padding: 0 var(--leva-space-sm);
+        font-size: inherit;
+    }
+}
