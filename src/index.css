@@ -23,17 +23,17 @@
 
 @layer components {
     .float-input {
-        @apply py-1 px-1 border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none placeholder-transparent transition-colors;
+        @apply px-2 py-2 border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none placeholder-transparent transition-colors;
     }
     .float-label {
         @apply absolute
-            left-1
+            left-0
+            peer-placeholder-shown:left-2
             
             top-1/2
-            -translate-y-8
-            peer-focus:-translate-y-8
+            -translate-y-10
+            peer-focus:-translate-y-10
             peer-placeholder-shown:-translate-y-1/2
-
 
             text-xs
             peer-focus:text-xs

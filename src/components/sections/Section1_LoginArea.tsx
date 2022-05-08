@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { a, easings, useSpring } from '@react-spring/web';
+import { classNames } from '@/utils/classnames';
 
 const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)', };
 
@@ -20,7 +21,7 @@ function FieldUser({ suffix = '' }: { suffix?: string; }) {
     return (
         <label className="relative">
             <input
-                className="peer float-input"
+                className="py-1.5 w-full peer float-input"
                 id={`user${suffix}`}
                 type="text"
                 placeholder="Username"
@@ -37,7 +38,7 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
     return (
         <label className="relative">
             <input
-                className="peer float-input"
+                className="py-1.5 w-full peer float-input"
                 id={`pass${suffix}`}
                 type="password"
                 placeholder="Password"
@@ -51,18 +52,28 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
+function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement> ) {
+    return (
+        <input className={classNames(className, 'px-4 py-2 border border-slate-600 rounded')} type="button" value={label} {...rest} />
+    );
+}
+
 function LoginView({ suffix = '' }: { suffix?: string; }) {
     return (
-        <div className="flex flex-col space-y-4">
-            <FieldUser suffix={suffix} />
-            <FieldPass suffix={suffix} />
-        </div>
+        <form className="px-4 py-8 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
+            <div className="w-64 flex flex-col space-y-8">
+                <FieldUser suffix={suffix} />
+                <FieldPass suffix={suffix} />
+            </div>
+            <FieldSubmit className="self-end" label="Login" />
+        </form>
     );
 }
 
 export function Section1_LoginArea() {
     return (
-        <div className="mt-4 grid grid-cols-2 gap-4">
+        // <div className="mt-4 grid grid-cols-2 gap-4">
+        <div className="mt-4 flex items-start justify-center">
             {/* <PreviewContainer /> */}
             <LoginView />
         </div>
