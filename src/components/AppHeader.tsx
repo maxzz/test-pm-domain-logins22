@@ -8,22 +8,23 @@ export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0
 export function AppHeader() {
     const styles = useSpring({
         from: {
-            fill: 'black',
-            stroke: 'red',
-            strokeWidth: 0,
+            fill: '#5fa4ed',
+            stroke: 'black',
+            strokeWidth: 2,
             scale: 0
         },
         to: {
-            // fill: 'transparent',
+            fill: 'transparent',
             strokeWidth: .2,
-            stroke: 'transparent',
+            //stroke: 'transparent',
+            stroke: 'rgb(100 116 139 / 0.2)',
             scale: 1,
         },
-        config: { easing: easings.easeOutCubic, duration: 3000 }
+        config: { easing: easings.easeOutCubic, duration: 1000 }
     });
     return (<>
         <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default"
-            // style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
+        // style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
         > {/* bg-[#003f82] */}
 
             <IconHeroLines className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-500/20 stroke-[.05vmin]" preserveAspectRatio="none slice" />
@@ -38,13 +39,16 @@ export function AppHeader() {
                             </div>
                             <div className="">PM Credential Test Pages</div>
                         </div>
-
-                        <a.div style={styles} className="w-1/5 flex items-center justify-center">
-                            <IconHero className="" preserveAspectRatio="xMidyMid slice" />
-                        </a.div>
                     </div>
                 </div>
             </div>
+
+            <div className="absolute inset-0 flex items-center justify-center">
+                <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
+                    <IconHero className="" preserveAspectRatio="xMidYMid slice" />
+                </a.div>
+            </div>
+
         </div>
         <div className="h-1 bg-[#002f87]" style={elevation4Shadow}></div>
     </>);

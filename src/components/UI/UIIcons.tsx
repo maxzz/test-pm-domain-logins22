@@ -27,9 +27,9 @@ export function IconHeroLines(props: SVGProps<SVGSVGElement> & HTMLAttributes<SV
 export function IconHero(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
     const { title, ...rest } = props;
     return (
-        <svg viewBox="0 0 14 14" {...rest}>
+        <svg viewBox="0 0 100 100" {...rest}>
             {title && <title>{title}</title>}
-            <path d="M7.5,6.4L7.68,1.14L12.73,6.4L7.79,8.41L10.73,6.4L7.5,12.9L4.27,6.4L7.21,8.41L2.27,6.4L7.32,1.14z" />
+            <path d="M50 45.23 51.38 4.8 90.2 45.23 52.23 60.68l22.6-15.45L50 95.19 25.17 45.23l22.6 15.45L9.8 45.23 48.62 4.8 50 45.23Z" />
         </svg>
     );
 }
