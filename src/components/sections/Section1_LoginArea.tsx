@@ -16,21 +16,31 @@ function PreviewContainer() {
 
 const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
 
-function LoginView() {
+function LoginView({ suffix = '' }: { suffix?: string; }) {
     return (
         <div className="flex flex-col space-y-4">
-            <label>
-                <div className="">Username</div>
-                <input id="user" type="text" placeholder="Username" autoComplete="username" />
-            </label>
+            <div className="">
+                <label className="relative">
+                    <input
+                        className="py-1 peer border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none transition-colors bg-red-400" 
+                        id={`user${suffix}`} 
+                        type="text" 
+                        placeholder="Username11"
+                        autoComplete="username"
+                    />
+                    
+                    <div className="absolute left-0 top-0 peer-focus:text-xs cursor-text transition-all">Username</div>
+                    {/* <div className="absolute left-0 top-0 peer-focus:-top-5 peer-focus:text-xs cursor-text transition-all">Username</div> */}
+                    {/* <div className="tw\focus:not(:focus-visible):outline-none absolute left-0 top-1 peer-focus:-top-5 peer-focus:text-xs cursor-text transition-all">Username</div> */}
+                </label>
+            </div>
             <label>
                 <div className="">Password</div>
-                <input id="pass" type="password" placeholder="Password" autoComplete="current-password" />
+                <input id={`pass${suffix}`} type="password" placeholder="Password" autoComplete="current-password" />
             </label>
         </div>
     );
 }
-
 
 export function Section1_LoginArea() {
     return (
