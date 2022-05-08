@@ -52,20 +52,33 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement> ) {
+function LoginTitle({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement>) {
     return (
-        <input className={classNames(className, 'px-4 py-2 border border-slate-600 rounded')} type="button" value={label} {...rest} />
+        <div className={classNames("px-4 py-8 border-b border-slate-500 shadow", className)}>
+            Login A
+        </div>
+    );
+}
+
+function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement>) {
+    return (
+        <input className={classNames('px-4 py-2 border border-slate-600 rounded', className)} type="button" value={label} {...rest} />
     );
 }
 
 function LoginView({ suffix = '' }: { suffix?: string; }) {
     return (
-        <form className="px-4 py-8 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <div className="w-64 flex flex-col space-y-8">
+        <form className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
+            <LoginTitle />
+
+            <div className="px-4 py-4 w-80 flex flex-col space-y-8">
                 <FieldUser suffix={suffix} />
                 <FieldPass suffix={suffix} />
             </div>
-            <FieldSubmit className="self-end" label="Login" />
+            
+            <div className="px-4 self-end">
+                <FieldSubmit className="" label="Login" />
+            </div>
         </form>
     );
 }
