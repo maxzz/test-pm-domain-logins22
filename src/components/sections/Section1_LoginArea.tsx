@@ -16,11 +16,27 @@ function PreviewContainer() {
 
 const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
 
+function LoginView() {
+    return (
+        <div className="flex flex-col space-y-4">
+            <label>
+                <div className="">Username</div>
+                <input id="user" type="text" placeholder="Username" autoComplete="username" />
+            </label>
+            <label>
+                <div className="">Password</div>
+                <input id="pass" type="password" placeholder="Password" autoComplete="current-password" />
+            </label>
+        </div>
+    );
+}
 
-export function Section0_Preview() {
+
+export function Section1_LoginArea() {
     return (
         <div className="mt-4 grid grid-cols-2 gap-4">
             <PreviewContainer />
+            <LoginView />
         </div>
     );
 }
