@@ -16,37 +16,46 @@ function PreviewContainer() {
 
 const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
 
+function FieldUser({ suffix = '' }: { suffix?: string; }) {
+    return (
+        <label className="relative">
+            <input
+                className="peer float-input"
+                id={`user${suffix}`}
+                type="text"
+                placeholder="Username"
+            />
+
+            <div className="float-label">
+                Username
+            </div>
+        </label>
+    );
+}
+
+function FieldPass({ suffix = '' }: { suffix?: string; }) {
+    return (
+        <label className="relative">
+            <input
+                className="peer float-input"
+                id={`pass${suffix}`}
+                type="password"
+                placeholder="Password"
+                autoComplete="current-password"
+            />
+
+            <div className="float-label">
+                Password
+            </div>
+        </label>
+    );
+}
+
 function LoginView({ suffix = '' }: { suffix?: string; }) {
     return (
         <div className="flex flex-col space-y-4">
-
-            <label className="relative">
-                <input
-                    className="peer float-input"
-                    id={`user${suffix}`}
-                    type="text"
-                    placeholder="Username"
-                />
-
-                <div className="float-label">
-                    Username
-                </div>
-            </label>
-
-            <label className="relative">
-                <input
-                    className="peer float-input"
-                    id={`pass${suffix}`}
-                    type="password"
-                    placeholder="Password"
-                    autoComplete="current-password"
-                />
-
-                <div className="float-label">
-                    Password
-                </div>
-            </label>
-
+            <FieldUser suffix={suffix} />
+            <FieldPass suffix={suffix} />
         </div>
     );
 }
@@ -54,7 +63,7 @@ function LoginView({ suffix = '' }: { suffix?: string; }) {
 export function Section1_LoginArea() {
     return (
         <div className="mt-4 grid grid-cols-2 gap-4">
-            <PreviewContainer />
+            {/* <PreviewContainer /> */}
             <LoginView />
         </div>
     );

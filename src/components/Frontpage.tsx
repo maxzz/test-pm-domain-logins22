@@ -7,14 +7,18 @@ export function Frontpage() {
     return (
         <div className="h-screen flex flex-col text-[#001845]">
             <AppHeader />
+
             <div className="flex-1 overflow-y-auto" style={{ overflow: 'overlay' }}>
 
-                <div className="mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl flex flex-col space-y-4">
-                    <Section1_LoginArea />
+                <div className="h-full mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl flex flex-col space-y-4">
+                    <div className="h-full grid place-items-center">
+                        <Section1_LoginArea />
+                    </div>
 
-                    <Section6_Footer />
                 </div>
             </div>
+
+            <Section6_Footer />
         </div>
     );
 }
