@@ -38,6 +38,7 @@
             text-xs
             peer-focus:text-xs
             peer-placeholder-shown:[font-size:inherit]
+            peer-placeholder-shown:[line-height:inherit]
 
             [color:inherit]
             peer-focus:[color:inherit]

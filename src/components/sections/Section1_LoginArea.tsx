@@ -19,87 +19,34 @@ const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
 function LoginView({ suffix = '' }: { suffix?: string; }) {
     return (
         <div className="flex flex-col space-y-4">
-            <div className="">
-                <label className="relative">
-                    <input
-                        className="py-1 peer border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none transition-colors bg-red-400"
-                        id={`user${suffix}`}
-                        type="text"
-                        placeholder="Username11"
-                        autoComplete="username"
-                    />
 
-                    {/* <div className="absolute left-0 top-0 peer-focus:text-xs cursor-text transition-all">Username</div> */}
-                    <div className="absolute left-0 top-0 peer-focus:-top-5 peer-focus:text-xs cursor-text transition-all">Username</div>
-                    {/* <div className="tw\focus:not(:focus-visible):outline-none absolute left-0 top-1 peer-focus:-top-5 peer-focus:text-xs cursor-text transition-all">Username</div> */}
-                </label>
-            </div>
-
-            <label className="relative text-red-700 text-base">
+            <label className="relative">
                 <input
-                    className="peer py-1 px-1 border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none placeholder-transparent transition-colors bg-purple-100"
+                    className="peer float-input"
                     id={`user${suffix}`}
-                    placeholder="Username"
                     type="text"
+                    placeholder="Username"
                 />
 
-                <div
-                    className={`absolute
-                    left-1
-                    
-                    top-1/2
-                    -translate-y-8
-                    peer-focus:-translate-y-8
-                    peer-placeholder-shown:-translate-y-1/2
-
-
-                    text-xs
-                    peer-focus:text-xs
-                    peer-placeholder-shown:[font-size:inherit]
-
-                    [color:inherit]
-                    peer-focus:[color:inherit]
-                    peer-placeholder-shown:text-slate-400
-
-                    cursor-text
-                    transition-transform 
-                    `}>
+                <div className="float-label">
                     Username
                 </div>
             </label>
 
-            <hr />
-
-            <label className="relative text-base">
+            <label className="relative">
                 <input
-                    className="peer float-input bg-red-500"
-                    id={`user${suffix}`}
-                    placeholder="Username"
-                    type="text"
+                    className="peer float-input"
+                    id={`pass${suffix}`}
+                    type="password"
+                    placeholder="Password"
+                    autoComplete="current-password"
                 />
 
-                <div
-                    className="float-label"
-                    >
-                    Username
+                <div className="float-label">
+                    Password
                 </div>
             </label>
 
-            <hr />
-
-            <div className="relative">
-                <input className="peer placeholder-transparent form-input" type="text" id="name" placeholder="Name" />
-
-                <label htmlFor="name"
-                    className="absolute top-1/2 -translate-y-12 left-2 peer-focus:-translate-y-12 transition-transform peer-placeholder-shown:-translate-y-1/2">
-                    Name
-                </label>
-            </div>
-
-            {/* <label>
-                <div className="">Password</div>
-                <input id={`pass${suffix}`} type="password" placeholder="Password" autoComplete="current-password" />
-            </label> */}
         </div>
     );
 }
