@@ -21,9 +21,9 @@
     }
 }
 
-@layer components {
+/* @layer components {
     input:focus-within ~ div,
     input:not(:placeholder-shown) ~ div {
         @apply -top-5;
     }
-}
+} */
