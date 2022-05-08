@@ -21,6 +21,33 @@
     }
 }
 
+@layer components {
+    .float-input {
+        @apply py-1 px-1 border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none placeholder-transparent transition-colors;
+    }
+    .float-label {
+        @apply absolute
+            left-1
+            
+            top-1/2
+            -translate-y-8
+            peer-focus:-translate-y-8
+            peer-placeholder-shown:-translate-y-1/2
+
+
+            text-xs
+            peer-focus:text-xs
+            peer-placeholder-shown:[font-size:inherit]
+
+            [color:inherit]
+            peer-focus:[color:inherit]
+            peer-placeholder-shown:text-slate-400
+
+            cursor-text
+            transition-transform;
+    }
+}
+
 /* @layer components {
     input:focus-within ~ div,
     input:not(:placeholder-shown) ~ div {

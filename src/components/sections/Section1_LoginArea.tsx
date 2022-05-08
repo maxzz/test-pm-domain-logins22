@@ -70,35 +70,17 @@ function LoginView({ suffix = '' }: { suffix?: string; }) {
 
             <hr />
 
-            <label className="relative text-red-700 text-base">
+            <label className="relative text-base">
                 <input
-                    className="peer py-1 px-1 border-b focus:border-b-2 focus:border-b-blue-600 focus:outline-none placeholder-transparent transition-colors bg-purple-100"
+                    className="peer float-input bg-red-500"
                     id={`user${suffix}`}
                     placeholder="Username"
                     type="text"
                 />
 
                 <div
-                    className={`absolute
-                    left-1
-                    
-                    top-1/2
-                    -translate-y-8
-                    peer-focus:-translate-y-8
-                    peer-placeholder-shown:-translate-y-1/2
-
-
-                    text-xs
-                    peer-focus:text-xs
-                    peer-placeholder-shown:[font-size:inherit]
-
-                    [color:inherit]
-                    peer-focus:[color:inherit]
-                    peer-placeholder-shown:text-slate-400
-
-                    cursor-text
-                    transition-transform 
-                    `}>
+                    className="float-label"
+                    >
                     Username
                 </div>
             </label>
