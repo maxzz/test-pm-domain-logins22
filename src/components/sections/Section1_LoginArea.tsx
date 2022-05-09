@@ -63,7 +63,7 @@ function LoginTitle({ label = '', className, ...rest }: { label?: string; } & Re
         },
     });
     return (
-        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow", className)}>
+        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow select-none", className)}>
             <div className="font-bold">Login A</div>
             <a.div style={styles} className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md">A</a.div>
         </div>
@@ -72,7 +72,7 @@ function LoginTitle({ label = '', className, ...rest }: { label?: string; } & Re
 
 function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement>) {
     return (
-        <input className={classNames('px-4 py-2 border border-slate-600 rounded', className)} type="button" value={label} {...rest} />
+        <input className={classNames('px-4 py-2 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded', className)} type="button" value={label} {...rest} />
     );
 }
 
@@ -94,11 +94,11 @@ function LoginView({ suffix = '' }: { suffix?: string; }) {
 }
 
 export function Section1_LoginArea() {
-    return (
-        // <div className="mt-4 grid grid-cols-2 gap-4">
+    return (<>
+        {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
         <div className="mt-4 flex items-start justify-center">
             {/* <PreviewContainer /> */}
             <LoginView suffix={'-2'} />
         </div>
-    );
+    </>);
 }
