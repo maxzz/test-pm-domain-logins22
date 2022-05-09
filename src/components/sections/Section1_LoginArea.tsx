@@ -3,6 +3,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { showSearchPageAtom } from '@/store/store';
 import { a, easings, useSpring } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
+import { IconSearch } from '../UI/UIIcons';
 
 const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)', };
 
@@ -34,7 +35,7 @@ function LoginTitle({ label = '', logo, className, ...rest }: { label?: string; 
             <div className="font-bold">{label}</div>
             <a.div
                 style={styles}
-                className="px-4 pb-2 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md"
+                className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md"
             >
                 {logo}
             </a.div>
@@ -86,7 +87,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <LoginTitle label="Login A" logo={'A'} />
+            <LoginTitle label="Login A" logo={<div className="pb-2">A</div>} />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldId={`user${suffix}`} placeholder="Username" />
@@ -103,14 +104,17 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-search-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <LoginTitle label="Search" logo={<div className="text-orange-500">S</div>} />
+            <LoginTitle
+                label="Search"
+                logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
+            />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldId={`seacrh${suffix}`} placeholder="Search" />
             </div>
 
             <div className="px-4 self-end">
-                <FieldSubmit className="" label="Login" />
+                <FieldSubmit className="" label="Search" />
             </div>
         </form>
     );
