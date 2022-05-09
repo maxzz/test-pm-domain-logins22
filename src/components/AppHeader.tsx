@@ -48,7 +48,7 @@ export function AppHeader() {
                 </a.div>
             </div>
 
-            <div className="absolute bottom-1 right-2">
+            <div className="absolute bottom-1 left-2">
                 <div className="flex space-x-4">
                     <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
                     <SvgScreenCPass className="w-12 h-12 bg-blue-500" />

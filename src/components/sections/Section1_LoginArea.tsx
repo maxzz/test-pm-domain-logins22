@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { showSearchPageAtom } from '@/store/store';
 import { a, easings, useSpring } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 
@@ -93,12 +94,32 @@ function LoginView({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-export function Section1_LoginArea() {
-    return (<>
-        {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
-        <div className="mt-4 flex items-start justify-center">
-            {/* <PreviewContainer /> */}
-            <LoginView suffix={'-2'} />
+function TempControls() {
+    const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
+    return (
+        <div className="p-4">
+            <label className="flex items-center space-x-2">
+                <input className="form-checkbox rounded" type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)} />
+                <div className="">Search page</div>
+            </label>
         </div>
-    </>);
+
+    );
+}
+
+export function Section1_LoginArea() {
+    const showSearch = useAtomValue(showSearchPageAtom);
+    return (
+        <div className="flex flex-col justify-between">
+
+            <div className="mt-4 flex items-start justify-center">
+                {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
+                {/* <PreviewContainer /> */}
+
+                {showSearch ? null : <LoginView suffix={'-2'} />}
+            </div>
+
+            <TempControls />
+        </div>
+    );
 }

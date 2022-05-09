@@ -8,11 +8,11 @@ namespace Storage {
     const KEY = 'test-domain-logins22';
 
     type Store = {
-        open1: boolean;
+        showSearchPage: boolean;
     };
 
     export let initialData: Store = {
-        open1: false,
+        showSearchPage: false,
     };
 
     function load() {
@@ -29,10 +29,12 @@ namespace Storage {
 
     export const save = debounce(function _save(get: Getter) {
         let newStore: Store = {
-            open1: false,
+            showSearchPage: get(showSearchPageAtom),
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
     }, 1000);
 }
 
 //#endregion LocalStorage
+
+export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, ({get}) => Storage.save(get));
