@@ -20,18 +20,10 @@ const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(
 
 const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
 
-function LoginTitle({ label = '', logo, className, ...rest }: { label?: string; logo: ReactNode; } & React.HTMLAttributes<HTMLInputElement>) {
-    const styles = useSpring({
-        from: {
-            scaleX: 0,
-            opacity: 0,
-        }, to: {
-            scaleX: 1,
-            opacity: 1,
-        },
-    });
+function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
+    const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
     return (
-        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow select-none", className)}>
+        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow select-none", className)} {...rest}>
             <div className="font-bold">{label}</div>
             <a.div
                 style={styles}
@@ -78,16 +70,21 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement>) {
+function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
     return (
-        <input className={classNames('px-4 py-2 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded', className)} type="button" value={label} {...rest} />
+        <button
+            className={classNames('px-4 py-2 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded', className)} {...rest}
+            onClick={((e) => e.preventDefault())}
+        >
+            {label}
+        </button>
     );
 }
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <LoginTitle label="Login A" logo={<div className="pb-2">A</div>} />
+            <LoginTitle label={<div className="uppercase">Login A</div>} logo={<div className="pb-2">A</div>} />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldId={`user${suffix}`} placeholder="Username" />
@@ -105,7 +102,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-search-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
             <LoginTitle
-                label="Search"
+                label={<div className="uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
             />
 
@@ -124,8 +121,8 @@ function TempControls() {
     const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
     return (
         <div className="p-4">
-            <label className="flex items-center space-x-2 select-none">
-                <input className="form-checkbox rounded" type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)} />
+            <label className="flex items-center justify-center space-x-2 select-none cursor-pointer">
+                <input className="form-checkbox rounded cursor-pointer" type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)} />
                 <div className="">Search page</div>
             </label>
         </div>
@@ -135,7 +132,7 @@ function TempControls() {
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
     return (
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between text-slate-800">
 
             <div className="mt-4 flex items-start justify-center">
                 {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
