@@ -25,7 +25,7 @@ export const SvgScreenLogin = ({
         }
       </style>
     </defs>
-    <path fill="#f2f2f2" d="M0 0h99.48v99.48H0z" />
+    {/* <path fill="#f2f2f2" d="M0 0h99.48v99.48H0z" /> */}
     <g id="b">
       <path
         className="d"

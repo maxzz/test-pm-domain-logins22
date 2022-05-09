@@ -5,7 +5,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-export const SvgScreenLogin = ({
+export const SvgScreenCPass = ({
   title,
   titleId,
   ...props
@@ -25,7 +25,7 @@ export const SvgScreenLogin = ({
         }
       </style>
     </defs>
-    <path className="i" d="M0 0h99.48v99.48H0z" />
+    {/* <path className="i" d="M0 0h99.48v99.48H0z" /> */}
     <g id="b">
       <path
         className="i"

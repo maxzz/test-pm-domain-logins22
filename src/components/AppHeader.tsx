@@ -1,6 +1,7 @@
 import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
 import { a, easings, useSpring } from '@react-spring/web';
-import curvesSvg from '../assets/sources/curves.svg';
+import { SvgScreenLogin } from './UI/screen-1-login';
+import { SvgScreenCPass } from './UI/screen-2-cpass';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
@@ -23,9 +24,7 @@ export function AppHeader() {
         config: { easing: easings.easeOutCubic, duration: 1000 }
     });
     return (<>
-        <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default"
-        // style={{ backgroundImage: `url(${curvesSvg})`, backgroundSize: '100% 90%', backgroundRepeat: 'no-repeat' }}
-        > {/* bg-[#003f82] */}
+        <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
 
             <IconHeroLines className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-500/20 stroke-[.05vmin]" preserveAspectRatio="none slice" />
 
@@ -47,6 +46,15 @@ export function AppHeader() {
                 <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
                     <IconHero className="" preserveAspectRatio="xMidYMid slice" />
                 </a.div>
+            </div>
+
+            <div className="absolute bottom-1 right-2">
+                <div className="flex space-x-4">
+                    <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
+                    <SvgScreenCPass className="w-12 h-12 bg-blue-500" />
+                    <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
+                    <SvgScreenCPass className="w-12 h-12 bg-blue-500" />
+                </div>
             </div>
 
         </div>
