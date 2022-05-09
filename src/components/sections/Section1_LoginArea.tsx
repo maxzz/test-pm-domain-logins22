@@ -53,9 +53,19 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
 }
 
 function LoginTitle({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLInputElement>) {
+    const styles = useSpring({
+        from: {
+            scaleX: 0,
+            opacity: 0,
+        }, to: {
+            scaleX: 1,
+            opacity: 1,
+        },
+    });
     return (
-        <div className={classNames("px-4 py-8 border-b border-slate-500 shadow", className)}>
-            Login A
+        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow", className)}>
+            <div className="font-bold">Login A</div>
+            <a.div style={styles} className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md">A</a.div>
         </div>
     );
 }
@@ -71,11 +81,11 @@ function LoginView({ suffix = '' }: { suffix?: string; }) {
         <form className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
             <LoginTitle />
 
-            <div className="px-4 py-4 w-80 flex flex-col space-y-8">
+            <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser suffix={suffix} />
                 <FieldPass suffix={suffix} />
             </div>
-            
+
             <div className="px-4 self-end">
                 <FieldSubmit className="" label="Login" />
             </div>
@@ -88,7 +98,7 @@ export function Section1_LoginArea() {
         // <div className="mt-4 grid grid-cols-2 gap-4">
         <div className="mt-4 flex items-start justify-center">
             {/* <PreviewContainer /> */}
-            <LoginView />
+            <LoginView suffix={'-2'} />
         </div>
     );
 }
