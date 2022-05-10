@@ -84,7 +84,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <LoginTitle label={<div className="uppercase">Login A</div>} logo={<div className="pb-2">A</div>} />
+            <LoginTitle label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Login A</div>} logo={<div className="pb-2">A</div>} />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldId={`user${suffix}`} placeholder="Username" />
@@ -103,7 +103,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
         {/* Don't use 'search' word in form name or field names/IDs */}
         <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
             <LoginTitle
-                label={<div className="uppercase">Search</div>}
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
             />
 
