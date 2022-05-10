@@ -99,22 +99,30 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
-    return (
-        <form id="tm-search-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
+    return (<>
+        {/* Don't use 'search' word in form name or field names/IDs */}
+        <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
             <LoginTitle
                 label={<div className="uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
             />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldId={`seacrh${suffix}`} placeholder="Search" />
+                <FieldUser fieldId={`sear${suffix}`} placeholder="Search" />
+
+                <div className="">
+                    <select className="h-[37px] px-1 py-1.5" name="state">
+                        <option value="">CA</option>
+                        <option value="">WA</option>
+                    </select>
+                </div>
             </div>
 
             <div className="px-4 self-end">
                 <FieldSubmit className="" label="Search" />
             </div>
         </form>
-    );
+    </>);
 }
 
 function TempControls() {
