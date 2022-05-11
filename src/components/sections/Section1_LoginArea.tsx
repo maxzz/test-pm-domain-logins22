@@ -19,11 +19,18 @@ import { IconSearch } from '../UI/UIIcons';
 //     );
 // }
 
+const outline = {
+    'WebkitTextStroke': '1px #6e6e6e45',
+    'WebkitTextFillColor': 'white',
+}
+
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
     return (
         <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
-            <div className="font-bold">{label}</div>
+            <div className="font-bold" style={outline}>
+                {label}
+            </div>
             <a.div
                 style={styles}
                 className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md"
@@ -87,7 +94,7 @@ const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
-        <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
+        <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Login A</div>}
                 logo={<div className="pb-2">A</div>}
@@ -108,7 +115,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}
-        <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
+        <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
