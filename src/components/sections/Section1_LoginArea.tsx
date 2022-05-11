@@ -79,7 +79,7 @@ function FieldPass({ fieldAtom, suffix = '' }: { fieldAtom: PrimitiveAtom<string
 function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
     return (
         <button
-            className={classNames('px-4 py-2 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded', className)} {...rest}
+            className={classNames('px-4 py-1.5 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded-sm', className)} {...rest}
             onClick={((e) => e.preventDefault())}
         >
             {label}
@@ -117,14 +117,18 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
             />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
 
-                <div className="">
-                    <select className="h-[37px] px-1 py-1.5" name="state">
-                        <option value="">CA</option>
-                        <option value="">WA</option>
-                    </select>
+                <div className="flex items-center space-x-2">
+                    <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
+                    <div className="">
+                        <select className="h-[37px] px-1 py-1.5" name="state">
+                            <option value="">CA</option>
+                            <option value="">WA</option>
+                        </select>
+                    </div>
+
                 </div>
+
             </div>
 
             <div className="px-4 self-end">
