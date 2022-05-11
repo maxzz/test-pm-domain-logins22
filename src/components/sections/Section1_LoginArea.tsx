@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { loginApassAtom, loginAuserAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
-import { a, easings, useSpring } from '@react-spring/web';
+import { a, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
+import { uuid } from '@/utils/uuid';
 
 // const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)', };
 // const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
@@ -22,7 +23,7 @@ import { IconSearch } from '../UI/UIIcons';
 const outline = {
     'WebkitTextStroke': '1px #6e6e6e45',
     'WebkitTextFillColor': 'white',
-}
+};
 
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
@@ -117,7 +118,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
         {/* Don't use 'search' word in form name or field names/IDs */}
         <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Search</div>}
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
             />
 
@@ -152,6 +153,50 @@ function TempControls() {
     );
 }
 
+// function Mount({ show }: { show: boolean; }) {
+//     const transitions = useTransition(show, {
+//         from: { opacity: 0 },
+//         enter: { opacity: 1 },
+//         leave: { opacity: 0 },
+//         config: { duration: 400, },
+//     });
+//     return transitions(
+//         (styles, item) => item && <a.div style={styles}>✌️</a.div>
+//     );
+// }
+
+function Mount({ show }: { show: boolean; }) {
+    const [on, setOn] = useState(show);
+    useEffect(() => {
+        if (show) {
+            console.log('setOn = true');
+            setOn(true);
+        }
+    }, [show]);
+    const transitions = useTransition(show, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+        config: { duration: 400, },
+        //key: uuid(),
+        //keys: () => uuid(),
+        key: 1,
+        onRest: () => {
+            console.log('done');
+            setOn(false);
+        }
+    });
+    console.log('render');
+
+    return transitions(
+        (styles, item) => {
+            console.log('---✌️---', styles, item);
+
+            return item && <a.div key={uuid()} style={styles}>✌️</a.div>;
+        }
+    );
+}
+
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
     return (
@@ -162,6 +207,7 @@ export function Section1_LoginArea() {
                 {/* <PreviewContainer /> */}
 
                 {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />}
+                <Mount show={showSearch} />
             </div>
 
             <TempControls />
