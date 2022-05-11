@@ -5,8 +5,9 @@ import { a, easings, useSpring } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
 
-const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)', };
-
+// const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)', };
+// const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
+//
 // function PreviewContainer() {
 //     const styles = useSpring({ scale: 1, from: { scale: 2 }, config: { duration: 2000, easing: easings.easeInOutElastic } });
 //     return (
@@ -18,12 +19,10 @@ const boxShadow = { boxShadow: '0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(
 //     );
 // }
 
-const iconShadow = { filter: 'drop-shadow(1px 1px 1px #0002)', };
-
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
     return (
-        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-400 shadow select-none", className)} {...rest}>
+        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
             <div className="font-bold">{label}</div>
             <a.div
                 style={styles}
@@ -84,11 +83,13 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
     );
 }
 
+const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
+
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
             <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Login A</div>}
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Login A</div>}
                 logo={<div className="pb-2">A</div>}
             />
 
