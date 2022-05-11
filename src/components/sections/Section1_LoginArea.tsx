@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { useAtom, useAtomValue } from 'jotai';
-import { showSearchPageAtom } from '@/store/store';
+import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
+import { loginApassAtom, loginAuserAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, easings, useSpring } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
@@ -35,7 +35,8 @@ function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNod
     );
 }
 
-function FieldUser({ fieldId = '', placeholder = ' ' }: { fieldId?: string; placeholder?: string; }) {
+function FieldUser({ fieldAtom, fieldId = '', placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId?: string; placeholder?: string; }) {
+    const [value, setValue] = useAtom(fieldAtom);
     return (
         <label className="relative">
             <input
@@ -43,6 +44,8 @@ function FieldUser({ fieldId = '', placeholder = ' ' }: { fieldId?: string; plac
                 id={`user${fieldId}`}
                 type="text"
                 placeholder={placeholder}
+                value={value}
+                onChange={((e) => setValue(e.target.value))}
             />
 
             <div className="float-label">
@@ -52,7 +55,8 @@ function FieldUser({ fieldId = '', placeholder = ' ' }: { fieldId?: string; plac
     );
 }
 
-function FieldPass({ suffix = '' }: { suffix?: string; }) {
+function FieldPass({ fieldAtom, suffix = '' }: { fieldAtom: PrimitiveAtom<string>; suffix?: string; }) {
+    const [value, setValue] = useAtom(fieldAtom);
     return (
         <label className="relative">
             <input
@@ -61,6 +65,8 @@ function FieldPass({ suffix = '' }: { suffix?: string; }) {
                 type="password"
                 placeholder="Password"
                 autoComplete="current-password"
+                value={value}
+                onChange={((e) => setValue(e.target.value))}
             />
 
             <div className="float-label">
@@ -84,11 +90,14 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200" style={boxShadow}>
-            <LoginTitle label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Login A</div>} logo={<div className="pb-2">A</div>} />
+            <LoginTitle
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8888] uppercase">Login A</div>}
+                logo={<div className="pb-2">A</div>}
+            />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass suffix={suffix} />
+                <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
+                <FieldPass fieldAtom={loginApassAtom} suffix={suffix} />
             </div>
 
             <div className="px-4 self-end">
@@ -108,7 +117,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
             />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldId={`sear${suffix}`} placeholder="Search" />
+                <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
 
                 <div className="">
                     <select className="h-[37px] px-1 py-1.5" name="state">

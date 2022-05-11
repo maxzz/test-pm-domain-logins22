@@ -13,6 +13,7 @@ namespace Storage {
         loginApass: string;
         loginBuser: string;
         loginBpass: string;
+        searchText: string;
     };
 
 
@@ -23,6 +24,7 @@ namespace Storage {
         loginApass: '',
         loginBuser: '',
         loginBpass: '',
+        searchText: '',
     };
 
     function load() {
@@ -44,6 +46,7 @@ namespace Storage {
             loginApass: get(loginApassAtom),
             loginBuser: get(loginBuserAtom),
             loginBpass: get(loginBpassAtom),
+            searchText: get(searchTextAtom),
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
     }, 1000);
@@ -57,3 +60,4 @@ export const loginAuserAtom = atomWithCallback(Storage.initialData.loginAuser, (
 export const loginApassAtom = atomWithCallback(Storage.initialData.loginApass, ({get}) => Storage.save(get));
 export const loginBuserAtom = atomWithCallback(Storage.initialData.loginBuser, ({get}) => Storage.save(get));
 export const loginBpassAtom = atomWithCallback(Storage.initialData.loginBpass, ({get}) => Storage.save(get));
+export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, ({get}) => Storage.save(get));
