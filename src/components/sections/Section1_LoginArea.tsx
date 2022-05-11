@@ -158,44 +158,68 @@ function TempControls() {
 //         from: { opacity: 0 },
 //         enter: { opacity: 1 },
 //         leave: { opacity: 0 },
-//         config: { duration: 400, },
+//         //key: 1,
+//         config: { duration: 2000, },
 //     });
-//     return transitions(
-//         (styles, item) => item && <a.div style={styles}>✌️</a.div>
-//     );
+
+//     useEffect(() => {
+//         console.log('--------------------mounted');
+//         return () => {
+//             console.log('====================un-mounted');
+//         }
+//      }, []);
+
+//     const b = transitions((styles, item) => item && <a.div key={2} style={styles}>✌️</a.div>);
+
+//     console.log('bbbbbbbb', b.props.children, (b as any)._owner.child);
+
+//     return b;
 // }
 
 function Mount({ show }: { show: boolean; }) {
-    const [on, setOn] = useState(show);
-    useEffect(() => {
-        if (show) {
-            console.log('setOn = true');
-            setOn(true);
-        }
-    }, [show]);
     const transitions = useTransition(show, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: { duration: 400, },
-        //key: uuid(),
-        //keys: () => uuid(),
-        key: 1,
-        onRest: () => {
-            console.log('done');
-            setOn(false);
-        }
+        //key: 1,
+        config: { duration: 2000, },
     });
-    console.log('render');
-
     return transitions(
-        (styles, item) => {
-            console.log('---✌️---', styles, item);
-
-            return item && <a.div key={uuid()} style={styles}>✌️</a.div>;
-        }
+        (styles, item) => item && <a.div style={styles}>✌️</a.div>
     );
 }
+
+// function Mount({ show }: { show: boolean; }) {
+//     const [on, setOn] = useState(show);
+//     useEffect(() => {
+//         if (show) {
+//             console.log('setOn = true');
+//             setOn(true);
+//         }
+//     }, [show]);
+//     const transitions = useTransition(show, {
+//         from: { opacity: 0 },
+//         enter: { opacity: 1 },
+//         leave: { opacity: 0 },
+//         config: { duration: 400, },
+//         //key: uuid(),
+//         //keys: () => uuid(),
+//         key: 1,
+//         onRest: () => {
+//             console.log('done');
+//             setOn(false);
+//         }
+//     });
+//     console.log('render');
+
+//     return transitions(
+//         (styles, item) => {
+//             console.log('---✌️---', styles, item);
+
+//             return item && <a.div key={uuid()} style={styles}>✌️</a.div>;
+//         }
+//     );
+// }
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
