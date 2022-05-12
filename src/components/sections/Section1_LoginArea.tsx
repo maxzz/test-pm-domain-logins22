@@ -63,7 +63,7 @@ function FieldUser({ fieldAtom, fieldId = '', placeholder = ' ' }: { fieldAtom: 
     );
 }
 
-function FieldPass({ fieldAtom, suffix = '' }: { fieldAtom: PrimitiveAtom<string>; suffix?: string; }) {
+function FieldPass({ fieldAtom, suffix = '', placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; suffix?: string; placeholder: string; }) {
     const [value, setValue] = useAtom(fieldAtom);
     return (
         <label className="relative">
@@ -71,7 +71,7 @@ function FieldPass({ fieldAtom, suffix = '' }: { fieldAtom: PrimitiveAtom<string
                 className="py-1.5 w-full peer float-input"
                 id={`pass${suffix}`}
                 type="password"
-                placeholder="Password"
+                placeholder={placeholder}
                 autoComplete="current-password"
                 value={value}
                 onChange={((e) => setValue(e.target.value))}
@@ -105,7 +105,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass fieldAtom={loginApassAtom} suffix={suffix} />
+                <FieldPass fieldAtom={loginApassAtom} suffix={suffix} placeholder="Password" />
             </div>
 
             <div className="px-4 self-end">
