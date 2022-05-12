@@ -155,9 +155,9 @@ function TempControls() {
 
 function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTMLDivElement>) {
     const transitions = useTransition(show, {
-        from: { x: -100 },
-        enter: { x: 0 },
-        leave: { x: 100 },
+        from: { y: -400, opacity: 0, },
+        enter: { y: 0, opacity: 1, config: { duration: 400, }, },
+        leave: { y: -200, opacity: 0, onRest: () => console.log('done') },
         config: { duration: 200, },
     });
     return transitions((styles, item) => item && (
@@ -176,8 +176,8 @@ export function Section1_LoginArea() {
                 {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
                 {/* <PreviewContainer /> */}
 
-                {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />}
-                
+                {/* {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />} */}
+
                 <Mount show={!showSearch}>
                     <ScreenSearch />
                 </Mount>
