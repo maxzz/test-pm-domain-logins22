@@ -59,7 +59,7 @@ function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
                 onChange={((e) => setValue(e.target.value))}
             />
             <div className="float-label">
-                Password
+                {placeholder}
             </div>
         </label>
     );
@@ -79,13 +79,13 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     //const selectScreen = useUpdateAtom(doSelectScreenAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
-        <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+        <form id="tm-login-a-form" className="min-h-[24rem] pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Login A</div>}
                 logo={<div className="pb-2">A</div>}
             />
 
-            <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+            <div className="flex-1 px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
             </div>
@@ -206,8 +206,8 @@ export function Section1_LoginArea() {
 
     const transitions = useTransition(current, {
         from: { opacity: 0, x: '100%', },
-        enter: { opacity: 1, x: '0%', },
-        leave: { opacity: 0, x: '-150%', config: { easing: easings.easeInOutCubic, duration: 200, }, },
+        enter: { opacity: 1, x: '0%', config: { easing: easings.easeOutCubic, duration: 200, } },
+        leave: { opacity: 0, x: '-150%', config: { easing: easings.easeInOutCubic, duration: 0, }, },
         config: { ...config.molasses },
         exitBeforeEnter: true,
     });
