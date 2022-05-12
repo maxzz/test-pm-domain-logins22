@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
-import { loginApassAtom, loginAuserAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
+import { useUpdateAtom } from 'jotai/utils';
+import { doSelectScreenAtom, loginApassAtom, loginAuserAtom, searchTextAtom, showLoginPageAtom, showSearchPageAtom } from '@/store/store';
 import { a, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
@@ -94,6 +95,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
+    const selectScreen = useUpdateAtom(doSelectScreenAtom);
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
@@ -107,13 +109,19 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
             </div>
 
             <div className="px-4 self-end">
-                <FieldSubmit className="" label="Login" onClick={((e) => e.preventDefault())} />
+                <FieldSubmit className="" label="Login"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        selectScreen('search');
+                    }}
+                />
             </div>
         </form>
     );
 }
 
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
+    const selectScreen = useUpdateAtom(doSelectScreenAtom);
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}
         <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
@@ -135,7 +143,12 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
             </div>
 
             <div className="px-4 self-end">
-                <FieldSubmit className="" label="Search" onClick={((e) => e.preventDefault())} />
+                <FieldSubmit className="" label="Search"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        selectScreen('login');
+                    }}
+                />
             </div>
         </form>
     </>);
@@ -181,6 +194,10 @@ export function Section1_LoginArea() {
 
                 <Mount showAtom={showSearchPageAtom}>
                     <ScreenSearch />
+                </Mount>
+
+                <Mount showAtom={showLoginPageAtom}>
+                    <ScreenLogin suffix={'-2'} />
                 </Mount>
             </div>
 

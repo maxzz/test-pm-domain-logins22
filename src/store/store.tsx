@@ -61,12 +61,26 @@ namespace Storage {
 
 //#endregion LocalStorage
 
-export const showLoginPageAtom = atomWithCallback(Storage.initialData.showLoginPage, ({ get }) => Storage.save(get));
-export const showCpassPageAtom = atomWithCallback(Storage.initialData.showCpassPage, ({ get }) => Storage.save(get));
-export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, ({ get }) => Storage.save(get));
+//#region Credential atoms
 
 export const loginAuserAtom = atomWithCallback(Storage.initialData.loginAuser, ({ get }) => Storage.save(get));
 export const loginApassAtom = atomWithCallback(Storage.initialData.loginApass, ({ get }) => Storage.save(get));
 export const loginBuserAtom = atomWithCallback(Storage.initialData.loginBuser, ({ get }) => Storage.save(get));
 export const loginBpassAtom = atomWithCallback(Storage.initialData.loginBpass, ({ get }) => Storage.save(get));
 export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, ({ get }) => Storage.save(get));
+
+//#endregion Credential atoms
+
+export const showLoginPageAtom = atomWithCallback(Storage.initialData.showLoginPage, ({ get }) => Storage.save(get));
+export const showCpassPageAtom = atomWithCallback(Storage.initialData.showCpassPage, ({ get }) => Storage.save(get));
+export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, ({ get }) => Storage.save(get));
+
+export type SelectScreenType = 'login' | 'cpass' | 'search';
+
+export const doSelectScreenAtom = atom(null,
+    (get, set, value: SelectScreenType) => {
+        set(showLoginPageAtom, value === 'login');
+        set(showCpassPageAtom, value === 'cpass');
+        set(showSearchPageAtom, value === 'search');
+    }
+);
