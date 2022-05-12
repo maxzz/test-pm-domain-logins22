@@ -1,7 +1,7 @@
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { ReactNode, useCallback } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doNextLoginOrCPassScreenAtom, doSelectScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showLoginPageAtom, showSearchPageAtom } from '@/store/store';
+import { doNextLoginOrCPassScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
@@ -133,7 +133,7 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
-    const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    const showSearch = useUpdateAtom(showSearchPageAtom);
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}
         <form id="tm-sear-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
@@ -158,7 +158,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
                 <FieldSubmit className="" label="Search"
                     onClick={(e) => {
                         e.preventDefault();
-                        selectScreen('login');
+                        showSearch(false);
                     }}
                 />
             </div>
