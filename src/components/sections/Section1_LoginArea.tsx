@@ -1,8 +1,8 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
 import { doSelectScreenAtom, loginApassAtom, loginAuserAtom, searchTextAtom, showLoginPageAtom, showSearchPageAtom } from '@/store/store';
-import { a, easings, useSpring, useTransition } from '@react-spring/web';
+import { a, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
 import { uuid } from '@/utils/uuid';
@@ -123,11 +123,11 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password<br />Change</div>}
                 logo={<div className="pb-2">C</div>}
             />
 
-            <div className="px-4 pt-4 pb-2 w-[20rem] flex flex-col space-y-8">
+            <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
@@ -206,27 +206,65 @@ function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boole
     );
 }
 
+// export function Section1_LoginArea() {
+//     //const showSearch = useAtomValue(showSearchPageAtom);
+//     return (
+//         <div className="flex flex-col justify-between text-slate-800">
+
+//             <div className="mt-4 flex items-start justify-center">
+//                 {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
+//                 {/* <PreviewContainer /> */}
+
+//                 {/* {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />} */}
+
+//                 <Mount showAtom={showSearchPageAtom}>
+//                     <ScreenSearch />
+//                 </Mount>
+
+//                 <Mount showAtom={showLoginPageAtom}>
+//                     <div className="flex space-x-4">
+//                         <ScreenLogin suffix={'-2'} />
+//                         <ScreenCPass suffix={'-2'} />
+//                     </div>
+//                 </Mount>
+//             </div>
+
+//             <TempControls />
+//         </div>
+//     );
+// }
+
+const items = [
+    ({ style }: { style: any; }) => <a.div style={style}><ScreenLogin suffix={'-1'} /></a.div>,
+    ({ style }: { style: any; }) => <a.div style={style}><ScreenCPass suffix={'-2'} /></a.div>,
+    ({ style }: { style: any; }) => <a.div style={style}><ScreenSearch /></a.div>,
+];
+
 export function Section1_LoginArea() {
     //const showSearch = useAtomValue(showSearchPageAtom);
+
+    const [current, setCurrent] = useState(0);
+    const transitions = useTransition(current, {
+        from: { opacity: 0, transform: 'translateX(100%)' },
+        enter: { opacity: 1, transform: 'translateX(0%)' },
+        leave: { opacity: 0, transform: 'translateX(-150%)' },
+        config: { ...config.molasses },
+        //, duration: 300
+        exitBeforeEnter: true,
+    });
+
+    const onClick = useCallback(() => setCurrent((state) => (state + 1) % 3), []);
+
     return (
-        <div className="flex flex-col justify-between text-slate-800">
+        <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
+
+            <input type="button" value="Next" onClick={onClick} />
 
             <div className="mt-4 flex items-start justify-center">
-                {/* <div className="mt-4 grid grid-cols-2 gap-4"> */}
-                {/* <PreviewContainer /> */}
-
-                {/* {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />} */}
-
-                <Mount showAtom={showSearchPageAtom}>
-                    <ScreenSearch />
-                </Mount>
-
-                <Mount showAtom={showLoginPageAtom}>
-                    <div className="flex space-x-4">
-                        <ScreenLogin suffix={'-2'} />
-                        <ScreenCPass suffix={'-2'} />
-                    </div>
-                </Mount>
+                {transitions((styles) => {
+                    const Item = items[current];
+                    return <Item style={styles} />;
+                })}
             </div>
 
             <TempControls />
