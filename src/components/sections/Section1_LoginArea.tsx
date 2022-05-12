@@ -153,10 +153,11 @@ function TempControls() {
     );
 }
 
-function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTMLDivElement>) {
+function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
+    const show = useAtomValue(showAtom);
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
-        enter: { y: 0, opacity: 1, config: { duration: 500, easing: easings.easeOutBounce }, },
+        enter: { y: 0, opacity: 1, config: { duration: 500, easing: easings.easeOutCubic }, },
         leave: { y: -200, opacity: 0, config: { duration: 400, easing: easings.easeOutQuad }, onRest: () => console.log('done') },
         //config: { duration: 200, },
     });
@@ -168,7 +169,7 @@ function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTM
 }
 
 export function Section1_LoginArea() {
-    const showSearch = useAtomValue(showSearchPageAtom);
+    //const showSearch = useAtomValue(showSearchPageAtom);
     return (
         <div className="flex flex-col justify-between text-slate-800">
 
@@ -178,7 +179,7 @@ export function Section1_LoginArea() {
 
                 {/* {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />} */}
 
-                <Mount show={!showSearch}>
+                <Mount showAtom={showSearchPageAtom}>
                     <ScreenSearch />
                 </Mount>
             </div>
