@@ -84,3 +84,11 @@ export const doSelectScreenAtom = atom(null,
         set(showSearchPageAtom, value === 'search');
     }
 );
+
+export const loginOrCpassScreenAtom = atom(0);
+
+export const doNextLoginOrCPassScreenAtom = atom(null,
+    (get, set, ) => {
+        set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1);
+    }
+);
