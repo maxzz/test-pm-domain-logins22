@@ -247,9 +247,8 @@ export function Section1_LoginArea() {
     const transitions = useTransition(current, {
         from: { opacity: 0, transform: 'translateX(100%)' },
         enter: { opacity: 1, transform: 'translateX(0%)' },
-        leave: { opacity: 0, transform: 'translateX(-150%)' },
+        leave: { opacity: 0, transform: 'translateX(-150%)', config: { easing: easings.easeInOutCubic, duration: 200, }, },
         config: { ...config.molasses },
-        //, duration: 300
         exitBeforeEnter: true,
     });
 
@@ -258,7 +257,9 @@ export function Section1_LoginArea() {
     return (
         <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
 
-            <input type="button" value="Next" onClick={onClick} />
+            <input type="button" className="" value="Next" onClick={onClick} />
+
+            <div><span data-text="404" className="text-center glitch">404</span></div>
 
             <div className="mt-4 flex items-start justify-center">
                 {transitions((styles) => {
