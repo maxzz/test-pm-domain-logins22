@@ -260,8 +260,6 @@ export function Section1_LoginArea() {
 
             <input type="button" className="" value="Next" onClick={onClick} />
 
-            {/* <div><span data-text="404" className="text-center glitch">404</span></div> */}
-
             <div className="mt-4 flex items-start justify-center">
                 {transitions((styles) => {
                     const Item = items[current];
