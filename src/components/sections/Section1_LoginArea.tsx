@@ -237,11 +237,11 @@ function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boole
 const items: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
     ({ style }: { style: any; }) => <a.div style={style}><ScreenLogin suffix={'-1'} /></a.div>,
     ({ style }: { style: any; }) => <a.div style={style}><ScreenCPass suffix={'-2'} /></a.div>,
-    ({ style }: { style: any; }) => <a.div style={style}><ScreenSearch /></a.div>,
+    // ({ style }: { style: any; }) => <a.div style={style}><ScreenSearch /></a.div>,
 ];
 
 export function Section1_LoginArea() {
-    //const showSearch = useAtomValue(showSearchPageAtom);
+    const showSearch = useAtomValue(showSearchPageAtom);
 
     const [current, setCurrent] = useState(0);
     const transitions = useTransition(current, {
@@ -253,19 +253,29 @@ export function Section1_LoginArea() {
         exitBeforeEnter: true,
     });
 
-    const onClick = useCallback(() => setCurrent((state) => (state + 1) % 3), []);
+    const onClick = useCallback(() => setCurrent((state) => (state + 1) % items.length), []);
 
     return (
         <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
 
             <input type="button" className="" value="Next" onClick={onClick} />
 
-            <div className="mt-4 flex items-start justify-center">
-                {transitions((styles) => {
-                    const Item = items[current];
-                    return <Item style={styles} />;
-                })}
-            </div>
+
+
+            {showSearch
+                ?
+                <div className="mt-4 flex items-start justify-center">
+                    <Mount showAtom={showSearchPageAtom}>
+                        <ScreenSearch />
+                    </Mount>
+                </div>
+                : <div className="mt-4 flex items-start justify-center">
+                    {transitions((styles) => {
+                        const Item = items[current];
+                        return <Item style={styles} />;
+                    })}
+                </div>
+            }
 
             <TempControls />
         </div>
