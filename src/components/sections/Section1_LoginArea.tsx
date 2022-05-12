@@ -43,19 +43,18 @@ function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNod
     );
 }
 
-function FieldUser({ fieldAtom, fieldId = '', placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId?: string; placeholder?: string; }) {
+function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder?: string; }) {
     const [value, setValue] = useAtom(fieldAtom);
     return (
         <label className="relative">
             <input
                 className="py-1.5 w-full peer float-input"
-                id={`user${fieldId}`}
+                id={fieldId}
                 type="text"
                 placeholder={placeholder}
                 value={value}
                 onChange={((e) => setValue(e.target.value))}
             />
-
             <div className="float-label">
                 {placeholder}
             </div>
@@ -63,20 +62,19 @@ function FieldUser({ fieldAtom, fieldId = '', placeholder = ' ' }: { fieldAtom: 
     );
 }
 
-function FieldPass({ fieldAtom, suffix = '', placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; suffix?: string; placeholder: string; }) {
+function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder: string; }) {
     const [value, setValue] = useAtom(fieldAtom);
     return (
         <label className="relative">
             <input
                 className="py-1.5 w-full peer float-input"
-                id={`pass${suffix}`}
+                id={fieldId}
                 type="password"
                 placeholder={placeholder}
                 autoComplete="current-password"
                 value={value}
                 onChange={((e) => setValue(e.target.value))}
             />
-
             <div className="float-label">
                 Password
             </div>
@@ -105,11 +103,38 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass fieldAtom={loginApassAtom} suffix={suffix} placeholder="Password" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
             </div>
 
             <div className="px-4 self-end">
                 <FieldSubmit className="" label="Login"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        selectScreen('search');
+                    }}
+                />
+            </div>
+        </form>
+    );
+}
+
+function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
+    const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    return (
+        <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+            <LoginTitle
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+                logo={<div className="pb-2">C</div>}
+            />
+
+            <div className="px-4 pt-4 pb-2 w-[20rem] flex flex-col space-y-8">
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
+            </div>
+
+            <div className="px-4 self-end">
+                <FieldSubmit className="" label="Change"
                     onClick={(e) => {
                         e.preventDefault();
                         selectScreen('search');
@@ -197,7 +222,10 @@ export function Section1_LoginArea() {
                 </Mount>
 
                 <Mount showAtom={showLoginPageAtom}>
-                    <ScreenLogin suffix={'-2'} />
+                    <div className="flex space-x-4">
+                        <ScreenLogin suffix={'-2'} />
+                        <ScreenCPass suffix={'-2'} />
+                    </div>
                 </Mount>
             </div>
 
