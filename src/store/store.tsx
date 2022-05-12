@@ -11,6 +11,7 @@ namespace Storage {
         showLoginPage: boolean;
         showCpassPage: boolean;
         showSearchPage: boolean;
+        loginOrCpassScreen: number;
 
         loginAuser: string;
         loginApass: string;
@@ -23,6 +24,7 @@ namespace Storage {
         showLoginPage: false,
         showCpassPage: false,
         showSearchPage: false,
+        loginOrCpassScreen: 0,
 
         loginAuser: '',
         loginApass: '',
@@ -48,6 +50,7 @@ namespace Storage {
             showLoginPage: get(showLoginPageAtom),
             showCpassPage: get(showCpassPageAtom),
             showSearchPage: get(showSearchPageAtom),
+            loginOrCpassScreen: get(loginOrCpassScreenAtom),
 
             loginAuser: get(loginAuserAtom),
             loginApass: get(loginApassAtom),
@@ -85,7 +88,7 @@ export const doSelectScreenAtom = atom(null,
     }
 );
 
-export const loginOrCpassScreenAtom = atom(0);
+export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, ({ get }) => Storage.save(get));
 
 export const doNextLoginOrCPassScreenAtom = atom(null,
     (get, set, ) => {
