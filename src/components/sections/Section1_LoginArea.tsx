@@ -153,87 +153,17 @@ function TempControls() {
     );
 }
 
-// function Mount({ show }: { show: boolean; }) {
-//     const transitions = useTransition(show, {
-//         from: { opacity: 0 },
-//         enter: { opacity: 1 },
-//         leave: { opacity: 0 },
-//         //key: 1,
-//         config: { duration: 2000, },
-//     });
-
-//     useEffect(() => {
-//         console.log('--------------------mounted');
-//         return () => {
-//             console.log('====================un-mounted');
-//         }
-//      }, []);
-
-//     const b = transitions((styles, item) => item && <a.div key={2} style={styles}>✌️</a.div>);
-//     console.log('bbbbbbbb', b.props.children, (b as any)._owner.child);
-//     return b;
-// }
-
-//G: 'react-spring usetransition does not remove element'
-    //https://stackoverflow.com/questions/65516854/dom-element-wont-get-removed-on-react-spring-animation 'DOM element won't get removed on react spring animation'
-        // <- compare assets/1.tsx vs. assets/2after.tsx
-    //https://github.com/pmndrs/react-spring/issues/1149 'useTransition component does not unmount #1149'
-        //GH: 'useTransition component does not unmount ' https://github.com/pmndrs/react-spring/issues?q=useTransition+component+does+not+unmount
-            //https://github.com/pmndrs/react-spring/issues/1790 'Concurrent Mode + Strict Mode cause useTransition to not unmount component after leave #1790' !!!!
-                // <- This has been resolved by our latest version v9.4.5
-                    //https://github.com/pmndrs/react-spring/commit/31f41f89b6e8554688c2636746af20a78c7d1c75
-                        //packages/core/src/hooks/useTransition.tsx
-                        //packages/shared/src/hooks/useIsMounted.ts
-            //https://github.com/pmndrs/react-spring/issues/665 'RFC / useTransition 🤯 and possible improvements #665'
-                // <- I usually just end up using useSpring and manually unmounting using onRest callbacks. !!!!
-            //https://github.com/pmndrs/react-spring/issues/9 'FLIP-style animations #9'
-                //https://codesandbox.io/s/drag-and-drop-spring-forked-bbudkj?file=/src/AnimatedPosition.js - tm
-                //https://github.com/jlkiri/react-easy-flip
-
 function Mount({ show }: { show: boolean; }) {
     const transitions = useTransition(show, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        //key: 1,
         config: { duration: 2000, },
     });
     return transitions(
         (styles, item) => item && <a.div style={styles}>✌️</a.div>
     );
 }
-
-// function Mount({ show }: { show: boolean; }) {
-//     const [on, setOn] = useState(show);
-//     useEffect(() => {
-//         if (show) {
-//             console.log('setOn = true');
-//             setOn(true);
-//         }
-//     }, [show]);
-//     const transitions = useTransition(show, {
-//         from: { opacity: 0 },
-//         enter: { opacity: 1 },
-//         leave: { opacity: 0 },
-//         config: { duration: 400, },
-//         //key: uuid(),
-//         //keys: () => uuid(),
-//         key: 1,
-//         onRest: () => {
-//             console.log('done');
-//             setOn(false);
-//         }
-//     });
-//     console.log('render');
-
-//     return transitions(
-//         (styles, item) => {
-//             console.log('---✌️---', styles, item);
-
-//             return item && <a.div key={uuid()} style={styles}>✌️</a.div>;
-//         }
-//     );
-// }
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
