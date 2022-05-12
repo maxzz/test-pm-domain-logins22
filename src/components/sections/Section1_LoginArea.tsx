@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { loginApassAtom, loginAuserAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, easings, useSpring, useTransition } from '@react-spring/web';
@@ -153,15 +153,17 @@ function TempControls() {
     );
 }
 
-function Mount({ show }: { show: boolean; }) {
+function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTMLDivElement>) {
     const transitions = useTransition(show, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
         config: { duration: 2000, },
     });
-    return transitions(
-        (styles, item) => item && <a.div style={styles}>✌️</a.div>
+    return transitions((styles, item) => item && (
+        <a.div style={styles}>
+            {children}
+        </a.div>)
     );
 }
 
@@ -175,7 +177,9 @@ export function Section1_LoginArea() {
                 {/* <PreviewContainer /> */}
 
                 {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />}
-                <Mount show={showSearch} />
+                <Mount show={showSearch}>
+                    🎈
+                </Mount>
             </div>
 
             <TempControls />
