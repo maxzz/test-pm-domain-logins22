@@ -156,9 +156,9 @@ function TempControls() {
 function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTMLDivElement>) {
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
-        enter: { y: 0, opacity: 1, config: { duration: 400, }, },
-        leave: { y: -200, opacity: 0, onRest: () => console.log('done') },
-        config: { duration: 200, },
+        enter: { y: 0, opacity: 1, config: { duration: 500, easing: easings.easeOutBounce }, },
+        leave: { y: -200, opacity: 0, config: { duration: 400, easing: easings.easeOutQuad }, onRest: () => console.log('done') },
+        //config: { duration: 200, },
     });
     return transitions((styles, item) => item && (
         <a.div style={styles}>
