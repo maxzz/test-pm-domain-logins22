@@ -155,10 +155,10 @@ function TempControls() {
 
 function Mount({ show, children }: { show: boolean; } & React.HTMLAttributes<HTMLDivElement>) {
     const transitions = useTransition(show, {
-        from: { opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 },
-        config: { duration: 2000, },
+        from: { x: -100 },
+        enter: { x: 0 },
+        leave: { x: 100 },
+        config: { duration: 200, },
     });
     return transitions((styles, item) => item && (
         <a.div style={styles}>
@@ -177,8 +177,9 @@ export function Section1_LoginArea() {
                 {/* <PreviewContainer /> */}
 
                 {showSearch ? <ScreenSearch /> : <ScreenLogin suffix={'-2'} />}
-                <Mount show={showSearch}>
-                    🎈
+                
+                <Mount show={!showSearch}>
+                    <ScreenSearch />
                 </Mount>
             </div>
 
