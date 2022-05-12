@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doSelectScreenAtom, loginApassAtom, loginAuserAtom, searchTextAtom, showLoginPageAtom, showSearchPageAtom } from '@/store/store';
+import { doNextLoginOrCPassScreenAtom, doSelectScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showLoginPageAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconSearch } from '../UI/UIIcons';
@@ -76,7 +76,8 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
-    const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    //const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
         <form id="tm-login-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
@@ -93,7 +94,8 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
                 <FieldSubmit className="" label="Login"
                     onClick={(e) => {
                         e.preventDefault();
-                        selectScreen('search');
+                        //selectScreen('search');
+                        doNextLoginOrCPassScreen();
                     }}
                 />
             </div>
@@ -102,7 +104,8 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
-    const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    //const selectScreen = useUpdateAtom(doSelectScreenAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
         <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
@@ -120,7 +123,8 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
                 <FieldSubmit className="" label="Change"
                     onClick={(e) => {
                         e.preventDefault();
-                        selectScreen('search');
+                        //selectScreen('search');
+                        doNextLoginOrCPassScreen();
                     }}
                 />
             </div>
@@ -189,7 +193,7 @@ function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boole
     );
 }
 
-const items: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
+const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
     ({ style }: { style: any; }) => <a.div style={style}><ScreenLogin suffix={'-1'} /></a.div>,
     ({ style }: { style: any; }) => <a.div style={style}><ScreenCPass suffix={'-2'} /></a.div>,
 ];
@@ -197,16 +201,18 @@ const items: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.R
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
 
-    const [current, setCurrent] = useState(0);
+    //const [current, setCurrent] = useState(0);
+    const [current, setCurrent] = useAtom(loginOrCpassScreenAtom);
+
     const transitions = useTransition(current, {
-        from: { opacity: 0, transform: 'translateX(100%)' },
-        enter: { opacity: 1, transform: 'translateX(0%)' },
-        leave: { opacity: 0, transform: 'translateX(-150%)', config: { easing: easings.easeInOutCubic, duration: 200, }, },
+        from: { opacity: 0, x: '100%', },
+        enter: { opacity: 1, x: '0%', },
+        leave: { opacity: 0, x: '-150%', config: { easing: easings.easeInOutCubic, duration: 200, }, },
         config: { ...config.molasses },
         exitBeforeEnter: true,
     });
 
-    const onClick = useCallback(() => setCurrent((state) => (state + 1) % items.length), []);
+    const onClick = useCallback(() => setCurrent((state) => (state + 1) % screens.length), []);
 
     return (
         <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
@@ -221,8 +227,8 @@ export function Section1_LoginArea() {
                     </Mount>
                     : <>
                         {transitions((styles) => {
-                            const Item = items[current];
-                            return <Item style={styles} />;
+                            const Screen = screens[current];
+                            return <Screen style={styles} />;
                         })}
                     </>
                 }
