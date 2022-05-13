@@ -13,3 +13,11 @@
     font-weight: 700;
     src: local(""), url("./assets/fonts/merriweather-v30-latin-700.woff2") format("woff2");
 }
+
+/* source-sans-pro-700 - latin */
+@font-face {
+    font-family: "Source Sans Pro";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("./assets/fonts/source-sans-pro-v21-latin-700.woff2") format("woff2");
+}
