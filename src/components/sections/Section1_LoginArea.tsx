@@ -158,10 +158,10 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     </>);
 }
 
-function ScreenExtraControls({...rest}: React.HTMLAttributes<HTMLDivElement>) {
+function ScreenExtraControls({className, ...rest}: React.HTMLAttributes<HTMLDivElement>) {
     const [showSearch, setShowSearch] = React.useState(false);
     return (
-        <div className="px-2 py-1 text-xs bg-slate-50 border-slate-400 border rounded shadow select-none" {...rest}>
+        <div className={classNames("px-2 py-1 text-xs bg-slate-50 border-slate-400 border rounded shadow select-none", className)} {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
@@ -198,7 +198,7 @@ function TempControls() {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
         <div className="p-4 h-24 flex items-center justify-center space-x-4">
-            <ScreenExtraControls />
+            <ScreenExtraControls className={`${showSearch && 'invisible'}`} />
 
             <div className="flex items-center justify-center space-x-4 select-none">
                 <label className="flex items-center justify-center space-x-2 cursor-pointer">
