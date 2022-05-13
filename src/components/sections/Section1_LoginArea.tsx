@@ -4,7 +4,7 @@ import { useUpdateAtom } from 'jotai/utils';
 import { doNextLoginOrCPassScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
-import { IconSearch } from '../UI/UIIcons';
+import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
 
 const textOutline = { 'WebkitTextStroke': '1px #6e6e6e45', 'WebkitTextFillColor': 'white', };
 
@@ -81,7 +81,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
         <form id="tm-login-a-form" className="min-h-[24rem] pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Login A</div>}
-                logo={<div className="pb-2">A</div>}
+                logo={<div><IconLogin className="w-12 h-12 stroke-slate-400/50"/></div>}
             />
 
             <div className="flex-1 px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
@@ -107,7 +107,7 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
         <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password<br />Change</div>}
-                logo={<div className="pb-2">C</div>}
+                logo={<div><IconCPass className="w-12 h-12 stroke-slate-400/50"/></div>}
             />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">

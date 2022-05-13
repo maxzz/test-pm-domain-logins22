@@ -44,6 +44,27 @@ export function IconSearch({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAtt
     );
 }
 
+
+export function IconCPass({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+    return (
+        <svg viewBox="0 0 24 24" fill="currentColor" {...rest}>
+            {title && <title>{title}</title>}
+            <path d="M4.993 12.984a1 1 0 0 0-.531 1.848L7.15 17.52a1 1 0 1 0 1.414-1.415l-1.121-1.12h7.55a1 1 0 0 0 0-2h-10Zm14.014-1.968a1 1 0 0 0 .531-1.848L16.85 6.48a1 1 0 0 0-1.414 1.415l1.121 1.12h-7.55a1 1 0 0 0 0 2h10Z" />
+        </svg>
+    );
+}
+
+export function IconLogin({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+    return (
+        <svg viewBox="0 0 32 32" fill="currentColor" {...rest}>
+            {title && <title>{title}</title>}
+            <path d="M7 30a5 5 0 1 1 5-5a5.006 5.006 0 0 1-5 5zm0-8a3 3 0 1 0 3 3a3.003 3.003 0 0 0-3-3z" />
+            <path d="M23 30a5 5 0 1 1 5-5a5.006 5.006 0 0 1-5 5zm0-8a3 3 0 1 0 3 3a3.003 3.003 0 0 0-3-3z" />
+            <path d="M24 7v7l3.586-3.414L29 12l-6 6l-6-6l1.414-1.414L22 14V7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v11H6V7a3.003 3.003 0 0 1 3-3h12a3.003 3.003 0 0 1 3 3z" />
+        </svg>
+    );
+}
+
 // export const IconHeroWRef = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>>((props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>, ref) => {
 //     const { title, ...rest } = props;
 //     return (
