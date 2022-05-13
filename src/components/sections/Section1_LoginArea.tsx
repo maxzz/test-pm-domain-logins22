@@ -7,7 +7,7 @@ import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
 
 const font = { 
-    fontFamily: 'Roboto Flex, sans-serif',
+    fontFamily: 'Merriweather, sans-serif',
     WebkitTextStroke: '1px #6e6e6e45',
     WebkitTextFillColor: 'white',
 };

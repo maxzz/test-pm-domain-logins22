@@ -5,3 +5,11 @@
     font-weight: 400;
     src: local(""), url("./assets/fonts/roboto-flex-v8-latin-regular.woff2") format("woff2");
 }
+
+/* merriweather-700 - latin */
+@font-face {
+    font-family: "Merriweather";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("./assets/fonts/merriweather-v30-latin-700.woff2") format("woff2");
+}
