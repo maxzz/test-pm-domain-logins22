@@ -178,8 +178,8 @@ function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boole
     const show = useAtomValue(showAtom);
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
-        enter: { y: 0, opacity: 1, config: { duration: 4500, easing: easings.easeOutCubic }, },
-        leave: { y: -200, scale: 0, opacity: 0, config: { duration: 0, easing: easings.easeOutQuad }, onRest: () => console.log('done')/*  */ },
+        enter: { y: 0, opacity: 1, config: { duration: 500, easing: easings.easeOutCubic }, },
+        leave: { y: -200, opacity: 0, config: { duration: 400, easing: easings.easeOutQuad }, /* onRest: () => console.log('done') */ },
         //config: { duration: 200, },
     });
     return transitions((styles, item) => item && (
@@ -214,13 +214,11 @@ export function Section1_LoginArea() {
             <input type="button" className="" value="Next" onClick={onClick} />
 
             <div className="mt-4 flex items-start justify-center">
-
-            <Mount showAtom={showSearchPageAtom}>
+                {showSearch
+                    ?
+                    <Mount showAtom={showSearchPageAtom}>
                         <ScreenSearch />
                     </Mount>
-
-                {showSearch
-                    ? null
                     : <>
                         {transitions((styles) => {
                             const Screen = screens[current];
