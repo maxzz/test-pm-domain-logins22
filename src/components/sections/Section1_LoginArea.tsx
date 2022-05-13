@@ -17,7 +17,7 @@ const font = {
 };
 
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
-    const styles = useSpring({ from: { scaleX: 0, opacity: 0 }, to: { scaleX: 1, opacity: 1, }, delay: 400, });
+    const styles = useSpring({ from: { scale: 0, borderWidth: '4px', opacity: 0 }, to: { scale: 1, borderWidth: '1px', opacity: 1, }, delay: 400, });
     return (
         <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
             <div className="font-bold" style={font}>
