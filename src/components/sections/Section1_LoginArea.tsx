@@ -6,14 +6,17 @@ import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@re
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
 
-const textOutline = { 'WebkitTextStroke': '1px #6e6e6e45', 'WebkitTextFillColor': 'white', };
-const font = { fontFamily: 'Roboto Flex, sans-serif' };
+const font = { 
+    fontFamily: 'Roboto Flex, sans-serif',
+    WebkitTextStroke: '1px #6e6e6e45',
+    WebkitTextFillColor: 'white',
+};
 
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
     return (
         <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
-            <div className="font-bold" style={{...textOutline, ...font}}>
+            <div className="font-bold" style={font}>
                 {label}
             </div>
 
