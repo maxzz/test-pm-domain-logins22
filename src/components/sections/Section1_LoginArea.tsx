@@ -86,10 +86,82 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
+function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    return (
+        <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+            <LoginTitle
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
+                logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
+            />
+
+            <div className="flex-1 px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+                <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
+            </div>
+
+            <div className="self-end">
+                <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
+            </div>
+        </form>
+    );
+}
+
+function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    return (
+        <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+            <LoginTitle
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+                logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
+            />
+
+            <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
+                <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
+            </div>
+
+            <div className="self-end">
+                <FieldSubmit className="m-4" label="Change" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
+            </div>
+        </form>
+    );
+}
+
+function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
+    const showSearch = useUpdateAtom(showSearchPageAtom);
+    return (<>
+        {/* Don't use 'search' word in form name or field names/IDs */}
+        <form id="tm-sear-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+            <LoginTitle
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Search</div>}
+                logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
+            />
+
+            <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+                <div className="flex items-center space-x-2">
+                    <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
+                    <div className="">
+                        <select className="h-[37px] px-1 py-1.5" name="state">
+                            <option value="">CA</option>
+                            <option value="">WA</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div className="self-end">
+                <FieldSubmit className="m-4" label="Search" onClick={(e) => { e.preventDefault(); showSearch(false); }} />
+            </div>
+        </form>
+    </>);
+}
+
 function ScreenExtraControls({...rest}: React.HTMLAttributes<HTMLDivElement>) {
     const [showSearch, setShowSearch] = React.useState(false);
     return (
-        <div className="px-2 py-1 text-xs border-slate-400 border rounded select-none" {...rest}>
+        <div className="px-2 py-1 text-xs bg-slate-50 border-slate-400 border rounded shadow select-none" {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
@@ -121,101 +193,30 @@ function ScreenExtraControls({...rest}: React.HTMLAttributes<HTMLDivElement>) {
     );
 }
 
-function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
-    return (
-        <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
-            <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
-                logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
-            />
-
-            <div className="flex-1 px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
-            </div>
-
-            <div className="px-4 flex items-center justify-between">
-                <ScreenExtraControls />
-                <FieldSubmit className="my-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
-            </div>
-        </form>
-    );
-}
-
-function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
-    return (
-        <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
-            <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
-                logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
-            />
-
-            <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
-            </div>
-
-            <div className="px-4 self-end">
-                <FieldSubmit className="my-4" label="Change" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
-            </div>
-        </form>
-    );
-}
-
-function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
-    const showSearch = useUpdateAtom(showSearchPageAtom);
-    return (<>
-        {/* Don't use 'search' word in form name or field names/IDs */}
-        <form id="tm-sear-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
-            <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Search</div>}
-                logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
-            />
-
-            <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <div className="flex items-center space-x-2">
-                    <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
-                    <div className="">
-                        <select className="h-[37px] px-1 py-1.5" name="state">
-                            <option value="">CA</option>
-                            <option value="">WA</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div className="px-4 self-end">
-                <FieldSubmit className="my-4" label="Search" onClick={(e) => { e.preventDefault(); showSearch(false); }} />
-            </div>
-        </form>
-    </>);
-}
-
 function TempControls() {
     const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
-    //const onClick = useCallback(() => setCurrent((state) => (state + 1) % screens.length), []);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
-        <div className="p-4 flex items-center justify-center space-x-4 select-none">
-            <label className="flex items-center justify-center space-x-2 cursor-pointer">
-                <input
-                    className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
-                    type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
-                />
-                <div className="">Search page</div>
-            </label>
+        <div className="p-4 h-24 flex items-center justify-center space-x-4">
+            <ScreenExtraControls />
 
-            {/* <input type="button" className="" value="Next" onClick={onClick} /> */}
-            <input
-                className={classNames(
-                    `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
-                    showSearch && 'invisible'
-                )}
-                type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
-            />
+            <div className="flex items-center justify-center space-x-4 select-none">
+                <label className="flex items-center justify-center space-x-2 cursor-pointer">
+                    <input
+                        className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
+                        type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                    />
+                    <div className="">Search page</div>
+                </label>
+
+                <input
+                    className={classNames(
+                        `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
+                        showSearch && 'invisible'
+                    )}
+                    type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
+                />
+            </div>
         </div>
     );
 }
@@ -253,21 +254,23 @@ export function Section1_LoginArea() {
     });
 
     return (
-        <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
+        <div className="flex flex-col justify-between text-slate-800">
 
-            <div className="mt-4 flex items-start justify-center">
-                {showSearch
-                    ?
-                    <Mount showAtom={showSearchPageAtom}>
-                        <ScreenSearch />
-                    </Mount>
-                    : <>
-                        {transitions((styles) => {
-                            const Screen = screens[current];
-                            return <Screen style={styles} />;
-                        })}
-                    </>
-                }
+            <div className="overflow-hidden">
+                <div className="mt-4 flex items-start justify-center">
+                    {showSearch
+                        ?
+                        <Mount showAtom={showSearchPageAtom}>
+                            <ScreenSearch />
+                        </Mount>
+                        : <>
+                            {transitions((styles) => {
+                                const Screen = screens[current];
+                                return <Screen style={styles} />;
+                            })}
+                        </>
+                    }
+                </div>
             </div>
 
             <TempControls />
