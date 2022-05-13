@@ -39,7 +39,7 @@ function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
     return (
         <label className="relative">
             <input
-                className="py-1.5 w-full peer float-input"
+                className="py-1.5 w-full peer float-input border-slate-300 border"
                 id={fieldId}
                 type="text"
                 placeholder={placeholder}
@@ -58,7 +58,7 @@ function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
     return (
         <label className="relative">
             <input
-                className="py-1.5 w-full peer float-input"
+                className="py-1.5 w-full peer float-input border-slate-300 border"
                 id={fieldId}
                 type="password"
                 placeholder={placeholder}
@@ -75,7 +75,7 @@ function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
 
 function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
     return (
-        <button className={classNames('px-4 py-1.5 hover:bg-red-500 active:scale-[.97] border-slate-600 border rounded-sm', className)} {...rest}>
+        <button className={classNames('px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded-sm', className)} {...rest}>
             {label}
         </button>
     );
@@ -88,7 +88,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     return (
         <form id="tm-login-a-form" className="min-h-[24rem] pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Sign in</div>}
+                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
                 logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
             />
 
@@ -98,7 +98,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
             </div>
 
             <div className="px-4 self-end">
-                <FieldSubmit className="" label="Login"
+                <FieldSubmit className="" label="Log in"
                     onClick={(e) => {
                         e.preventDefault();
                         doNextLoginOrCPassScreen();
@@ -178,7 +178,7 @@ function TempControls() {
         <div className="p-4 flex items-center justify-center space-x-4 select-none">
             <label className="flex items-center justify-center space-x-2 cursor-pointer">
                 <input
-                    className="form-checkbox text-slate-500 focus:ring-slate-500 rounded cursor-pointer"
+                    className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
                     type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
                 />
                 <div className="">Search page</div>
@@ -187,7 +187,7 @@ function TempControls() {
             {/* <input type="button" className="" value="Next" onClick={onClick} /> */}
             <input
                 className={classNames(
-                    `px-4 py-1 border-slate-400 hover:bg-slate-400 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
+                    `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
                     showSearch && 'invisible'
                 )}
                 type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
