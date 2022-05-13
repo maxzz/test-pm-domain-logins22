@@ -36,7 +36,7 @@ export function AppHeader() {
                             <div className="w-20 py-2 flex items-center justify-center bg-white rounded-md">
                                 <IconHIDLogo className="px-2" fill="#003165" />
                             </div>
-                            <div className="">PM Credential Test Pages</div>
+                            <div className="font-old-normal">PM Credential Test Pages</div>
                         </div>
                     </div>
                 </div>
