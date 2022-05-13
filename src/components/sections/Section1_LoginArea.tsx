@@ -164,12 +164,26 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 
 function TempControls() {
     const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
+    //const onClick = useCallback(() => setCurrent((state) => (state + 1) % screens.length), []);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
-        <div className="p-4">
-            <label className="flex items-center justify-center space-x-2 select-none cursor-pointer">
-                <input className="form-checkbox rounded cursor-pointer" type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)} />
+        <div className="p-4 flex items-center justify-center space-x-4 select-none">
+            <label className="flex items-center justify-center space-x-2 cursor-pointer">
+                <input
+                    className="form-checkbox text-slate-500 focus:ring-slate-500 rounded cursor-pointer"
+                    type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                />
                 <div className="">Search page</div>
             </label>
+
+            {/* <input type="button" className="" value="Next" onClick={onClick} /> */}
+            <input
+                className={classNames(
+                    `px-4 py-1 border-slate-400 hover:bg-slate-400 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
+                    showSearch && 'invisible'
+                )}
+                type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
+            />
         </div>
     );
 }
@@ -201,17 +215,13 @@ export function Section1_LoginArea() {
     const transitions = useTransition(current, {
         from: { opacity: 0, x: '150%', scale: 1, },
         enter: { opacity: 1, x: '0%', config: { easing: easings.easeInCubic, duration: 300, } },
-        leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 300, }, },
+        leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 0, }, }, // or duration: 300
         config: { ...config.molasses },
         exitBeforeEnter: true,
     });
 
-    const onClick = useCallback(() => setCurrent((state) => (state + 1) % screens.length), []);
-
     return (
         <div className="flex flex-col justify-between text-slate-800 overflow-hidden">
-
-            <input type="button" className="" value="Next" onClick={onClick} />
 
             <div className="mt-4 flex items-start justify-center">
                 {showSearch
