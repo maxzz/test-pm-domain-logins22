@@ -76,7 +76,6 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
-    //const selectScreen = useUpdateAtom(doSelectScreenAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
         <form id="tm-login-a-form" className="min-h-[24rem] pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
@@ -94,7 +93,6 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
                 <FieldSubmit className="" label="Login"
                     onClick={(e) => {
                         e.preventDefault();
-                        //selectScreen('search');
                         doNextLoginOrCPassScreen();
                     }}
                 />
@@ -104,7 +102,6 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
-    //const selectScreen = useUpdateAtom(doSelectScreenAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
         <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
@@ -123,7 +120,6 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
                 <FieldSubmit className="" label="Change"
                     onClick={(e) => {
                         e.preventDefault();
-                        //selectScreen('search');
                         doNextLoginOrCPassScreen();
                     }}
                 />
@@ -182,8 +178,8 @@ function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boole
     const show = useAtomValue(showAtom);
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
-        enter: { y: 0, opacity: 1, config: { duration: 500, easing: easings.easeOutCubic }, },
-        leave: { y: -200, opacity: 0, config: { duration: 400, easing: easings.easeOutQuad }, onRest: () => console.log('done') },
+        enter: { y: 0, opacity: 1, config: { duration: 4500, easing: easings.easeOutCubic }, },
+        leave: { y: -200, scale: 0, opacity: 0, config: { duration: 0, easing: easings.easeOutQuad }, onRest: () => console.log('done')/*  */ },
         //config: { duration: 200, },
     });
     return transitions((styles, item) => item && (
@@ -200,8 +196,6 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(showSearchPageAtom);
-
-    //const [current, setCurrent] = useState(0);
     const [current, setCurrent] = useAtom(loginOrCpassScreenAtom);
 
     const transitions = useTransition(current, {
@@ -220,11 +214,13 @@ export function Section1_LoginArea() {
             <input type="button" className="" value="Next" onClick={onClick} />
 
             <div className="mt-4 flex items-start justify-center">
-                {showSearch
-                    ?
-                    <Mount showAtom={showSearchPageAtom}>
+
+            <Mount showAtom={showSearchPageAtom}>
                         <ScreenSearch />
                     </Mount>
+
+                {showSearch
+                    ? null
                     : <>
                         {transitions((styles) => {
                             const Screen = screens[current];

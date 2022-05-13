@@ -8,8 +8,6 @@ namespace Storage {
     const KEY = 'test-domain-logins22';
 
     type Store = {
-        // showLoginPage: boolean;
-        // showCpassPage: boolean;
         showSearchPage: boolean;
         loginOrCpassScreen: number;
 
@@ -21,8 +19,6 @@ namespace Storage {
     };
 
     export let initialData: Store = {
-        // showLoginPage: false,
-        // showCpassPage: false,
         showSearchPage: false,
         loginOrCpassScreen: 0,
 
@@ -47,8 +43,6 @@ namespace Storage {
 
     export const save = debounce(function _save(get: Getter) {
         let newStore: Store = {
-            // showLoginPage: get(showLoginPageAtom),
-            // showCpassPage: get(showCpassPageAtom),
             showSearchPage: get(showSearchPageAtom),
             loginOrCpassScreen: get(loginOrCpassScreenAtom),
 
@@ -74,19 +68,7 @@ export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, (
 
 //#endregion Credential atoms
 
-// export const showLoginPageAtom = atomWithCallback(Storage.initialData.showLoginPage, ({ get }) => Storage.save(get));
-// export const showCpassPageAtom = atomWithCallback(Storage.initialData.showCpassPage, ({ get }) => Storage.save(get));
 export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, ({ get }) => Storage.save(get));
-
-export type SelectScreenType = 'login' | 'cpass' | 'search';
-
-// export const doSelectScreenAtom = atom(null,
-//     (get, set, value: SelectScreenType) => {
-//         set(showLoginPageAtom, value === 'login');
-//         set(showCpassPageAtom, value === 'cpass');
-//         set(showSearchPageAtom, value === 'search');
-//     }
-// );
 
 export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, ({ get }) => Storage.save(get));
 
