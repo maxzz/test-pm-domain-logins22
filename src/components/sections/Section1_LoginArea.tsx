@@ -199,9 +199,9 @@ export function Section1_LoginArea() {
     const [current, setCurrent] = useAtom(loginOrCpassScreenAtom);
 
     const transitions = useTransition(current, {
-        from: { opacity: 0, x: '100%', scale: 1, },
-        enter: { opacity: 1, x: '0%', config: { easing: easings.easeOutCubic, duration: 200, } },
-        leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 600, }, },
+        from: { opacity: 0, x: '150%', scale: 1, },
+        enter: { opacity: 1, x: '0%', config: { easing: easings.easeInCubic, duration: 300, } },
+        leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 300, }, },
         config: { ...config.molasses },
         exitBeforeEnter: true,
     });
