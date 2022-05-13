@@ -7,18 +7,19 @@ import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
 
 const textOutline = { 'WebkitTextStroke': '1px #6e6e6e45', 'WebkitTextFillColor': 'white', };
+const font = { fontFamily: 'Roboto Flex, sans-serif' };
 
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scaleX: 0, opacity: 0, }, to: { scaleX: 1, opacity: 1, }, });
     return (
         <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
-            <div className="font-bold" style={textOutline}>
+            <div className="font-bold" style={{...textOutline, ...font}}>
                 {label}
             </div>
 
             <a.div
                 style={styles}
-                className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300 border-slate-50 border-4 rounded-md"
+                className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300/40 border-slate-50 border-4 rounded-md"
             >
                 {logo}
             </a.div>
@@ -81,7 +82,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
         <form id="tm-login-a-form" className="min-h-[24rem] pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Login A</div>}
-                logo={<div><IconLogin className="w-12 h-12 stroke-slate-400/50"/></div>}
+                logo={<div><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
             />
 
             <div className="flex-1 px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
@@ -107,7 +108,7 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
         <form id="tm-cpass-a-form" className="pb-4 flex flex-col space-y-4 rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password<br />Change</div>}
-                logo={<div><IconCPass className="w-12 h-12 stroke-slate-400/50"/></div>}
+                logo={<div><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
             />
 
             <div className="px-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
