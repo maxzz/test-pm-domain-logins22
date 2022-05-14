@@ -1,7 +1,7 @@
-import React, { ReactNode, useCallback } from 'react';
+import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, screenLoginOptionsAtoms, searchTextAtom, showSearchPageAtom } from '@/store/store';
+import { credAtoms, doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginOrCpassScreenAtom, screenLoginOptionsAtoms, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -97,8 +97,8 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
             />
 
             <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
+                <FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" />
+                <FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" />
             </div>
 
             <div className="self-end">
@@ -118,9 +118,9 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
             />
 
             <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
-                <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
+                <FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
+                <FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
+                <FieldPass fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
             </div>
 
             <div className="self-end">
@@ -142,7 +142,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 
             <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <div className="flex items-center space-x-2">
-                    <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
+                    <FieldUser fieldAtom={credAtoms.searchAAAtom} fieldId={`sear${suffix}`} placeholder="Search" />
                     <div className="">
                         <select className="h-[37px] px-1 py-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 border-slate-300 border" name="state">
                             <option value="">CA</option>
@@ -166,7 +166,7 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const [interval, setInterval] = useAtom(intervalAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
     return (
-        <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded shadow select-none", className)} {...rest}>
+        <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"

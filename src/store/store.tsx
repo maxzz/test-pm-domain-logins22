@@ -30,6 +30,7 @@ namespace Storage {
             password: '',
             updtpass: '',
             confpass: '',
+            searchAA: '',
         },
 
         screenLoginOptions: {
@@ -68,6 +69,7 @@ namespace Storage {
                 password: get(credAtoms.passwordAtom),
                 updtpass: get(credAtoms.updtpassAtom),
                 confpass: get(credAtoms.confpassAtom),
+                searchAA: get(credAtoms.searchAAAtom),
             },
 
             screenLoginOptions: {
@@ -99,20 +101,22 @@ export const loginBuserAtom = atomWithCallback(Storage.initialData.loginBuser, S
 export const loginBpassAtom = atomWithCallback(Storage.initialData.loginBpass, Storage.save);
 export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, Storage.save);
 
-type Creds = {
+export type Creds = {
     username: string; // username
     password: string; // current password
     updtpass: string; // new password
     confpass: string; // confirm new password
+    searchAA: string; // search text for AA screen
 };
 
-type CredsAtoms = Atomize<Creds>;
+export type CredsAtoms = Atomize<Creds>;
 
-const credAtoms: CredsAtoms = {
+export const credAtoms: CredsAtoms = {
     usernameAtom: atomWithCallback(Storage.initialData.creds.username, Storage.save),
     passwordAtom: atomWithCallback(Storage.initialData.creds.password, Storage.save),
     updtpassAtom: atomWithCallback(Storage.initialData.creds.updtpass, Storage.save),
     confpassAtom: atomWithCallback(Storage.initialData.creds.confpass, Storage.save),
+    searchAAAtom: atomWithCallback(Storage.initialData.creds.searchAA, Storage.save),
 };
 
 //#endregion Credential atoms
