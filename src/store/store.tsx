@@ -13,12 +13,6 @@ namespace Storage {
 
         creds: Creds;
         screenLoginOptions: ScreenLoginOptions,
-
-        loginAuser: string;
-        loginApass: string;
-        loginBuser: string;
-        loginBpass: string;
-        searchText: string;
     };
 
     export let initialData: Store = {
@@ -39,12 +33,6 @@ namespace Storage {
             interval: 10,
             pageReload: false,
         },
-
-        loginAuser: '',
-        loginApass: '',
-        loginBuser: '',
-        loginBpass: '',
-        searchText: '',
     };
 
     function load() {
@@ -73,17 +61,11 @@ namespace Storage {
             },
 
             screenLoginOptions: {
-                reveal: get(screenLoginOptionsAtoms.revealAtom),
-                doInterval: get(screenLoginOptionsAtoms.doIntervalAtom),
-                interval: get(screenLoginOptionsAtoms.intervalAtom),
-                pageReload: get(screenLoginOptionsAtoms.pageReloadAtom),
+                reveal: get(screenLoginOptionAtoms.revealAtom),
+                doInterval: get(screenLoginOptionAtoms.doIntervalAtom),
+                interval: get(screenLoginOptionAtoms.intervalAtom),
+                pageReload: get(screenLoginOptionAtoms.pageReloadAtom),
             },
-
-            loginAuser: get(loginAuserAtom),
-            loginApass: get(loginApassAtom),
-            loginBuser: get(loginBuserAtom),
-            loginBpass: get(loginBpassAtom),
-            searchText: get(searchTextAtom),
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
     }, 1000);
@@ -95,12 +77,6 @@ namespace Storage {
 
 //#region Credential atoms
 
-export const loginAuserAtom = atomWithCallback(Storage.initialData.loginAuser, Storage.save);
-export const loginApassAtom = atomWithCallback(Storage.initialData.loginApass, Storage.save);
-export const loginBuserAtom = atomWithCallback(Storage.initialData.loginBuser, Storage.save);
-export const loginBpassAtom = atomWithCallback(Storage.initialData.loginBpass, Storage.save);
-export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, Storage.save);
-
 export type Creds = {
     username: string; // username
     password: string; // current password
@@ -109,9 +85,9 @@ export type Creds = {
     searchAA: string; // search text for AA screen
 };
 
-export type CredsAtoms = Atomize<Creds>;
+export type CredAtoms = Atomize<Creds>;
 
-export const credAtoms: CredsAtoms = {
+export const credAtoms: CredAtoms = {
     usernameAtom: atomWithCallback(Storage.initialData.creds.username, Storage.save),
     passwordAtom: atomWithCallback(Storage.initialData.creds.password, Storage.save),
     updtpassAtom: atomWithCallback(Storage.initialData.creds.updtpass, Storage.save),
@@ -125,6 +101,7 @@ export const credAtoms: CredsAtoms = {
 
 export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, Storage.save);
 export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, Storage.save);
+
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
 export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1));
 
@@ -135,9 +112,9 @@ export type ScreenLoginOptions = {
     pageReload: boolean;    // Reload page vs. form
 };
 
-export type ScreenLoginOptionsAtoms = Atomize<ScreenLoginOptions>;
+export type ScreenLoginOptionAtoms = Atomize<ScreenLoginOptions>;
 
-export const screenLoginOptionsAtoms: ScreenLoginOptionsAtoms = {
+export const screenLoginOptionAtoms: ScreenLoginOptionAtoms = {
     revealAtom: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, Storage.save),
     doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, Storage.save),
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),

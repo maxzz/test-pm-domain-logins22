@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { credAtoms, doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginOrCpassScreenAtom, screenLoginOptionsAtoms, showSearchPageAtom } from '@/store/store';
+import { credAtoms, doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginOrCpassScreenAtom, screenLoginOptionAtoms, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -160,7 +160,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptionsAtoms;
+    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptionAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
     const [interval, setInterval] = useAtom(intervalAtom);
