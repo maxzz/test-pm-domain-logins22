@@ -1,5 +1,5 @@
-import { atom, Getter, PrimitiveAtom } from 'jotai';
-import { atomWithCallback } from '@/hooks/atomsX';
+import { atom, Getter } from 'jotai';
+import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
 
 //#region LocalStorage
@@ -84,22 +84,18 @@ export const searchTextAtom = atomWithCallback(Storage.initialData.searchText, (
 
 //#endregion Credential atoms
 
+//#region Screens
+
 export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearchPage, ({ get }) => Storage.save(get));
-
 export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, ({ get }) => Storage.save(get));
-
-export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1));
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
+export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1));
 
 export type ScreenLoginOptions = {
     reveal: boolean;        // Show or hide password field
     doInterval: boolean;    // Use reload interval
     interval: number;       // Interval in seconds
     pageReload: boolean;    // Reload page vs. form
-};
-
-type Atomize<T> = {
-    [key in keyof T & string as `${key}Atom`]: PrimitiveAtom<T[key]>;
 };
 
 export type ScreenLoginOptionsAtoms = Atomize<ScreenLoginOptions>;
@@ -110,3 +106,5 @@ export const screenLoginOptionsAtoms: ScreenLoginOptionsAtoms = {
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, ({ get }) => Storage.save(get)),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, ({ get }) => Storage.save(get)),
 };
+
+//#endregion Screens
