@@ -73,7 +73,9 @@ export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearc
 export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, ({ get }) => Storage.save(get));
 
 export const doNextLoginOrCPassScreenAtom = atom(null,
-    (get, set, ) => {
+    (get, set,) => {
         set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1);
     }
 );
+
+export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));

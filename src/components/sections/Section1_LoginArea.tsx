@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doNextLoginOrCPassScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
+import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -19,7 +19,7 @@ const font = {
 function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
     const styles = useSpring({ from: { scale: 0, borderWidth: '4px', opacity: 0 }, to: { scale: 1, borderWidth: '1px', opacity: 1, }, delay: 400, });
     return (
-        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 shadow select-none", className)} {...rest}>
+        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 bg-slate-200 rounded-t-sm shadow select-none", className)} {...rest}>
             <div className="font-bold" style={font}>
                 {label}
             </div>
@@ -76,7 +76,7 @@ function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
 function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
     return (
         <button
-            className={classNames('px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded-sm select-none', className)}
+            className={classNames('px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded select-none', className)}
             {...rest}
         >
             {label}
@@ -84,18 +84,19 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
     );
 }
 
-const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
+// const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
+const boxShadow = { boxShadow: '0 1px 31px 0px rgba(255,0,0,.1), 0 1px 20px 0 rgba(0,255,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
-        <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+        <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
                 logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
             />
 
-            <div className="flex-1 px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+            <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldAtom={loginAuserAtom} fieldId={`user${suffix}`} placeholder="Username" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`pass${suffix}`} placeholder="Password" />
             </div>
@@ -110,13 +111,13 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
     return (
-        <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+        <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
                 logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
             />
 
-            <div className="px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8">
+            <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
                 <FieldPass fieldAtom={loginApassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
@@ -133,7 +134,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     const showSearch = useUpdateAtom(showSearchPageAtom);
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}
-        <form id="tm-sear-form" className="flex flex-col rounded-sm bg-slate-200 border-slate-300 border" style={boxShadow}>
+        <form id="tm-sear-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
             <LoginTitle
                 label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Search</div>}
                 logo={<div className="text-orange-500"><IconSearch className="w-12 h-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
@@ -143,7 +144,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
                 <div className="flex items-center space-x-2">
                     <FieldUser fieldAtom={searchTextAtom} fieldId={`sear${suffix}`} placeholder="Search" />
                     <div className="">
-                        <select className="h-[37px] px-1 py-1.5" name="state">
+                        <select className="h-[37px] px-1 py-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 border-slate-300 border" name="state">
                             <option value="">CA</option>
                             <option value="">WA</option>
                         </select>
@@ -158,16 +159,16 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     </>);
 }
 
-function ScreenExtraControls({className, ...rest}: React.HTMLAttributes<HTMLDivElement>) {
+function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     const [showSearch, setShowSearch] = React.useState(false);
     return (
-        <div className={classNames("px-2 py-1 text-xs bg-slate-50 border-slate-400 border rounded shadow select-none", className)} {...rest}>
+        <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded shadow select-none", className)} {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                     type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
                 />
-                <div className="">Reveal password</div>
+                <div className="whitespace-nowrap">Reveal password</div>
             </label>
             <div className="flex space-x-2">
                 <label className="flex items-center space-x-2 cursor-pointer">
@@ -175,7 +176,7 @@ function ScreenExtraControls({className, ...rest}: React.HTMLAttributes<HTMLDivE
                         className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                         type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
                     />
-                    <div className="">Reload interval</div>
+                    <div className="whitespace-nowrap">Reload interval</div>
                 </label>
                 <div className="flex space-x-1">
                     <input className="w-6 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text" />
@@ -187,7 +188,7 @@ function ScreenExtraControls({className, ...rest}: React.HTMLAttributes<HTMLDivE
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                     type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
                 />
-                <div className="">Reload page vs form</div>
+                <div className="whitespace-nowrap">Reload page vs. form</div>
             </label>
         </div>
     );
@@ -196,26 +197,31 @@ function ScreenExtraControls({className, ...rest}: React.HTMLAttributes<HTMLDivE
 function TempControls() {
     const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    const isLoginScreen = useAtomValue(isLoginScreenAtom);
     return (
-        <div className="p-4 h-24 flex items-center justify-center space-x-4">
-            <ScreenExtraControls className={`${showSearch && 'invisible'}`} />
+        <div className="p-4 flex justify-center select-none">
+            <div className="flex flex-col space-y-4">
+                <ScreenExtraControls className={`${!isLoginScreen && 'invisible'}`} />
 
-            <div className="flex items-center justify-center space-x-4 select-none">
-                <label className="flex items-center justify-center space-x-2 cursor-pointer">
+                <div className="flex space-x-4">
+                    {/* Show search page */}
+                    <label className="flex items-center justify-center space-x-2 cursor-pointer">
+                        <input
+                            className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
+                            type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                        />
+                        <div className="">Search page</div>
+                    </label>
+                    {/* Next */}
                     <input
-                        className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
-                        type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                        className={classNames(
+                            `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
+                            showSearch && 'invisible'
+                        )}
+                        type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
                     />
-                    <div className="">Search page</div>
-                </label>
+                </div>
 
-                <input
-                    className={classNames(
-                        `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
-                        showSearch && 'invisible'
-                    )}
-                    type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
-                />
             </div>
         </div>
     );
@@ -257,7 +263,7 @@ export function Section1_LoginArea() {
         <div className="flex flex-col justify-between text-slate-800">
 
             <div className="overflow-hidden">
-                <div className="mt-4 flex items-start justify-center">
+                <div className="my-8 flex items-start justify-center">
                     {showSearch
                         ?
                         <Mount showAtom={showSearchPageAtom}>
