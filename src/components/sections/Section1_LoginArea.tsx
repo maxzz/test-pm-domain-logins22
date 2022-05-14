@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, screenLoginOptions, searchTextAtom, showSearchPageAtom } from '@/store/store';
+import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, screenLoginOptionsAtoms, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -85,7 +85,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 }
 
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
-const boxShadow = { boxShadow: '0 1px 31px 0px rgba(255,0,0,.1), 0 1px 20px 0 rgba(0,255,0,.1)', };
+const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
@@ -160,7 +160,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptions;
+    const { reveal: revealAtom, doInterval: doIntervalAtom, interval: intervalAtom, pageReload: pageReloadAtom, } = screenLoginOptionsAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
     const [interval, setInterval] = useAtom(intervalAtom);
