@@ -56,10 +56,10 @@ namespace Storage {
             loginOrCpassScreen: get(loginOrCpassScreenAtom),
 
             screenLoginOptions: {
-                reveal: get(screenLoginOptionsAtoms.reveal),
-                doInterval: get(screenLoginOptionsAtoms.doInterval),
-                interval: get(screenLoginOptionsAtoms.interval),
-                pageReload: get(screenLoginOptionsAtoms.pageReload),
+                reveal: get(screenLoginOptionsAtoms.revealAtom),
+                doInterval: get(screenLoginOptionsAtoms.doIntervalAtom),
+                interval: get(screenLoginOptionsAtoms.intervalAtom),
+                pageReload: get(screenLoginOptionsAtoms.pageReloadAtom),
             },
     
             loginAuser: get(loginAuserAtom),
@@ -92,24 +92,19 @@ export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginO
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
 
 export type ScreenLoginOptions = {
-    reveal: boolean; // Show or hide password field
-    doInterval: boolean; // Use reload interval
-    interval: number; // Interval in seconds
-    pageReload: boolean; // Reload page vs. form
+    reveal: boolean;        // Show or hide password field
+    doInterval: boolean;    // Use reload interval
+    interval: number;       // Interval in seconds
+    pageReload: boolean;    // Reload page vs. form
 };
 
-export type ScreenLoginOptionsAtoms2 = {
+export type ScreenLoginOptionsAtoms = {
     [key in keyof ScreenLoginOptions as `${key}Atom`]: PrimitiveAtom<ScreenLoginOptions[key]>;
 };
 
-
-export type ScreenLoginOptionsAtoms = {
-    [key in keyof ScreenLoginOptions]: PrimitiveAtom<ScreenLoginOptions[key]>;
-};
-
 export const screenLoginOptionsAtoms: ScreenLoginOptionsAtoms = {
-    reveal: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, ({ get }) => Storage.save(get)),
-    doInterval: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, ({ get }) => Storage.save(get)),
-    interval: atomWithCallback(Storage.initialData.screenLoginOptions.interval, ({ get }) => Storage.save(get)),
-    pageReload: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, ({ get }) => Storage.save(get)),
+    revealAtom: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, ({ get }) => Storage.save(get)),
+    doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, ({ get }) => Storage.save(get)),
+    intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, ({ get }) => Storage.save(get)),
+    pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, ({ get }) => Storage.save(get)),
 };

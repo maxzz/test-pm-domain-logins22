@@ -160,7 +160,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-    const { reveal: revealAtom, doInterval: doIntervalAtom, interval: intervalAtom, pageReload: pageReloadAtom, } = screenLoginOptionsAtoms;
+    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptionsAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
     const [interval, setInterval] = useAtom(intervalAtom);
