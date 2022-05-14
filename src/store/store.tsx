@@ -75,16 +75,20 @@ export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.login
 export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1));
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
 
-export type ScreenOptions = {
-    revealAtom: PrimitiveAtom<boolean>; // Show or hide password field
-    doIntervalAtom: PrimitiveAtom<boolean>; // Use reload interval
-    intervalAtom: PrimitiveAtom<number>; // Interval in seconds
-    pageReloadAtom: PrimitiveAtom<boolean>; // Reload page vs. form
+export type ScreenLoginOptions = {
+    revealAtom: boolean; // Show or hide password field
+    doIntervalAtom: boolean; // Use reload interval
+    intervalAtom: number; // Interval in seconds
+    pageReloadAtom: boolean; // Reload page vs. form
 };
 
-export const screenOptionsLogin: ScreenOptions = {
+export type ScreenLoginOptionsAtoms = {
+    [key in keyof ScreenLoginOptions]: PrimitiveAtom<ScreenLoginOptions[key]>;
+};
+
+export const screenLoginOptions: ScreenLoginOptionsAtoms = {
     revealAtom: atom<boolean>(false),
     doIntervalAtom: atom<boolean>(false),
-    intervalAtom: atom(2),
+    intervalAtom: atom(10),
     pageReloadAtom: atom<boolean>(false),
 };
