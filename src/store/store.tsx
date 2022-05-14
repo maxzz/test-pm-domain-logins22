@@ -1,4 +1,4 @@
-import { atom, Getter } from 'jotai';
+import { atom, Getter, PrimitiveAtom } from 'jotai';
 import { atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
 
@@ -72,10 +72,19 @@ export const showSearchPageAtom = atomWithCallback(Storage.initialData.showSearc
 
 export const loginOrCpassScreenAtom = atomWithCallback(Storage.initialData.loginOrCpassScreen, ({ get }) => Storage.save(get));
 
-export const doNextLoginOrCPassScreenAtom = atom(null,
-    (get, set,) => {
-        set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1);
-    }
-);
-
+export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginOrCpassScreenAtom, get(loginOrCpassScreenAtom) ? 0 : 1));
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
+
+export type ScreenOptions = {
+    revealAtom: PrimitiveAtom<boolean>; // Show or hide password field
+    doIntervalAtom: PrimitiveAtom<boolean>; // Use reload interval
+    intervalAtom: PrimitiveAtom<number>; // Interval in seconds
+    pageReloadAtom: PrimitiveAtom<boolean>; // Reload page vs. form
+};
+
+export const screenOptionsLogin: ScreenOptions = {
+    revealAtom: atom<boolean>(false),
+    doIntervalAtom: atom<boolean>(false),
+    intervalAtom: atom(2),
+    pageReloadAtom: atom<boolean>(false),
+};

@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, searchTextAtom, showSearchPageAtom } from '@/store/store';
+import { doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginApassAtom, loginAuserAtom, loginOrCpassScreenAtom, screenOptionsLogin, searchTextAtom, showSearchPageAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -160,13 +160,17 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-    const [showSearch, setShowSearch] = React.useState(false);
+    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenOptionsLogin;
+    const [reveal, setReveal] = useAtom(revealAtom);
+    const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
+    const [interval, setInterval] = useAtom(intervalAtom);
+    const [pageReload, setPageReload] = useAtom(pageReloadAtom);
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded shadow select-none", className)} {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                    type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                    type="checkbox" checked={reveal} onChange={() => setReveal((v) => !v)}
                 />
                 <div className="whitespace-nowrap">Reveal password</div>
             </label>
@@ -174,19 +178,22 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
                 <label className="flex items-center space-x-2 cursor-pointer">
                     <input
                         className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                        type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                        type="checkbox" checked={doInterval} onChange={() => setDoInterval((v) => !v)}
                     />
                     <div className="whitespace-nowrap">Reload interval</div>
                 </label>
-                <div className="flex space-x-1">
-                    <input className="w-6 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text" />
+                <div className={classNames('flex space-x-1', !doInterval && 'invisible')}>
+                    <input
+                        className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
+                        value={interval} onChange={((e) => setInterval(+e.target.value))}
+                    />
                     <div className="">sec</div>
                 </div>
             </div>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                    type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                    type="checkbox" checked={pageReload} onChange={() => setPageReload((v) => !v)}
                 />
                 <div className="whitespace-nowrap">Reload page vs. form</div>
             </label>
