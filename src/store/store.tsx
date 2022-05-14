@@ -98,9 +98,11 @@ export type ScreenLoginOptions = {
     pageReload: boolean;    // Reload page vs. form
 };
 
-export type ScreenLoginOptionsAtoms = {
-    [key in keyof ScreenLoginOptions as `${key}Atom`]: PrimitiveAtom<ScreenLoginOptions[key]>;
+type Atomize<T> = {
+    [key in keyof T & string as `${key}Atom`]: PrimitiveAtom<T[key]>;
 };
+
+export type ScreenLoginOptionsAtoms = Atomize<ScreenLoginOptions>;
 
 export const screenLoginOptionsAtoms: ScreenLoginOptionsAtoms = {
     revealAtom: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, ({ get }) => Storage.save(get)),
