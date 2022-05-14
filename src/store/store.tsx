@@ -11,6 +11,8 @@ namespace Storage {
         showSearchPage: boolean;
         loginOrCpassScreen: number;
 
+        screenLoginOptions: ScreenLoginOptions,
+
         loginAuser: string;
         loginApass: string;
         loginBuser: string;
@@ -21,6 +23,13 @@ namespace Storage {
     export let initialData: Store = {
         showSearchPage: false,
         loginOrCpassScreen: 0,
+
+        screenLoginOptions: {
+            reveal: false,
+            doInterval: false,
+            interval: 10,
+            pageReload: false,
+        },
 
         loginAuser: '',
         loginApass: '',
@@ -46,6 +55,13 @@ namespace Storage {
             showSearchPage: get(showSearchPageAtom),
             loginOrCpassScreen: get(loginOrCpassScreenAtom),
 
+            screenLoginOptions: {
+                reveal: get(screenLoginOptionsAtoms.reveal),
+                doInterval: get(screenLoginOptionsAtoms.doInterval),
+                interval: get(screenLoginOptionsAtoms.interval),
+                pageReload: get(screenLoginOptionsAtoms.pageReload),
+            },
+    
             loginAuser: get(loginAuserAtom),
             loginApass: get(loginApassAtom),
             loginBuser: get(loginBuserAtom),
@@ -76,19 +92,40 @@ export const doNextLoginOrCPassScreenAtom = atom(null, (get, set,) => set(loginO
 export const isLoginScreenAtom = atom((get) => get(loginOrCpassScreenAtom) === 0 && !get(showSearchPageAtom));
 
 export type ScreenLoginOptions = {
-    revealAtom: boolean; // Show or hide password field
-    doIntervalAtom: boolean; // Use reload interval
-    intervalAtom: number; // Interval in seconds
-    pageReloadAtom: boolean; // Reload page vs. form
+    reveal: boolean; // Show or hide password field
+    doInterval: boolean; // Use reload interval
+    interval: number; // Interval in seconds
+    pageReload: boolean; // Reload page vs. form
 };
+
+// type newKeys = `${keyof ScreenLoginOptions}Atom`; //OK
+// var a: newKeys = 'revealAtom';
+// export type S2 = {
+//     [key in newKeys]: PrimitiveAtom<ScreenLoginOptions[key]>;
+// };
+
+
+// `${[key in keyof ScreenLoginOptions]}Atom`: PrimitiveAtom<ScreenLoginOptions[key]>;
+
+// export type ScreenLoginOptionsAtoms<K = keyof ScreenLoginOptions> = {
+//     K: PrimitiveAtom<ScreenLoginOptions[K]>;
+// };
+
+// export type ScreenLoginOptionsAtoms = {
+//     [key in keyof ScreenLoginOptions] + 'Atom': PrimitiveAtom<ScreenLoginOptions[key]>;
+// };
+
+// export type ScreenLoginOptionsAtoms = {
+//     [key in keyof ScreenLoginOptions] as `${key}Atom`: PrimitiveAtom<ScreenLoginOptions[key]>;
+// };
 
 export type ScreenLoginOptionsAtoms = {
     [key in keyof ScreenLoginOptions]: PrimitiveAtom<ScreenLoginOptions[key]>;
 };
 
-export const screenLoginOptions: ScreenLoginOptionsAtoms = {
-    revealAtom: atom<boolean>(false),
-    doIntervalAtom: atom<boolean>(false),
-    intervalAtom: atom(10),
-    pageReloadAtom: atom<boolean>(false),
+export const screenLoginOptionsAtoms: ScreenLoginOptionsAtoms = {
+    reveal: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, ({ get }) => Storage.save(get)),
+    doInterval: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, ({ get }) => Storage.save(get)),
+    interval: atomWithCallback(Storage.initialData.screenLoginOptions.interval, ({ get }) => Storage.save(get)),
+    pageReload: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, ({ get }) => Storage.save(get)),
 };
