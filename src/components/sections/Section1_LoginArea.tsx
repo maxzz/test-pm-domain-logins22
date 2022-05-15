@@ -274,11 +274,12 @@ export function Section1_LoginArea() {
         config: { ...config.molasses },
         exitBeforeEnter: true,
         onRest: (result, ctrl, item) => {
-            console.log('%c--------------------------onRest currentIdx = %i %o %o', 'color: slateblue', currentIdx, { result }, { ctrl }, { item });
+            console.log('%c--------------------------onRest %ccurrentIdx = %i%c %o %o', 'color: slateblue', colorIdx(), currentIdx, 'color: slateblue', { item }, { result }, { ctrl });
         }
     });
 
-    console.log('%c======================= render() currentIdx =', 'color: gray', currentIdx);
+    const colorIdx = () => currentIdx === 0 ? 'color: orange' : 'color: khaki';
+    console.log('%c----------------------- render() %ccurrentIdx = %i', 'color: gray', colorIdx(), currentIdx);
 
     return (
         <div className="flex flex-col justify-between text-slate-800">
@@ -292,12 +293,9 @@ export function Section1_LoginArea() {
                         </Mount>
                         : <>
                             {transitions((styles, item, transition) => {
+                                console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
+
                                 const Screen = screens[currentIdx];
-
-                                const color = (item: number) => item === 0 ? 'color: orange' : 'color: khaki';
-                                console.log('%c_________transitions()__________ currentIdx = %i transitions(item) = %i phase %c%s%c transition',
-                                    color(currentIdx), currentIdx, item, 'color: green', transition.phase, 'color: gray', transition);
-
                                 return Screen ? <Screen style={styles} /> : null;
                             })}
                         </>
