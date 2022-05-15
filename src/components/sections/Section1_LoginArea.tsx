@@ -54,12 +54,13 @@ function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
 
 function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder: string; }) {
     const [value, setValue] = useAtom(fieldAtom);
+    const reveal = useAtomValue(screenLoginOptionAtoms.revealAtom);
     return (
         <label className="relative">
             <input
                 className="py-1.5 w-full peer float-input border-slate-300 border"
                 id={fieldId}
-                type="password"
+                type={reveal ? "text" : "password"}
                 placeholder={placeholder}
                 autoComplete="current-password"
                 value={value}
@@ -174,7 +175,7 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                     type="checkbox" checked={reveal} onChange={() => setReveal((v) => !v)}
                 />
-                <div className="whitespace-nowrap">Reveal password</div>
+                <div className="whitespace-nowrap">Reveal passwords</div>
             </label>
             <div className="flex space-x-2">
                 <label className="flex items-center space-x-2 cursor-pointer">
@@ -208,7 +209,7 @@ function TempControls() {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
     return (
-        <div className="p-4 flex justify-center select-none">
+        <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
                 <ScreenExtraControls className={`${!isLoginScreen && 'invisible'}`} />
 

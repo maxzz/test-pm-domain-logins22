@@ -76,11 +76,11 @@ namespace Storage {
 //#region Credential atoms
 
 type Creds = {
-    username: string; // username
-    password: string; // current password
-    updtpass: string; // new password
-    confpass: string; // confirm new password
-    searchAA: string; // search text for AA screen
+    username: string;       // username
+    password: string;       // current password
+    updtpass: string;       // new password
+    confpass: string;       // confirm new password
+    searchAA: string;       // search text for AA screen
 };
 
 export const credAtoms: Atomize<Creds> = {
@@ -93,7 +93,7 @@ export const credAtoms: Atomize<Creds> = {
 
 //#endregion Credential atoms
 
-//#region Screens
+//#region NavOptions
 
 type NavOptions = {
     screenIdx: number;      // login (0) or cpass (1) screen
@@ -105,8 +105,12 @@ export const navOptionAtoms: Atomize<NavOptions> = {
     showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, Storage.save),
 };
 
-export const isLoginScreenAtom = atom((get) => get(navOptionAtoms.screenIdxAtom) === 0 && !get(navOptionAtoms.showSearchAtom));
+export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
 export const doNextScreenAtom = atom(null, (get, set,) => set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1));
+
+//#endregion NavOptions
+
+//#region Screens
 
 type ScreenLoginOptions = {
     reveal: boolean;        // Show or hide password field
