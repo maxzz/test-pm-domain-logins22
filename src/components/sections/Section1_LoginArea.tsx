@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { credAtoms, doNextLoginOrCPassScreenAtom, isLoginScreenAtom, loginOrCpassScreenAtom, screenLoginOptionAtoms, showSearchPageAtom } from '@/store/store';
+import { credAtoms, doNextScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -24,8 +24,7 @@ function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNod
                 {label}
             </div>
 
-            <a.div
-                style={styles}
+            <a.div style={styles}
                 className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300/40 border-slate-50 border-4 rounded-md"
             >
                 {logo}
@@ -76,7 +75,10 @@ function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: Primi
 function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
     return (
         <button
-            className={classNames('px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded select-none', className)}
+            className={classNames(
+                'px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded select-none',
+                className
+            )}
             {...rest}
         >
             {label}
@@ -88,7 +90,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     return (
         <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
             <LoginTitle
@@ -109,7 +111,7 @@ function ScreenLogin({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     return (
         <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
             <LoginTitle
@@ -131,7 +133,7 @@ function ScreenCPass({ suffix = '' }: { suffix?: string; }) {
 }
 
 function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
-    const showSearch = useUpdateAtom(showSearchPageAtom);
+    const showSearch = useUpdateAtom(navOptionAtoms.showSearchAtom);
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}
         <form id="tm-sear-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
@@ -202,8 +204,8 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
 }
 
 function TempControls() {
-    const [showSearch, setShowSearch] = useAtom(showSearchPageAtom);
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextLoginOrCPassScreenAtom);
+    const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
     return (
         <div className="p-4 flex justify-center select-none">
@@ -255,10 +257,10 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
 ];
 
 export function Section1_LoginArea() {
-    const showSearch = useAtomValue(showSearchPageAtom);
-    const [current, setCurrent] = useAtom(loginOrCpassScreenAtom);
+    const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
+    const currentIdx = useAtomValue(navOptionAtoms.screenIdxAtom);
 
-    const transitions = useTransition(current, {
+    const transitions = useTransition(currentIdx, {
         from: { opacity: 0, x: '150%', scale: 1, },
         enter: { opacity: 1, x: '0%', config: { easing: easings.easeInCubic, duration: 300, } },
         leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 0, }, }, // or duration: 300
@@ -273,12 +275,12 @@ export function Section1_LoginArea() {
                 <div className="my-8 flex items-start justify-center">
                     {showSearch
                         ?
-                        <Mount showAtom={showSearchPageAtom}>
+                        <Mount showAtom={navOptionAtoms.showSearchAtom}>
                             <ScreenSearch />
                         </Mount>
                         : <>
                             {transitions((styles) => {
-                                const Screen = screens[current];
+                                const Screen = screens[currentIdx];
                                 return <Screen style={styles} />;
                             })}
                         </>
