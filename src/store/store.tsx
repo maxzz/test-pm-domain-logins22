@@ -1,5 +1,5 @@
 import React from 'react';
-import { atom, Getter, useAtomValue } from 'jotai';
+import { atom, Getter, PrimitiveAtom, useAtomValue } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
 import { useUpdateAtom } from 'jotai/utils';
@@ -97,19 +97,12 @@ export const credAtoms: Atomize<Creds> = {
 
 //#region NavOptions
 
-// export enum Forms {
-//     empty,
-//     login,
-//     cpass,
-//     search,
-// }
-
 type NavOptions = {
     screenIdx: number;      // login (0) or cpass (1) screen
     showSearch: boolean;    // show search page
 };
 
-export const navOptionAtoms: Atomize<NavOptions> = {
+export const navOptionAtoms: Atomize<NavOptions> & { blankScreenAtom: PrimitiveAtom<boolean>; } = {
     screenIdxAtom: atomWithCallback(Storage.initialData.navOptions.screenIdx, Storage.save),
     showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, ({ get, set, nextValue }) => {
         if (nextValue) {
@@ -117,6 +110,7 @@ export const navOptionAtoms: Atomize<NavOptions> = {
         }
         Storage.save({ get });
     }),
+    blankScreenAtom: atom<boolean>(false), // show blank screen before login/cpass screen reload
 };
 
 export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
