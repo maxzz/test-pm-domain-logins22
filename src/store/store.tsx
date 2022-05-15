@@ -133,49 +133,10 @@ type ScreenLoginOptions = {
 
 export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     revealAtom: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, Storage.save),
-    doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, doIntervalFn),
+    doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, Storage.save),
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
 };
-
-function doIntervalFn({ get, set, nextValue }: { get: Getter, set: Setter; nextValue: boolean; }) {
-    Storage.save({ get });
-
-    // if (nextValue) {
-    //     console.log('setTimer');
-    // } else {
-    //     console.log('clear');
-    // }
-};
-/*
-function useCountdown({}:{}) {
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-
-    const reloadTimeoutID = React.useRef<ReturnType<typeof setTimeout>>();
-    const [countdown, setCountdown] = React.useState(0);
-    
-    if (doInterval) {
-        clearTimeout(reloadTimeoutID.current);
-
-        reloadTimeoutID.current = setTimeout(() => {
-            reloadTimeoutID.current = undefined;
-            //window.location.reload();
-        }, intervalVal * 1000);
-
-    } else {
-        
-    }
-}
-
-function Timer() {
-    let timerID = 0;
-    return () => ({
-        start: () => {},
-        stop: () => {},
-    })
-}
-*/
 
 export function useCountdown() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
@@ -251,9 +212,6 @@ export function watchCountdownAtom() {
                 //window.location.reload();
                 setCountdown((v) => {
                     v--;
-                    // if (v <= 0) {
-                    //     clearCount();
-                    // }
                     if (v < 0) {
                         v = intervalVal;
                     }
@@ -278,38 +236,5 @@ export function watchCountdownAtom() {
 }
 
 export const countdownAtom = atom(-1); // -1 is for inactive
-
-/*
-            const intervalEnabled = ref(true);
-            const intervalIsValid = (v: number) => !isNaN(v) && v > 0 && v <= 900;
-            const intervalCountdown = ref(0);
-
-            let reloadTimeoutID = 0;
-            let countdownID = 0;
-            function startInterval(runNow: boolean) {
-
-                if (runNow) {
-                    clearTimeout(reloadTimeoutID);
-                    reloadTimeoutID = setTimeout(() => {
-                        reloadTimeoutID = 0;
-                        window.location.reload();
-                    }, intervalVal.value * 1000);
-
-                    clearInterval(countdownID);
-                    countdownID = 0;
-
-                    intervalCountdown.value = intervalVal.value;
-                    countdownID = setInterval(() => intervalCountdown.value--, 1000);
-
-                } else {
-                    clearTimeout(reloadTimeoutID);
-                    reloadTimeoutID = 0;
-
-                    clearInterval(countdownID);
-                    countdownID = 0;
-                }
-            }
-
-*/
 
 //#endregion ScreenOptions
