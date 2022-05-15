@@ -150,9 +150,13 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
 };
 
+//#endregion ScreenOptions
+
+//#region Countdown
+
 export function watchCountdownAtom() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom); // TODO: check validity
+    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
 
     const countdownId = React.useRef<ReturnType<typeof setInterval>>();
     const setCountdown = useUpdateAtom(countdownAtom);
@@ -168,7 +172,6 @@ export function watchCountdownAtom() {
             setCountdown(intervalVal);
 
             countdownId.current = setInterval(() => {
-                //window.location.reload();
                 setCountdown((v) => {
                     v--;
                     if (v < 0) {
@@ -186,14 +189,12 @@ export function watchCountdownAtom() {
     }, [doInterval, intervalVal]);
 
     React.useEffect(() => {
-        return () => {
-            console.log('%c--------------watchCountdownAtom unloaded', 'color: orangered');
-
-            clearInterval(countdownId.current);
-        };
+        return () => clearInterval(countdownId.current);
     }, []);
 }
 
-export const countdownAtom = atom(-1); // -1 is for inactive
+export const countdownAtom = atom(-1); // -1 is for inactive; 0 = for window.location.reload();
 
-//#endregion ScreenOptions
+//#endregion Countdown
+
+//TODO: check validity of intervalVal
