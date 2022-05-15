@@ -2,6 +2,9 @@ import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
 import { a, easings, useSpring } from '@react-spring/web';
 import { SvgScreenLogin } from './UI/screen-1-login';
 import { SvgScreenCPass } from './UI/screen-2-cpass';
+import { useAtomValue } from 'jotai';
+import { countdownAtom, doReloadScreenAtom } from '@/store/store';
+import { useUpdateAtom } from 'jotai/utils';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
@@ -23,6 +26,15 @@ export function AppHeader() {
         },
         config: { easing: easings.easeOutCubic, duration: 1000 }
     });
+
+    const countdown = useAtomValue(countdownAtom);
+
+    // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
+    // const countdownBy = useAtomValue(countdownAtom);
+    // if (countdownBy === 0) {
+    //     doReloadScreen();
+    // }
+
     return (<>
         <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
 
@@ -57,7 +69,9 @@ export function AppHeader() {
                 </div>
             </div>
 
+            {countdown >= 0 && <div className="absolute right-4 bottom-2 text-slate-100">{countdown}</div>}
         </div>
+
         <div className="h-1 bg-[#002f87]" style={elevation4Shadow}></div>
     </>);
 }
