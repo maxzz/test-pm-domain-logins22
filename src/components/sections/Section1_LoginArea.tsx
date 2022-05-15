@@ -263,8 +263,26 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
     ({ style }: { style: any; }) => <a.div style={style}><ScreenCPass suffix={'-2'} /></a.div>,
 ];
 
+function BlankScreen() {
+    const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
+    const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
+    const styles = useSpring({
+        from: { opacity: 1, background: 'green', },
+        to: { opacity: 0.2, background: 'red' },
+        config: { duration: 200, },
+        onRest: () => {
+            console.log('----done');
+            blankScreen(false);
+        }
+    });
+    return (
+        <a.div style={styles} className="w-72 h-64 bg-orange-300">blank</a.div>
+    );
+}
+
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
+    const blankScreen = useAtomValue(navOptionAtoms.blankScreenAtom);
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
 
     const transitions = useTransition(currentIdx, {
@@ -286,19 +304,21 @@ export function Section1_LoginArea() {
 
             <div className="overflow-hidden">
                 <div className="my-8 flex items-start justify-center">
-                    {showSearch
-                        ?
-                        <Mount showAtom={navOptionAtoms.showSearchAtom}>
-                            <ScreenSearch />
-                        </Mount>
-                        : <>
-                            {transitions((styles, item, transition) => {
-                                console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
+                    {blankScreen
+                        ? <BlankScreen />
+                        : showSearch
+                            ?
+                            <Mount showAtom={navOptionAtoms.showSearchAtom}>
+                                <ScreenSearch />
+                            </Mount>
+                            : <>
+                                {transitions((styles, item, transition) => {
+                                    console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
 
-                                const Screen = screens[currentIdx];
-                                return Screen ? <Screen style={styles} /> : null;
-                            })}
-                        </>
+                                    const Screen = screens[currentIdx];
+                                    return Screen ? <Screen style={styles} /> : null;
+                                })}
+                            </>
                     }
                 </div>
             </div>

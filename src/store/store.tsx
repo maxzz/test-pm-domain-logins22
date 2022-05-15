@@ -123,7 +123,9 @@ export const doReloadScreenAtom = atom(null, (get, set,) => {
     // set(navOptionAtoms.screenIdxAtom, -1);
     // set(navOptionAtoms.screenIdxAtom, c);
 
-    set(doNextScreenAtom);
+    //set(doNextScreenAtom);
+
+    set(navOptionAtoms.blankScreenAtom, true);
 });
 
 //#endregion NavOptions
