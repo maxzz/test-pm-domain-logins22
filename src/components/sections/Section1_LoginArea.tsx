@@ -267,16 +267,19 @@ function BlankScreen() {
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
     const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
     const styles = useSpring({
-        from: { opacity: 1, background: 'green', },
-        to: { opacity: 0.2, background: 'red' },
-        config: { duration: 200, },
+        from: { opacity: 1, background: 'green', scaleY: 1  },
+        to: { opacity: 0.2, background: 'transparent', scaleY: .2 },
+        config: { duration: 400, },
         onRest: () => {
             console.log('----done');
-            blankScreen(false);
+            //blankScreen(false);
         }
-    });
+    });//bg-orange-400
     return (
-        <a.div style={styles} className="w-72 h-64 bg-orange-300">blank</a.div>
+        <div className="relative w-full h-[24rem] flex items-center justify-center  bg-gradient-radial from-slate-500 via-transparent to-transparent">
+            <div className="text-2xl text-white">Reloading...</div>
+            {/* <a.div style={styles} className="absolute inset-0"></a.div> */}
+        </div>
     );
 }
 

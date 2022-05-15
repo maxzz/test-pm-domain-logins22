@@ -10,6 +10,9 @@ module.exports = {
             fontFamily: {
                 'old-normal': [...defaultTheme.fontFamily.sans],
             },
+            backgroundImage: {
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            },
             // keyframes: {
             //     slidein: {
             //         '0%': { ransform: 'translateY(-100%)',},
