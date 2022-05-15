@@ -180,6 +180,13 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const countdownBy = useAtomValue(countdownAtom);
     console.log('+++++ atom +++++++ ', countdownBy);
 
+    const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
+    React.useEffect(() => {
+        if (countdownBy === 0) {
+            doReloadScreen();
+        }
+    }, [countdownBy]);
+
     // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
     // if (countdownBy === 0) {
     //     doReloadScreen();
@@ -305,7 +312,9 @@ export function Section1_LoginArea() {
                         : <>
                             {transitions((styles) => {
                                 const Screen = screens[currentIdx];
-                                return <Screen style={styles} />;
+                                console.log('________idx', currentIdx);
+                                
+                                return Screen ? <Screen style={styles} /> : null;
                             })}
                         </>
                     }

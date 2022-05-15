@@ -110,9 +110,14 @@ export const navOptionAtoms: Atomize<NavOptions> = {
 export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
 export const doNextScreenAtom = atom(null, (get, set,) => set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1));
 export const doReloadScreenAtom = atom(null, (get, set,) => {
+    //set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1);
+    //set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom));
+
+    // const c = get(navOptionAtoms.screenIdxAtom);
     // set(navOptionAtoms.screenIdxAtom, -1);
-    set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1);
-    // set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom));
+    // set(navOptionAtoms.screenIdxAtom, c);
+
+    set(doNextScreenAtom);
 });
 
 //#endregion NavOptions
