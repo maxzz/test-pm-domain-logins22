@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms, useCountdown, watchCountdownAtom } from '@/store/store';
+import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms, watchCountdownAtom } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -169,28 +169,10 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const [interval, setInterval] = useAtom(intervalAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
 
-    // const {
-    //     doInterval: _doInterval,
-    //     intervalVal: _intervalVal,
-    //     countdown: _countdown,
-    // } = useCountdown();
-    // console.log('timers', _doInterval, _intervalVal, _countdown);
-
     watchCountdownAtom();
     const countdownBy = useAtomValue(countdownAtom);
-    console.log('+++++ atom +++++++ ', countdownBy);
-
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    React.useEffect(() => {
-        if (countdownBy === 0) {
-            doReloadScreen();
-        }
-    }, [countdownBy]);
-
-    // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    // if (countdownBy === 0) {
-    //     doReloadScreen();
-    // }
+    React.useEffect(() => { countdownBy === 0 && doReloadScreen(); }, [countdownBy]);
 
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
@@ -293,12 +275,6 @@ export function Section1_LoginArea() {
         exitBeforeEnter: true,
     });
 
-    // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    // const countdownBy = useAtomValue(countdownAtom);
-    // if (countdownBy === 0) {
-    //     doReloadScreen();
-    // }
-
     return (
         <div className="flex flex-col justify-between text-slate-800">
 
@@ -312,7 +288,7 @@ export function Section1_LoginArea() {
                         : <>
                             {transitions((styles) => {
                                 const Screen = screens[currentIdx];
-                                console.log('________idx', currentIdx);
+                                console.log('________idx_________', currentIdx);
                                 
                                 return Screen ? <Screen style={styles} /> : null;
                             })}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { atom, Getter, Setter, useAtom, useAtomValue } from 'jotai';
+import { atom, Getter, useAtomValue } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
 import { useUpdateAtom } from 'jotai/utils';
@@ -137,59 +137,6 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
 };
-
-export function useCountdown() {
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom); // TODO: check validity
-
-    const countdownId = React.useRef<ReturnType<typeof setInterval>>();
-    const [countdown, setCountdown] = React.useState(0);
-
-    React.useEffect(() => {
-        function clearCount() {
-            clearInterval(countdownId.current);
-            countdownId.current = undefined;
-        }
-
-        if (doInterval && intervalVal > 0) {
-            clearCount();
-            setCountdown(intervalVal);
-
-            countdownId.current = setInterval(() => {
-                //window.location.reload();
-                setCountdown((v) => {
-                    v--;
-                    // if (v <= 0) {
-                    //     clearCount();
-                    // }
-                    if (v < 0) {
-                        v = intervalVal;
-                    }
-                    return v;
-                });
-            }, 1000);
-
-        } else {
-            clearCount();
-            setCountdown(0);
-        }
-
-    }, [doInterval, intervalVal]);
-
-    React.useEffect(() => {
-        return () => {
-            console.log('unloaded----------');
-
-            clearInterval(countdownId.current);
-        };
-    }, []);
-
-    return {
-        doInterval,
-        intervalVal,
-        countdown,
-    };
-}
 
 export function watchCountdownAtom() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
