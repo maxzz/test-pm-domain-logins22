@@ -307,5 +307,3 @@ export function Section1_LoginArea() {
         </div>
     );
 }
-
-//TODO: stop reload on search page

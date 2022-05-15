@@ -111,7 +111,12 @@ type NavOptions = {
 
 export const navOptionAtoms: Atomize<NavOptions> = {
     screenIdxAtom: atomWithCallback(Storage.initialData.navOptions.screenIdx, Storage.save),
-    showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, Storage.save),
+    showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, ({ get, set, nextValue }) => {
+        if (nextValue) {
+            set(screenLoginOptionAtoms.doIntervalAtom, false);
+        }
+        Storage.save({ get });
+    }),
 };
 
 export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
@@ -182,7 +187,7 @@ export function watchCountdownAtom() {
 
     React.useEffect(() => {
         return () => {
-            console.log('unloaded----------watchCountdownAtom');
+            console.log('%c--------------watchCountdownAtom unloaded', 'color: orangered');
 
             clearInterval(countdownId.current);
         };
