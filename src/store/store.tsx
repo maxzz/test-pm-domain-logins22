@@ -97,6 +97,13 @@ export const credAtoms: Atomize<Creds> = {
 
 //#region NavOptions
 
+// export enum Forms {
+//     empty,
+//     login,
+//     cpass,
+//     search,
+// }
+
 type NavOptions = {
     screenIdx: number;      // login (0) or cpass (1) screen
     showSearch: boolean;    // show search page

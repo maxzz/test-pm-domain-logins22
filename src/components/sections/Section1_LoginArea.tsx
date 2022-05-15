@@ -265,7 +265,7 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
-    const currentIdx = useAtomValue(navOptionAtoms.screenIdxAtom);
+    const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
 
     const transitions = useTransition(currentIdx, {
         from: { opacity: 0, x: '150%', scale: 1, },
@@ -273,7 +273,12 @@ export function Section1_LoginArea() {
         leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 0, }, }, // or duration: 300
         config: { ...config.molasses },
         exitBeforeEnter: true,
+        onRest: (result, ctrl, item) => {
+            console.log('%c--------------------------onRest currentIdx = %i %o %o', 'color: slateblue', currentIdx, { result }, { ctrl }, { item });
+        }
     });
+
+    console.log('%c======================= render() currentIdx =', 'color: gray', currentIdx);
 
     return (
         <div className="flex flex-col justify-between text-slate-800">
@@ -286,10 +291,13 @@ export function Section1_LoginArea() {
                             <ScreenSearch />
                         </Mount>
                         : <>
-                            {transitions((styles) => {
+                            {transitions((styles, item, transition) => {
                                 const Screen = screens[currentIdx];
-                                console.log('________idx_________', currentIdx);
-                                
+
+                                const color = (item: number) => item === 0 ? 'color: orange' : 'color: khaki';
+                                console.log('%c_________transitions()__________ currentIdx = %i transitions(item) = %i phase %c%s%c transition',
+                                    color(currentIdx), currentIdx, item, 'color: green', transition.phase, 'color: gray', transition);
+
                                 return Screen ? <Screen style={styles} /> : null;
                             })}
                         </>
@@ -301,3 +309,5 @@ export function Section1_LoginArea() {
         </div>
     );
 }
+
+//TODO: stop reload on search page
