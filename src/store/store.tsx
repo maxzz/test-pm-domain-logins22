@@ -102,7 +102,9 @@ type NavOptions = {
     showSearch: boolean;    // show search page
 };
 
-export const navOptionAtoms: Atomize<NavOptions> & { blankScreenAtom: PrimitiveAtom<boolean>; } = {
+export const navOptionAtoms: Atomize<NavOptions> & {
+    blankScreenAtom: PrimitiveAtom<boolean>;
+} = {
     screenIdxAtom: atomWithCallback(Storage.initialData.navOptions.screenIdx, Storage.save),
     showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, ({ get, set, nextValue }) => {
         if (nextValue) {
@@ -157,9 +159,9 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 export function watchCountdownAtom() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-
-    const countdownId = React.useRef<ReturnType<typeof setInterval>>();
+    const autoReset = false;
     const setCountdown = useUpdateAtom(countdownAtom);
+    const countdownId = React.useRef<ReturnType<typeof setInterval>>();
 
     React.useEffect(() => {
         function clearCount() {
@@ -175,7 +177,11 @@ export function watchCountdownAtom() {
                 setCountdown((v) => {
                     v--;
                     if (v < 0) {
-                        v = intervalVal;
+                        if (autoReset) {
+                            v = intervalVal;
+                        } else {
+                            clearCount();
+                        }
                     }
                     return v;
                 });
@@ -186,7 +192,7 @@ export function watchCountdownAtom() {
             setCountdown(-1);
         }
 
-    }, [doInterval, intervalVal]);
+    }, [doInterval, intervalVal, autoReset]);
 
     React.useEffect(() => {
         return () => clearInterval(countdownId.current);
