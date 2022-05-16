@@ -267,11 +267,11 @@ function BlankScreen() {
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
     const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
     const styles = useSpring({
-        from: { opacity: 1, background: 'gray', scaleY: 1, scaleX: 1 },
+        from: { scaleY: 1, scaleX: 1, opacity: 1, background: '#94a3b8', },
         to: [
-            { scaleY: .1, scaleX: 1, opacity: 1, background: 'gray', config: { duration: 1700, } },
+            { scaleY: .1, scaleX: .9, config: { duration: 700, } },
             { scaleY: 1, scaleX: 0, config: { duration: 1, } },
-            { scaleY: 1, scaleX: 1, background: 'transparent', config: { easing: easings.easeOutCubic, duration: 6400, } },
+            { scaleY: 1, scaleX: .9, opacity: 0, config: { easing: easings.easeOutCubic, duration: 1000, } },
         ],
         //config: { duration: 400, },
         onRest: () => {
