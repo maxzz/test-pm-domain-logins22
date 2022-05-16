@@ -267,24 +267,29 @@ function BlankScreen() {
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
     const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
     const styles = useSpring({
-        from: { opacity: 1, background: 'green', scaleY: 1  },
-        to: { opacity: 0.2, background: 'transparent', scaleY: .2 },
-        config: { duration: 400, },
+        from: { opacity: 1, background: 'gray', scaleY: 1, scaleX: 1 },
+        to: [
+            { scaleY: .1, scaleX: 1, opacity: 1, background: 'gray', config: { duration: 1700, } },
+            { scaleY: 1, scaleX: 0, config: { duration: 1, } },
+            { scaleY: 1, scaleX: 1, background: 'transparent', config: { easing: easings.easeOutCubic, duration: 6400, } },
+        ],
+        //config: { duration: 400, },
         onRest: () => {
             console.log('----done');
-            //blankScreen(false);
+            blankScreen(false);
         }
-    });//bg-orange-400
+    });//bg-orange-400/20
     return (
-        <div className="relative w-full h-[24rem] flex items-center justify-center  bg-gradient-radial from-slate-500 via-transparent to-transparent">
+        <div className="relative w-full h-[24rem] flex items-center justify-center">
             <div className="text-2xl text-white">Reloading...</div>
-            {/* <a.div style={styles} className="absolute inset-0"></a.div> */}
+            <a.div style={styles} className="absolute inset-0"></a.div>
         </div>
     );
 }
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
+    //const blankScreen = true;//useAtomValue(navOptionAtoms.blankScreenAtom);
     const blankScreen = useAtomValue(navOptionAtoms.blankScreenAtom);
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
 
