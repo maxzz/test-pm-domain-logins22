@@ -126,6 +126,10 @@ export const doReloadScreenAtom = atom(null, (get, set,) => {
     //set(doNextScreenAtom);
 
     set(navOptionAtoms.blankScreenAtom, true);
+
+    if (get(screenLoginOptionAtoms.pageReloadAtom)) {
+        window.location.reload();
+    }
 });
 
 //#endregion NavOptions

@@ -335,3 +335,6 @@ export function Section1_LoginArea() {
         </div>
     );
 }
+
+//TODO: stop coundown when animating blank screen
+//TODO: don't need blank screen when reloadin page
