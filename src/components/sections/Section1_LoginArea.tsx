@@ -163,7 +163,7 @@ function ScreenSearch({ suffix = '' }: { suffix?: string; }) {
     </>);
 }
 
-function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
+function ScreenControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptionAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
@@ -178,7 +178,7 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
                 />
                 <div className="whitespace-nowrap">Reveal passwords</div>
             </label>
-            <div className="flex space-x-2">
+            <div className="flex items-center">
                 <label className="flex items-center space-x-2 cursor-pointer">
                     <input
                         className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
@@ -186,13 +186,19 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
                     />
                     <div className="whitespace-nowrap">Reload interval</div>
                 </label>
-                <div className={classNames('flex space-x-1', doInterval && 'invisible')}>
-                    <input
-                        className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
-                        value={interval} onChange={((e) => setInterval(+e.target.value))}
-                    />
-                    <div className="">sec</div>
-                </div>
+
+                {doInterval
+                    ?
+                        <div className="h-[18px] pl-1 pt-0.5">{interval} sec</div>
+                    :
+                    <div className={classNames('pl-1 flex items-center space-x-1', doInterval && 'invisible')}>
+                        <input
+                            className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
+                            value={interval} onChange={((e) => setInterval(+e.target.value))}
+                        />
+                        <div className="">sec</div>
+                    </div>
+                }
             </div>
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
@@ -205,23 +211,23 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     );
 }
 
-function TempControls() {
+function Controls() {
     const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
 
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-    
+
     useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
-    
+
     const runCountdown = useUpdateAtom(runCountdownAtom);
     React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
 
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
-                <ScreenExtraControls className={`${!isLoginScreen && 'invisible'}`} />
+                <ScreenControls className={`${!isLoginScreen && 'invisible'}`} />
 
                 <div className="flex space-x-4">
                     {/* Show search page */}
@@ -332,7 +338,7 @@ export function Section1_LoginArea() {
                 </div>
             </div>
 
-            <TempControls />
+            <Controls />
         </div>
     );
 }
