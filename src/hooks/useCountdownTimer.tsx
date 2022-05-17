@@ -2,7 +2,7 @@ import { PrimitiveAtom, useAtom } from "jotai";
 import { useUpdateAtom } from "jotai/utils";
 import React from "react";
 
-export function useCountdownTimer2({ startVal, counterAtom, runAtom }: { startVal: number; counterAtom: PrimitiveAtom<number>; runAtom: PrimitiveAtom<boolean>; }) {
+export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal: number; counterAtom: PrimitiveAtom<number>; runAtom: PrimitiveAtom<boolean>; }) {
     const setCounter = useUpdateAtom(counterAtom);
     const [run, setRun] = useAtom(runAtom);
     const [runing, setRuning] = React.useState(false);

@@ -1,4 +1,4 @@
-import { atom, Getter, PrimitiveAtom } from 'jotai';
+import { atom, Getter, PrimitiveAtom, SetStateAction } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
 
@@ -145,7 +145,18 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 
 //#region Countdown
 
-export const countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
+//export const countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
+
+const _countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
+
+export const countdownAtom = atom<number, SetStateAction<number>>(
+    (get) => get(_countdownAtom),
+    (get, set, value: SetStateAction<number>) => {
+        const v = typeof value === 'function' ? value(get(_countdownAtom)) : value;
+        set(_countdownAtom, v);
+    }
+);
+
 export const runCountdownAtom = atom<boolean>(false);
 
 //#endregion Countdown

@@ -5,7 +5,7 @@ import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLogin
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
-import { useCountdownTimer2 } from '@/hooks/useCountdownTimer';
+import { useCountdownTimer } from '@/hooks/useCountdownTimer';
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
@@ -213,7 +213,7 @@ function TempControls() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
     
-    useCountdownTimer2({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+    useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
     
     const runCountdown = useUpdateAtom(runCountdownAtom);
     React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
