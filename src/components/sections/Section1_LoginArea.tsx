@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms, watchAtomCountdown } from '@/store/store';
+import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms, watchAtomCountdown } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
-import { useCountdownTimer } from '@/hooks/useCountdownTimer';
+import { useCountdownTimer, useCountdownTimer2 } from '@/hooks/useCountdownTimer';
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
@@ -216,19 +216,30 @@ function TempControls() {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
 
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    // const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    // const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+    // const [countdown, setCountdown] = useAtom(countdownAtom);
+    // const { start, stop } = useCountdownTimer({ startVal: intervalVal, setValue: setCountdown });
+
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-    // const setCountdown = useUpdateAtom(countdownAtom);
     const [countdown, setCountdown] = useAtom(countdownAtom);
-    const { start, stop } = useCountdownTimer({ startVal: intervalVal, setValue: setCountdown });
+    useCountdownTimer2({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+
+    const runCountdown = useUpdateAtom(runCountdownAtom);
+
+    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
 
     React.useEffect(() => {
-        if (doInterval) {
-            start();
-        } else {
-            stop();
-        }
+        runCountdown(doInterval);
     }, [doInterval]);
+
+    // React.useEffect(() => {
+    //     if (doInterval) {
+    //         start();
+    //     } else {
+    //         stop();
+    //     }
+    // }, [doInterval]);
 
     console.log('countdown', countdown);
 
@@ -287,6 +298,10 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
 function BlankScreen() {
     const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
     const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
+
+    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const runCountdown = useUpdateAtom(runCountdownAtom);
+
     const styles = useSpring({
         from: { scaleY: 1, scaleX: 1, opacity: 1, background: '#94a3b8', },
         to: [
@@ -296,8 +311,11 @@ function BlankScreen() {
         ],
         //config: { duration: 400, },
         onRest: () => {
-            console.log('----done');
             blankScreen(false);
+            if (doInterval) {
+                console.log('---- BlankScreen done');
+                runCountdown(true);
+            }
         }
     });//bg-orange-400/20
     return (
@@ -320,13 +338,13 @@ export function Section1_LoginArea() {
         leave: { opacity: 0, x: '-150%', scale: 0, config: { easing: easings.easeInCubic, duration: 0, }, }, // or duration: 300
         config: { ...config.molasses },
         exitBeforeEnter: true,
-        onRest: (result, ctrl, item) => {
-            console.log('%c--------------------------onRest %ccurrentIdx = %i%c %o %o', 'color: slateblue', colorIdx(), currentIdx, 'color: slateblue', { item }, { result }, { ctrl });
-        }
+        // onRest: (result, ctrl, item) => {
+        //     console.log('%c--------------------------onRest %ccurrentIdx = %i%c %o %o', 'color: slateblue', colorIdx(), currentIdx, 'color: slateblue', { item }, { result }, { ctrl });
+        // }
     });
 
-    const colorIdx = () => currentIdx === 0 ? 'color: orange' : 'color: khaki';
-    console.log('%c----------------------- render() %ccurrentIdx = %i', 'color: gray', colorIdx(), currentIdx);
+    // const colorIdx = () => currentIdx === 0 ? 'color: orange' : 'color: khaki';
+    // console.log('%c----------------------- render() %ccurrentIdx = %i', 'color: gray', colorIdx(), currentIdx);
 
     return (
         <div className="flex flex-col justify-between text-slate-800">
@@ -342,7 +360,7 @@ export function Section1_LoginArea() {
                             </Mount>
                             : <>
                                 {transitions((styles, item, transition) => {
-                                    console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
+                                    // console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
 
                                     const Screen = screens[currentIdx];
                                     return Screen ? <Screen style={styles} /> : null;

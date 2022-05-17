@@ -202,6 +202,8 @@ export function watchAtomCountdown() {
 
 export const countdownAtom = atom(-1); // -1 is for inactive; 0 = for window.location.reload();
 
+export const runCountdownAtom = atom<boolean>(false);
+
 //#endregion Countdown
 
 //TODO: check validity of intervalVal
