@@ -156,7 +156,7 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 
 //#region Countdown
 
-export function watchCountdownAtom() {
+export function watchAtomCountdown() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
     const autoReset = false;
@@ -180,6 +180,7 @@ export function watchCountdownAtom() {
                         if (autoReset) {
                             v = intervalVal;
                         } else {
+                            v = -1;
                             clearCount();
                         }
                     }

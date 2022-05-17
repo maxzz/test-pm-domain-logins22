@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms, watchCountdownAtom } from '@/store/store';
+import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms, watchAtomCountdown } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -169,7 +169,7 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const [interval, setInterval] = useAtom(intervalAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
 
-    watchCountdownAtom();
+    watchAtomCountdown();
     const countdownBy = useAtomValue(countdownAtom);
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
     React.useEffect(() => { countdownBy === 0 && doReloadScreen(); }, [countdownBy]);
