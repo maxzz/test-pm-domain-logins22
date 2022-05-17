@@ -211,11 +211,7 @@ function ScreenControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElem
     );
 }
 
-function Controls() {
-    const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
-    const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
-    const isLoginScreen = useAtomValue(isLoginScreenAtom);
-
+function CountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
 
@@ -223,8 +219,15 @@ function Controls() {
 
     const runCountdown = useUpdateAtom(runCountdownAtom);
     React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
+    return null;
+}
 
-    return (
+function Controls() {
+    const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
+    const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
+    const isLoginScreen = useAtomValue(isLoginScreenAtom);
+    return (<>
+        <CountdownTimer />
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
                 <ScreenControls className={`${!isLoginScreen && 'invisible'}`} />
@@ -250,7 +253,7 @@ function Controls() {
 
             </div>
         </div>
-    );
+    </>);
 }
 
 function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
