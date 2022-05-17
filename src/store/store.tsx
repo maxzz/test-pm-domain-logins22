@@ -127,16 +127,16 @@ export const doReloadScreenAtom = atom(null, (get, set,) => {
 
     //set(doNextScreenAtom);
 
-    // if (get(screenLoginOptionAtoms.pageReloadAtom)) {
-    //     window.location.reload();
-    // } else {
-    //     set(navOptionAtoms.blankScreenAtom, true);
-    // }
+    if (get(screenLoginOptionAtoms.pageReloadAtom)) {
+        window.location.reload();
+    } else {
+        set(navOptionAtoms.blankScreenAtom, true);
+    }
 
     // if (get(screenLoginOptionAtoms.pageReloadAtom)) {
     //     window.location.reload();
     // }    
-    set(navOptionAtoms.blankScreenAtom, true);    
+    //set(navOptionAtoms.blankScreenAtom, true);
 });
 
 //#endregion NavOptions
