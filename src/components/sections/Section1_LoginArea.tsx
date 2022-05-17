@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
+import { countdownAtom, credAtoms, doNextScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
@@ -217,10 +217,6 @@ function TempControls() {
     
     const runCountdown = useUpdateAtom(runCountdownAtom);
     React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
-
-    const countdown = useAtomValue(countdownAtom);
-    const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    React.useEffect(() => { doInterval && countdown === 0 && doReloadScreen(); }, [countdown]);
 
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">

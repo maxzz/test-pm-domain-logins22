@@ -145,15 +145,14 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 
 //#region Countdown
 
-//export const countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
-
 const _countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
 
 export const countdownAtom = atom<number, SetStateAction<number>>(
     (get) => get(_countdownAtom),
     (get, set, value: SetStateAction<number>) => {
-        const v = typeof value === 'function' ? value(get(_countdownAtom)) : value;
-        set(_countdownAtom, v);
+        const countdown = typeof value === 'function' ? value(get(_countdownAtom)) : value;
+        countdown === 0 && get(screenLoginOptionAtoms.doIntervalAtom) && set(doReloadScreenAtom);
+        set(_countdownAtom, countdown);
     }
 );
 
