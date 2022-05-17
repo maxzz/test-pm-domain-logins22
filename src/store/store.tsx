@@ -100,6 +100,8 @@ type NavOptions = {
     showSearch: boolean;    // show search page
 };
 
+const _blankScreenAtom = atom<boolean>(false); // show blank screen before login/cpass screen reload
+
 export const navOptionAtoms: Atomize<NavOptions> & {
     blankScreenAtom: PrimitiveAtom<boolean>;
 } = {
@@ -110,7 +112,14 @@ export const navOptionAtoms: Atomize<NavOptions> & {
         }
         Storage.save({ get });
     }),
-    blankScreenAtom: atom<boolean>(false), // show blank screen before login/cpass screen reload
+    blankScreenAtom: atom<boolean, SetStateAction<boolean>>(
+        (get) => get(_blankScreenAtom),
+        (get, set, value: SetStateAction<boolean>) => {
+            const show = typeof value === 'function' ? value(get(_blankScreenAtom)) : value;
+            !show && get(screenLoginOptionAtoms.doIntervalAtom) && set(runCountdownAtom, true);
+            set(_blankScreenAtom, show);
+        }
+    ),
 };
 
 export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));

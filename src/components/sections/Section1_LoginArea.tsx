@@ -268,11 +268,7 @@ const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React
 ];
 
 function BlankScreen() {
-    const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
     const blankScreen = useUpdateAtom(navOptionAtoms.blankScreenAtom);
-
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const runCountdown = useUpdateAtom(runCountdownAtom);
 
     const styles = useSpring({
         from: { scaleY: 1, scaleX: 1, opacity: 1, background: '#94a3b8', },
@@ -282,13 +278,7 @@ function BlankScreen() {
             { scaleY: 1, scaleX: .9, opacity: 0, config: { easing: easings.easeOutCubic, duration: 1000, } },
         ],
         //config: { duration: 400, },
-        onRest: () => {
-            blankScreen(false);
-            if (doInterval) {
-                console.log('---- BlankScreen done');
-                runCountdown(true);
-            }
-        }
+        onRest: () => blankScreen(false),
     });//bg-orange-400/20
     return (
         <div className="relative w-full h-[24rem] flex items-center justify-center">
@@ -300,9 +290,9 @@ function BlankScreen() {
 
 export function Section1_LoginArea() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
-    //const blankScreen = true;//useAtomValue(navOptionAtoms.blankScreenAtom);
+    //const blankScreen = true;
     const blankScreen = useAtomValue(navOptionAtoms.blankScreenAtom);
-    const [currentIdx, setCurrentIdx] = useAtom(navOptionAtoms.screenIdxAtom);
+    const currentIdx = useAtomValue(navOptionAtoms.screenIdxAtom);
 
     const transitions = useTransition(currentIdx, {
         from: { opacity: 0, x: '150%', scale: 1, },
