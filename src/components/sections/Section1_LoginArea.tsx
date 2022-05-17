@@ -241,7 +241,7 @@ function TempControls() {
     //     }
     // }, [doInterval]);
 
-    console.log('countdown', countdown);
+    console.log('TempControls render, countdown =', countdown);
 
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
     React.useEffect(() => { countdown === 0 && doReloadScreen(); }, [countdown]);
