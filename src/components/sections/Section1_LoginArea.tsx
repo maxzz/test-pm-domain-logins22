@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 import { PrimitiveAtom, useAtom, useAtomValue } from 'jotai';
 import { useUpdateAtom } from 'jotai/utils';
-import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms, watchAtomCountdown } from '@/store/store';
+import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
-import { useCountdownTimer, useCountdownTimer2 } from '@/hooks/useCountdownTimer';
+import { useCountdownTimer2 } from '@/hooks/useCountdownTimer';
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
@@ -169,12 +169,6 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
     const [interval, setInterval] = useAtom(intervalAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
-
-    // watchAtomCountdown();
-    // const countdownBy = useAtomValue(countdownAtom);
-    // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    // React.useEffect(() => { countdownBy === 0 && doReloadScreen(); }, [countdownBy]);
-
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
             <label className="flex items-center space-x-2 cursor-pointer">
@@ -216,32 +210,15 @@ function TempControls() {
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
 
-    // const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    // const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-    // const [countdown, setCountdown] = useAtom(countdownAtom);
-    // const { start, stop } = useCountdownTimer({ startVal: intervalVal, setValue: setCountdown });
-
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-    const [countdown, setCountdown] = useAtom(countdownAtom);
-    useCountdownTimer2({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
-
-    const runCountdown = useUpdateAtom(runCountdownAtom);
-
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    React.useEffect(() => {
-        runCountdown(doInterval);
-    }, [doInterval, intervalVal]);
+    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+    
+    useCountdownTimer2({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+    
+    const runCountdown = useUpdateAtom(runCountdownAtom);
+    React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
 
-    // React.useEffect(() => {
-    //     if (doInterval) {
-    //         start();
-    //     } else {
-    //         stop();
-    //     }
-    // }, [doInterval]);
-
-    console.log('TempControls render, countdown =', countdown);
-
+    const countdown = useAtomValue(countdownAtom);
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
     React.useEffect(() => { doInterval && countdown === 0 && doReloadScreen(); }, [countdown]);
 
@@ -373,6 +350,3 @@ export function Section1_LoginArea() {
         </div>
     );
 }
-
-//TODO: stop coundown when animating blank screen
-//TODO: don't need blank screen when reloadin page

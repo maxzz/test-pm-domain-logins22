@@ -1,8 +1,6 @@
-import React from 'react';
-import { atom, Getter, PrimitiveAtom, useAtomValue } from 'jotai';
+import { atom, Getter, PrimitiveAtom } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
-import { useUpdateAtom } from 'jotai/utils';
 
 //#region Storage
 
@@ -118,25 +116,11 @@ export const navOptionAtoms: Atomize<NavOptions> & {
 export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
 export const doNextScreenAtom = atom(null, (get, set,) => set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1));
 export const doReloadScreenAtom = atom(null, (get, set,) => {
-    //set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1);
-    //set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom));
-
-    // const c = get(navOptionAtoms.screenIdxAtom);
-    // set(navOptionAtoms.screenIdxAtom, -1);
-    // set(navOptionAtoms.screenIdxAtom, c);
-
-    //set(doNextScreenAtom);
-
     if (get(screenLoginOptionAtoms.pageReloadAtom)) {
         window.location.reload();
     } else {
         set(navOptionAtoms.blankScreenAtom, true);
     }
-
-    // if (get(screenLoginOptionAtoms.pageReloadAtom)) {
-    //     window.location.reload();
-    // }    
-    //set(navOptionAtoms.blankScreenAtom, true);
 });
 
 //#endregion NavOptions
@@ -161,52 +145,7 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 
 //#region Countdown
 
-export function watchAtomCountdown() {
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-    const autoReset = false;
-    const setCountdown = useUpdateAtom(countdownAtom);
-    const countdownId = React.useRef<ReturnType<typeof setInterval>>();
-
-    React.useEffect(() => {
-        function clearCount() {
-            clearInterval(countdownId.current);
-            countdownId.current = undefined;
-        }
-
-        if (doInterval && intervalVal > 0) {
-            clearCount();
-            setCountdown(intervalVal);
-
-            countdownId.current = setInterval(() => {
-                setCountdown((v) => {
-                    v--;
-                    if (v < 0) {
-                        if (autoReset) {
-                            v = intervalVal;
-                        } else {
-                            v = -1;
-                            clearCount();
-                        }
-                    }
-                    return v;
-                });
-            }, 1000);
-
-        } else {
-            clearCount();
-            setCountdown(-1);
-        }
-
-    }, [doInterval, intervalVal, autoReset]);
-
-    React.useEffect(() => {
-        return () => clearInterval(countdownId.current);
-    }, []);
-}
-
 export const countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
-
 export const runCountdownAtom = atom<boolean>(false);
 
 //#endregion Countdown
