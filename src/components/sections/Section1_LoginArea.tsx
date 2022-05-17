@@ -189,9 +189,9 @@ function ScreenControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElem
 
                 {doInterval
                     ?
-                        <div className="h-[18px] pl-1 pt-0.5">{interval} sec</div>
+                    <div className="h-[18px] pl-1 pt-0.5"><span className="font-bold">{interval}</span> sec</div>
                     :
-                    <div className={classNames('pl-1 flex items-center space-x-1', doInterval && 'invisible')}>
+                    <div className="pl-1 flex items-center space-x-1">
                         <input
                             className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
                             value={interval} onChange={((e) => setInterval(+e.target.value))}
@@ -342,3 +342,5 @@ export function Section1_LoginArea() {
         </div>
     );
 }
+
+//TODO: make countdown more visible
