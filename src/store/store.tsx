@@ -200,7 +200,7 @@ export function watchAtomCountdown() {
     }, []);
 }
 
-export const countdownAtom = atom(-1); // -1 is for inactive; 0 = for window.location.reload();
+export const countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
 
 export const runCountdownAtom = atom<boolean>(false);
 

@@ -52,18 +52,18 @@ export function useCountdownTimer2({ startVal, counterAtom, runAtom }: { startVa
     const [runing, setRuning] = React.useState(false);
     const countdownId = React.useRef<ReturnType<typeof setInterval>>();
 
-    console.log('useCountdownTimer2 run', run);
+    console.log('---------------- useCountdownTimer2 render, run =', run);
     
     const stopTimer = React.useCallback(() => (clearInterval(countdownId.current), (countdownId.current = undefined)), []);
 
     React.useEffect(() => {
         if (run && startVal > 0) {
-            console.log('useCountdownTimer2 effect true, startVal', startVal);
+            //console.log('useCountdownTimer2 effect true, startVal', startVal);
             stopTimer();
             setCounter(startVal);
             setRuning(true);
         } else {
-            console.log('useCountdownTimer2 effect false, startVal', startVal);
+            //console.log('useCountdownTimer2 effect false, startVal', startVal);
             setRuning(false);
         }
     }, [run, setCounter]);

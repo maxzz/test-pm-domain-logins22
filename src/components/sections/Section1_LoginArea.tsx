@@ -243,7 +243,7 @@ function TempControls() {
     console.log('TempControls render, countdown =', countdown);
 
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    React.useEffect(() => { doInterval && countdown < 0 && doReloadScreen(); }, [countdown]);
+    React.useEffect(() => { doInterval && countdown === -1 && doReloadScreen(); }, [countdown]);
 
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
