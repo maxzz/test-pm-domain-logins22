@@ -8,6 +8,13 @@ import { countdownAtom } from '@/store/store';
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
 
+function CountdownDisplay() {
+    const countdown = useAtomValue(countdownAtom);
+    return (<>
+        {countdown >= 0 && <div className="absolute right-4 bottom-2 text-slate-100">{countdown}</div>}
+    </>);
+}
+
 export function AppHeader() {
     const styles = useSpring({
         from: {
@@ -25,7 +32,6 @@ export function AppHeader() {
         },
         config: { easing: easings.easeOutCubic, duration: 1000 }
     });
-    const countdown = useAtomValue(countdownAtom);
     return (<>
         <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
 
@@ -60,7 +66,7 @@ export function AppHeader() {
                 </div>
             </div>
 
-            {countdown >= 0 && <div className="absolute right-4 bottom-2 text-slate-100">{countdown}</div>}
+            <CountdownDisplay />
         </div>
 
         <div className="h-1 bg-[#002f87]" style={elevation4Shadow}></div>
