@@ -192,7 +192,7 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
                     />
                     <div className="whitespace-nowrap">Reload interval</div>
                 </label>
-                <div className={classNames('flex space-x-1', !doInterval && 'invisible')}>
+                <div className={classNames('flex space-x-1', doInterval && 'invisible')}>
                     <input
                         className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
                         value={interval} onChange={((e) => setInterval(+e.target.value))}
@@ -228,10 +228,9 @@ function TempControls() {
     const runCountdown = useUpdateAtom(runCountdownAtom);
 
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-
     React.useEffect(() => {
         runCountdown(doInterval);
-    }, [doInterval]);
+    }, [doInterval, intervalVal]);
 
     // React.useEffect(() => {
     //     if (doInterval) {
@@ -244,7 +243,7 @@ function TempControls() {
     console.log('TempControls render, countdown =', countdown);
 
     const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    React.useEffect(() => { countdown === 0 && doReloadScreen(); }, [countdown]);
+    React.useEffect(() => { countdown < 0 && doReloadScreen(); }, [countdown]);
 
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
