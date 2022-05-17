@@ -165,7 +165,15 @@ export const countdownAtom = atom<number, SetStateAction<number>>(
     }
 );
 
-export const runCountdownAtom = atom<boolean>(false);
+export const _runCountdownAtom = atom<boolean>(false);
+
+export const runCountdownAtom = atom<boolean, SetStateAction<boolean>>(
+    (get) => get(_runCountdownAtom),
+    (get, set) => {
+        get(screenLoginOptionAtoms.intervalAtom);
+        set(_runCountdownAtom, get(screenLoginOptionAtoms.doIntervalAtom));
+    }
+);
 
 //#endregion Countdown
 

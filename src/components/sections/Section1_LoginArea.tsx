@@ -221,8 +221,8 @@ function Controls() {
 
     useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
 
-    const runCountdown = useUpdateAtom(runCountdownAtom);
-    React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
+    // const runCountdown = useUpdateAtom(runCountdownAtom);
+    // React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
 
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
@@ -344,3 +344,4 @@ export function Section1_LoginArea() {
 }
 
 //TODO: make countdown more visible
+//TODO: save reload page vs form
