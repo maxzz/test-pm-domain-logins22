@@ -5,6 +5,7 @@ import { countdownAtom, credAtoms, doNextScreenAtom, doReloadScreenAtom, isLogin
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
 import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
+import { useCountdownTimer } from '@/hooks/useCountdownTimer';
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
@@ -169,10 +170,10 @@ function ScreenExtraControls({ className, ...rest }: React.HTMLAttributes<HTMLDi
     const [interval, setInterval] = useAtom(intervalAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
 
-    watchAtomCountdown();
-    const countdownBy = useAtomValue(countdownAtom);
-    const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
-    React.useEffect(() => { countdownBy === 0 && doReloadScreen(); }, [countdownBy]);
+    // watchAtomCountdown();
+    // const countdownBy = useAtomValue(countdownAtom);
+    // const doReloadScreen = useUpdateAtom(doReloadScreenAtom);
+    // React.useEffect(() => { countdownBy === 0 && doReloadScreen(); }, [countdownBy]);
 
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
@@ -214,6 +215,23 @@ function TempControls() {
     const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
+
+    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+    // const setCountdown = useUpdateAtom(countdownAtom);
+    const [countdown, setCountdown] = useAtom(countdownAtom);
+    const { start, stop } = useCountdownTimer({ startVal: intervalVal, setValue: setCountdown });
+
+    React.useEffect(() => {
+        if (doInterval) {
+            start();
+        } else {
+            stop();
+        }
+    }, [doInterval]);
+
+    console.log('countdown', countdown);
+    
     return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
