@@ -211,23 +211,11 @@ function ScreenControls({ className, ...rest }: React.HTMLAttributes<HTMLDivElem
     );
 }
 
-function CountdownTimer() {
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
-
-    useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
-
-    const runCountdown = useUpdateAtom(runCountdownAtom);
-    React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
-    return null;
-}
-
 function Controls() {
     const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
     const doNextLoginOrCPassScreen = useUpdateAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
-    return (<>
-        <CountdownTimer />
+    return (
         <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
                 <ScreenControls className={`${!isLoginScreen && 'invisible'}`} />
@@ -253,7 +241,7 @@ function Controls() {
 
             </div>
         </div>
-    </>);
+    );
 }
 
 function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
@@ -297,7 +285,18 @@ function BlankScreen() {
     );
 }
 
-export function Section1_LoginArea() {
+function CountdownTimer() {
+    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+
+    useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+
+    const runCountdown = useUpdateAtom(runCountdownAtom);
+    React.useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
+    return null;
+}
+
+function Screens() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
     //const blankScreen = true;
     const blankScreen = useAtomValue(navOptionAtoms.blankScreenAtom);
@@ -316,31 +315,36 @@ export function Section1_LoginArea() {
 
     // const colorIdx = () => currentIdx === 0 ? 'color: orange' : 'color: khaki';
     // console.log('%c----------------------- render() %ccurrentIdx = %i', 'color: gray', colorIdx(), currentIdx);
+    
+    return (
+        <div className="overflow-hidden">
+            <div className="my-8 flex items-start justify-center">
+                {blankScreen
+                    ? <BlankScreen />
+                    : showSearch
+                        ?
+                        <Mount showAtom={navOptionAtoms.showSearchAtom}>
+                            <ScreenSearch />
+                        </Mount>
+                        : <>
+                            {transitions((styles, item, transition) => {
+                                // console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
 
+                                const Screen = screens[currentIdx];
+                                return Screen ? <Screen style={styles} /> : null;
+                            })}
+                        </>
+                }
+            </div>
+        </div>
+    );
+}
+
+export function Section1_LoginArea() {
     return (
         <div className="flex flex-col justify-between text-slate-800">
-
-            <div className="overflow-hidden">
-                <div className="my-8 flex items-start justify-center">
-                    {blankScreen
-                        ? <BlankScreen />
-                        : showSearch
-                            ?
-                            <Mount showAtom={navOptionAtoms.showSearchAtom}>
-                                <ScreenSearch />
-                            </Mount>
-                            : <>
-                                {transitions((styles, item, transition) => {
-                                    // console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
-
-                                    const Screen = screens[currentIdx];
-                                    return Screen ? <Screen style={styles} /> : null;
-                                })}
-                            </>
-                    }
-                </div>
-            </div>
-
+            <Screens />
+            <CountdownTimer />
             <Controls />
         </div>
     );
