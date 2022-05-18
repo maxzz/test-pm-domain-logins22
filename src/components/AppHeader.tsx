@@ -126,17 +126,18 @@ const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
         from: {
             opacity: 0,
             x: 20,
-            //y: 700,
+            y: -1000,
             height: 0,
             backgroundColor: '#000',
         },
         to: {
             opacity: open ? 1 : 0,
             x: open ? 0 : 20,
-            //y: open ? 0 : 700,
+            y: open ? 0 : -1000,
             height: open ? 48 : 0,
             backgroundColor: '#3b82f6',
         },
+        delay: 1000,
         config: {
             //mass: 5, tension: 2000, friction: 200,
             duration: 700,
