@@ -126,29 +126,36 @@ const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
         from: {
             opacity: 0,
             x: 20,
-            height: 0
+            //y: 700,
+            height: 0,
+            backgroundColor: '#000',
         },
         to: {
             opacity: open ? 1 : 0,
             x: open ? 0 : 20,
-            height: open ? 70 : 0,
+            //y: open ? 0 : 700,
+            height: open ? 48 : 0,
+            backgroundColor: '#3b82f6',
         },
-        config: { mass: 5, tension: 2000, friction: 200 },
+        config: {
+            //mass: 5, tension: 2000, friction: 200,
+            duration: 700,
+        },
     });
     return (
-        <div>
+        <>
             {trail.map(({ height, ...style }, index) => (
                 <a.div key={index} className="" style={style}>
                     <a.div style={{ height }}>{items[index]}</a.div>
                 </a.div>
             ))}
-        </div>
+        </>
     );
 };
 
 function NavLinks2() {
     return (
-        <div className="absolute bottom-16 left-2">
+        <div className="absolute bottom-1 left-2">
             <div className="flex space-x-2">
                 <Trail open={true}>
                     <SvgScreenLogin className="w-12 h-12" />
@@ -182,7 +189,7 @@ export function AppHeader() {
             </div>
 
             <AlienLogo />
-            <NavLinks />
+            {/* <NavLinks /> */}
             <NavLinks2 />
             <CountdownDisplay />
         </div>
