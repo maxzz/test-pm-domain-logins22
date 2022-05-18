@@ -1,5 +1,5 @@
 import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
-import { a, easings, useSpring } from '@react-spring/web';
+import { a, easings, useSpring, useTrail } from '@react-spring/web';
 import { SvgScreenLogin } from './UI/screen-1-login';
 import { SvgScreenCPass } from './UI/screen-2-cpass';
 import { useAtomValue } from 'jotai';
@@ -120,6 +120,41 @@ function NavLinks() {
     );
 }
 
+const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
+    const items = React.Children.toArray(children);
+    const trail = useTrail(items.length, {
+        config: { mass: 5, tension: 2000, friction: 200 },
+        opacity: open ? 1 : 0,
+        x: open ? 0 : 20,
+        height: open ? 110 : 0,
+        from: { opacity: 0, x: 20, height: 0 },
+    });
+    return (
+        <div>
+            {trail.map(({ height, ...style }, index) => (
+                <a.div key={index} className="" style={style}>
+                    <a.div style={{ height }}>{items[index]}</a.div>
+                </a.div>
+            ))}
+        </div>
+    );
+};
+
+function NavLinks2() {
+    return (
+        <div className="absolute bottom-16 left-2">
+            <div className="flex space-x-2">
+                <Trail open={true}>
+                    <SvgScreenLogin className="w-12 h-12" />
+                    <SvgScreenCPass className="w-12 h-12" />
+                    <SvgScreenLogin className="w-12 h-12" />
+                    <SvgScreenCPass className="w-12 h-12" />
+                </Trail>
+            </div>
+        </div>
+    );
+}
+
 export function AppHeader() {
     return (<>
         <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
@@ -142,6 +177,7 @@ export function AppHeader() {
 
             <AlienLogo />
             <NavLinks />
+            <NavLinks2 />
             <CountdownDisplay />
         </div>
 
