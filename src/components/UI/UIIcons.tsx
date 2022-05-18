@@ -74,26 +74,6 @@ export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<S
     );
 }
 
-// export function IconSiteLink({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
-//     return (
-//         <svg viewBox="0 0 12 12" {...rest}>
-//             {title && <title>{title}</title>}
-//             <text x={0} y={'50%'}>11</text>
-//             <foreignObject className="w-full h-full flex items-center justify-center">
-//                 <div className="text-xs">11</div>
-//             </foreignObject>
-//         </svg>
-//     );
-// }
-
-export function IconSiteLink({ children, className, ...rest }: HTMLAttributes<HTMLDivElement>) {
-    return (
-        <div className={classNames(className, 'w-[18px] h-[18px] text-xs text-yellow-100 border-yellow-100 opacity-30 border rounded-full flex items-center justify-center')} {...rest}>
-            {children}
-        </div>
-    );
-}
-
 // export const IconHeroWRef = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>>((props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>, ref) => {
 //     const { title, ...rest } = props;
 //     return (
