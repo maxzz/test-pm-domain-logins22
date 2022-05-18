@@ -165,6 +165,12 @@ export const countdownAtom = atom<number, SetStateAction<number>>(
     }
 );
 
+export const isCountdownDoneAtom = atom<boolean>(
+    (get) => {
+        return get(_countdownAtom) === 0;
+    }
+);
+
 export const runCountdownAtom = atom<boolean>(false);
 
 //#endregion Countdown
