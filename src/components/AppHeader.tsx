@@ -12,11 +12,11 @@ export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0
 function CountdownDisplay() {
     const countdown = useAtomValue(countdownAtom);
     return (<>
-        {countdown >= 0 && <div className="absolute inset-0 flex items-center justify-center text-5xl text-slate-100">{countdown}</div>}
+        {countdown >= 0 && <div className="text-5xl text-slate-100">{countdown}</div>}
     </>);
 }
 
-const animValues = {
+const alienAnimProps = {
     from: {
         fill: '#5fa4ed',
         stroke: 'black',
@@ -34,7 +34,7 @@ const animValues = {
 
 function AlienLogo() {
     const [styles, api] = useSpring(() => ({
-        ...animValues,
+        ...alienAnimProps,
         // from: {
         //     fill: '#5fa4ed',
         //     stroke: 'black',
@@ -64,7 +64,7 @@ function AlienLogo() {
         if (isCountdownDone) {
             // api.set(animValues.from);
             // api.start(animValues.to);
-            api.start(animValues);
+            api.start(alienAnimProps);
         }
     }, [isCountdownDone]);
 
@@ -90,18 +90,18 @@ function AlienLogo() {
     // }, [isCountdownDone]);
 
     return (
-        <div className="absolute inset-0 flex items-center justify-center">
-            <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
-                <IconHero className="" preserveAspectRatio="xMidYMid slice" />
-            </a.div>
-        </div>
+        <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
+            <IconHero className="" preserveAspectRatio="xMidYMid slice" />
+        </a.div>
+
     );
 }
 
+/** /
 const ALogin = a(SvgScreenLogin);
 const ACPass = a(SvgScreenCPass);
 
-function NavLinks() {
+function NavLinks0() {
     const styles = useSpring({
         from: { backgroundColor: '#0000', scale: 0 },
         to: { backgroundColor: '#3b82f6', scale: 1 }, //bg-blue-500
@@ -119,6 +119,7 @@ function NavLinks() {
         </div>
     );
 }
+/**/
 
 const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
     const items = React.Children.toArray(children);
@@ -138,7 +139,7 @@ const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
             // x: open ? 0 : 20,
             // y: open ? 0 : -1000,
             height: open ? '48px' : '0px',
-            scale: open? 1 : 0,
+            scale: open ? 1 : 0,
             backgroundColor: open ? '#3b82f6' : '#010101',
         },
         delay: 500,
@@ -157,7 +158,7 @@ const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
     </>);
 };
 
-function NavLinks2() {
+function NavLinks() {
     const [open, setOpen] = React.useState(true);
     return (
         <div className="absolute bottom-1 left-2 h-12 flex ">
@@ -198,10 +199,16 @@ export function AppHeader() {
                 </div>
             </div>
 
-            <AlienLogo />
-            {/* <NavLinks /> */}
-            <NavLinks2 />
-            <CountdownDisplay />
+            <div className="absolute inset-0 flex items-center justify-center">
+                <AlienLogo />
+            </div>
+
+            <div className="absolute inset-0 flex items-center justify-center">
+                <CountdownDisplay />
+            </div>
+
+            {/* <NavLinks0 /> */}
+            <NavLinks />
         </div>
 
         <div className="h-1 bg-[#002f87]" style={elevation4Shadow}></div>
