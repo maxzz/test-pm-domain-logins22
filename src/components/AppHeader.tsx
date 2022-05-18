@@ -79,7 +79,7 @@ function AlienLogo() {
     //     async function run() {
     //         if (isCountdownDone) {
     //             //console.log('111111');
-                
+
     //             // api.set(animValues.to);
     //             // await api.start(animValues.from);
     //             api.set(animValues.from);
@@ -94,6 +94,28 @@ function AlienLogo() {
             <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
                 <IconHero className="" preserveAspectRatio="xMidYMid slice" />
             </a.div>
+        </div>
+    );
+}
+
+const ALogin = a(SvgScreenLogin);
+const ACPass = a(SvgScreenCPass);
+
+function NavLinks() {
+    const styles = useSpring({
+        from: { backgroundColor: '#0000', scale: 0 },
+        to: { backgroundColor: '#3b82f6', scale: 1 }, //bg-blue-500
+        config: { duration: 700, easing: easings.easeOutCubic },
+        delay: 1000
+    });
+    return (
+        <div className="absolute bottom-1 left-2">
+            <div className="flex space-x-2">
+                <ALogin style={styles} className="w-12 h-12" />
+                <ACPass style={styles} className="w-12 h-12" />
+                <ALogin style={styles} className="w-12 h-12" />
+                <ACPass style={styles} className="w-12 h-12" />
+            </div>
         </div>
     );
 }
@@ -119,16 +141,7 @@ export function AppHeader() {
             </div>
 
             <AlienLogo />
-
-            <div className="absolute bottom-1 left-2">
-                <div className="flex space-x-2">
-                    <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
-                    <SvgScreenCPass className="w-12 h-12 bg-blue-500" />
-                    <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
-                    <SvgScreenCPass className="w-12 h-12 bg-blue-500" />
-                </div>
-            </div>
-
+            <NavLinks />
             <CountdownDisplay />
         </div>
 
