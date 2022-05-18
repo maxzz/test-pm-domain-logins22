@@ -64,6 +64,18 @@ export function IconLogin({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttr
     );
 }
 
+// export function IconSiteLink({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+//     return (
+//         <svg viewBox="0 0 12 12" {...rest}>
+//             {title && <title>{title}</title>}
+//             <text x={0} y={'50%'}>11</text>
+//             <foreignObject className="w-full h-full flex items-center justify-center">
+//                 <div className="text-xs">11</div>
+//             </foreignObject>
+//         </svg>
+//     );
+// }
+
 export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
     const { title, ...rest } = props;
     return (
