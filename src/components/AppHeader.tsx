@@ -1,10 +1,10 @@
-import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
-import { a, easings, useSpring, useTrail } from '@react-spring/web';
-import { SvgScreenLogin } from './UI/screen-1-login';
-import { SvgScreenCPass } from './UI/screen-2-cpass';
+import React from 'react';
 import { useAtomValue } from 'jotai';
 import { countdownAtom, isCountdownDoneAtom } from '@/store/store';
-import React from 'react';
+import { a, easings, useSpring, useTrail } from '@react-spring/web';
+import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
+import { SvgScreenLogin } from './UI/screen-1-login';
+import { SvgScreenCPass } from './UI/screen-2-cpass';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
@@ -125,44 +125,53 @@ const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
     const trail = useTrail(items.length, {
         from: {
             opacity: 0,
-            x: 20,
-            y: -1000,
-            height: 0,
-            backgroundColor: '#000',
+            // x: 20,
+            // y: -1000,
+            x: 1000,
+            height: '0px',
+            scale: 0,
+            backgroundColor: '#010101',
         },
         to: {
             opacity: open ? 1 : 0,
-            x: open ? 0 : 20,
-            y: open ? 0 : -1000,
-            height: open ? 48 : 0,
-            backgroundColor: '#3b82f6',
+            x: open ? 0 : 1000,
+            // x: open ? 0 : 20,
+            // y: open ? 0 : -1000,
+            height: open ? '48px' : '0px',
+            scale: open? 1 : 0,
+            backgroundColor: open ? '#3b82f6' : '#010101',
         },
-        delay: 1000,
+        delay: 500,
         config: {
-            //mass: 5, tension: 2000, friction: 200,
-            duration: 700,
+            mass: 5, tension: 2000, friction: 200,
+            //duration: 1000,
+            //easing: easings.easeInOutCubic,
         },
     });
-    return (
-        <>
-            {trail.map(({ height, ...style }, index) => (
-                <a.div key={index} className="" style={style}>
-                    <a.div style={{ height }}>{items[index]}</a.div>
-                </a.div>
-            ))}
-        </>
-    );
+    return (<>
+        {trail.map(({ height, ...style }, index) => (
+            <a.div key={index} className="" style={style}>
+                <a.div style={{ height }}>{items[index]}</a.div>
+            </a.div>
+        ))}
+    </>);
 };
 
 function NavLinks2() {
+    const [open, setOpen] = React.useState(true);
     return (
-        <div className="absolute bottom-1 left-2">
+        <div className="absolute bottom-1 left-2 h-12 flex ">
+            <input
+                className="self-center mr-2 px-2 py-1 text-xs text-yellow-100 border-yellow-100 hover:bg-slate-900/50 border rounded active:scale-[.97] cursor-pointer"
+                type="button" value="Reload"
+                onClick={() => setOpen((v) => !v)}
+            />
             <div className="flex space-x-2">
-                <Trail open={true}>
-                    <SvgScreenLogin className="w-12 h-12" />
-                    <SvgScreenCPass className="w-12 h-12" />
-                    <SvgScreenLogin className="w-12 h-12" />
-                    <SvgScreenCPass className="w-12 h-12" />
+                <Trail open={open}>
+                    <SvgScreenLogin className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />
+                    <SvgScreenCPass className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />
+                    <SvgScreenLogin className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />
+                    <SvgScreenCPass className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />
                 </Trail>
             </div>
         </div>
