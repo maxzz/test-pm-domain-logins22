@@ -112,7 +112,7 @@ export function AppHeader() {
                             <div className="w-20 py-2 flex items-center justify-center bg-white rounded-md">
                                 <IconHIDLogo className="px-2" fill="#003165" />
                             </div>
-                            <div className="font-old-normal">PM Credential Test Pages</div>
+                            <div className="font-old-normal pb-1">PM Credential Test Pages</div>
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@ export function AppHeader() {
             <AlienLogo />
 
             <div className="absolute bottom-1 left-2">
-                <div className="flex space-x-4">
+                <div className="flex space-x-2">
                     <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
                     <SvgScreenCPass className="w-12 h-12 bg-blue-500" />
                     <SvgScreenLogin className="w-12 h-12 bg-blue-500" />
