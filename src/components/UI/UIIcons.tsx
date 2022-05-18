@@ -1,3 +1,4 @@
+import { classNames } from "@/utils/classnames";
 import { forwardRef, HTMLAttributes, SVGProps } from "react";
 
 export function IconHIDLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
@@ -34,7 +35,6 @@ export function IconHero(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGE
     );
 }
 
-
 export function IconSearch({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
     return (
         <svg viewBox="0 0 24 24" {...rest}>
@@ -43,7 +43,6 @@ export function IconSearch({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAtt
         </svg>
     );
 }
-
 
 export function IconCPass({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
     return (
@@ -72,6 +71,26 @@ export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<S
             {title && <title>{title}</title>}
             <path d="M512 76a447 447 0 00-148 870c23 6 20-11 20-22v-78c-136 16-141-74-151-89-18-31-61-39-48-54 30-16 62 4 98 58 27 39 78 32 104 26 6-24 18-45 35-61-141-25-199-111-199-213 0-49 16-95 48-132-20-60 2-112 5-120 58-5 119 42 123 46a435 435 0 01226 0c12-9 68-49 122-44 3 8 25 58 5 118 33 37 49 83 49 132 0 103-59 189-200 213a128 128 0 0138 91v113c1 9 0 18 15 18A448 448 0 00512 76z" />
         </svg>
+    );
+}
+
+// export function IconSiteLink({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+//     return (
+//         <svg viewBox="0 0 12 12" {...rest}>
+//             {title && <title>{title}</title>}
+//             <text x={0} y={'50%'}>11</text>
+//             <foreignObject className="w-full h-full flex items-center justify-center">
+//                 <div className="text-xs">11</div>
+//             </foreignObject>
+//         </svg>
+//     );
+// }
+
+export function IconSiteLink({ children, className, ...rest }: HTMLAttributes<HTMLDivElement>) {
+    return (
+        <div className={classNames(className, 'w-[18px] h-[18px] text-xs text-yellow-100 border-yellow-100 opacity-30 border rounded-full flex items-center justify-center')} {...rest}>
+            {children}
+        </div>
     );
 }
 
