@@ -1,15 +1,12 @@
 import * as React from "react";
 import { SVGProps } from "react";
+
 interface SVGRProps {
     title?: string;
     titleId?: string;
 }
 
-export const SvgScreenLogin = ({
-    title,
-    titleId,
-    ...props
-}: SVGProps<SVGSVGElement> & SVGRProps) => (
+export const SvgScreenLogin = ({ title, titleId, ...props }: SVGProps<SVGSVGElement> & SVGRProps) => (
     <svg viewBox="0 0 99.48 99.48" aria-labelledby={titleId} {...props}>
         {title ? <title id={titleId}>{title}</title> : null}
         <defs>

@@ -2,9 +2,9 @@ import React from 'react';
 import { useAtomValue } from 'jotai';
 import { countdownAtom, isCountdownDoneAtom } from '@/store/store';
 import { a, easings, useSpring, useTrail } from '@react-spring/web';
-import { IconHero, IconHeroLines, IconHIDLogo } from './UI/UIIcons';
-import { SvgScreenLogin } from './UI/screen-1-login';
-import { SvgScreenCPass } from './UI/screen-2-cpass';
+import { IconHero, IconHeroLines, IconHIDLogo } from './UI/icons/UIIcons';
+import { SvgScreenLogin } from './UI/icons/screen-1-login';
+import { SvgScreenCPass } from './UI/icons/screen-2-cpass';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };

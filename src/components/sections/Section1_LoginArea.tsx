@@ -4,7 +4,7 @@ import { useUpdateAtom } from 'jotai/utils';
 import { countdownAtom, credAtoms, doNextScreenAtom, isLoginScreenAtom, navOptionAtoms, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from '@react-spring/web';
 import { classNames } from '@/utils/classnames';
-import { IconCPass, IconLogin, IconSearch } from '../UI/UIIcons';
+import { IconCPass, IconLogin, IconSearch } from '../UI/icons/UIIcons';
 import { useCountdownTimer } from '@/hooks/useCountdownTimer';
 
 const font = {
@@ -244,7 +244,7 @@ function Controls() {
     );
 }
 
-function Mount({ showAtom: showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
+function Mount({ showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
