@@ -8,7 +8,7 @@ class Example extends HTMLElement {
         const button = document.createElement("button");
         button.onclick = () => alert("Hi");
         button.innerText = "Hello";
-        //button.className = "bg-primary-100";
+        button.className = "bg-primary-100";
         shadow.append(button);
     }
 }

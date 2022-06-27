@@ -1,13 +1,13 @@
 import React from 'react';
-import { AppHeader } from './AppHeader';
+import { App_Header } from './App1_Header';
 import { Section1_LoginArea } from './sections/Section1_LoginArea';
-import { Section6_Footer } from './sections/Section6_Footer';
+import { App3_Footer } from './App3_Footer';
 import { classNames } from '@/utils/classnames';
 
-export function Frontpage() {
+export function App_Main() {
     return (
         <div className="h-screen flex flex-col text-[#001845]">
-            <AppHeader />
+            <App_Header />
 
             <div
                 className={classNames("flex-1 overflow-y-auto", "bg-gradient-to-r from-slate-100 to-slate-50")}
@@ -28,7 +28,7 @@ export function Frontpage() {
                 </div>
             </div>
 
-            <Section6_Footer />
+            <App3_Footer />
         </div>
     );
 }

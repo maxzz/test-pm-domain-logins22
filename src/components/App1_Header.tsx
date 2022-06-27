@@ -181,7 +181,7 @@ function NavLinks() {
     );
 }
 
-export function AppHeader() {
+export function App_Header() {
     return (<>
         <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
 

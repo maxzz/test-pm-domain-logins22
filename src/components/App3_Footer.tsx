@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes } from 'react';
 import { classNames } from '@/utils/classnames';
-import { IconGithubLogo } from '../UI/icons/UIIcons';
-import { pageTitles } from '../xlinks';
+import { IconGithubLogo } from './UI/icons/UIIcons';
+import { pageTitles } from './xlinks';
 
 export function IconSiteLink({ label, className, ...rest }: { label: string; } & AnchorHTMLAttributes<HTMLAnchorElement>) {
     return (
@@ -17,7 +17,7 @@ export function IconSiteLink({ label, className, ...rest }: { label: string; } &
     );
 }
 
-export function Section6_Footer() {
+export function App3_Footer() {
     return (
         <div className="px-2 py-2 bg-[#003165] flex items-center justify-between">
             <a href="https://github.com/maxzz/test-pm-domain-logins22" target="_blank">

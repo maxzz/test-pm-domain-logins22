@@ -1,5 +1,4 @@
-import { useAtomValue } from 'jotai';
-import { Frontpage } from './components/Frontpage';
+import { App_Main } from './components/App2_Main';
 import { UIToaster } from './components/UI/UiToaster';
 import './App.scss';
 
@@ -17,7 +16,7 @@ function App() {
         <PopperRoot />
 
         <div className="min-h-full overflow-hidden bg-slate-50">
-            <Frontpage />
+            <App_Main />
         </div>
     </>);
 }

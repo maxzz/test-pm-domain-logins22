@@ -1,10 +1,10 @@
 import React from "react";
 import { PrimitiveAtom, useAtom } from "jotai";
-import { UISectionPane } from "../UI/UISectionPane";
-import { UIAccordion } from "../UI/UIAccordion";
-import { textShadow } from "../AppHeader";
+import { UISectionPane } from "./UISectionPane";
+import { UIAccordion } from "./UIAccordion";
+import { textShadow } from "../App1_Header";
 
-export function Section({ title, children, openAtom }: { title: React.ReactNode; children: React.ReactNode; openAtom: PrimitiveAtom<boolean>; }) {
+function Section({ title, children, openAtom }: { title: React.ReactNode; children: React.ReactNode; openAtom: PrimitiveAtom<boolean>; }) {
     const [open, setOpen] = useAtom(openAtom);
     return (
         <div>
