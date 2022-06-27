@@ -1,6 +1,7 @@
 import { atom, Getter, PrimitiveAtom, SetStateAction } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
+import '@/components/sections/WebComponents';
 
 //#region Storage
 
