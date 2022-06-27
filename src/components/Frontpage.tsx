@@ -1,8 +1,8 @@
-import { classNames } from '@/utils/classnames';
 import React from 'react';
 import { AppHeader } from './AppHeader';
 import { Section1_LoginArea } from './sections/Section1_LoginArea';
 import { Section6_Footer } from './sections/Section6_Footer';
+import { classNames } from '@/utils/classnames';
 
 export function Frontpage() {
     return (
@@ -20,7 +20,6 @@ export function Frontpage() {
                     //backgroundImage: 'linear-gradient(45deg, #003165, transparent)',
                 }}
             >
-
                 <div className="h-full mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl flex flex-col space-y-4">
                     <div className="h-full grid grid-cols-1">
                         <Section1_LoginArea />

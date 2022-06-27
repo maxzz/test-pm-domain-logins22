@@ -1,16 +1,15 @@
-import { PrimitiveAtom, useAtom } from "jotai";
-import { useUpdateAtom } from "jotai/utils";
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { PrimitiveAtom, useAtom, useSetAtom } from "jotai";
 
 export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal: number; counterAtom: PrimitiveAtom<number>; runAtom: PrimitiveAtom<boolean>; }) {
-    const setCounter = useUpdateAtom(counterAtom);
+    const setCounter = useSetAtom(counterAtom);
     const [run, setRun] = useAtom(runAtom);
-    const [runing, setRuning] = React.useState(false);
-    const countdownId = React.useRef<ReturnType<typeof setInterval>>();
+    const [runing, setRuning] = useState(false);
+    const countdownId = useRef<ReturnType<typeof setInterval>>();
 
-    const stopTimer = React.useCallback(() => (clearInterval(countdownId.current), (countdownId.current = undefined)), []);
+    const stopTimer = useCallback(() => (clearInterval(countdownId.current), (countdownId.current = undefined)), []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (run && startVal > 0) {
             stopTimer();
             setCounter(startVal);
@@ -20,7 +19,7 @@ export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal
         }
     }, [run, setCounter]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (runing) {
             countdownId.current = setInterval(() => {
                 setCounter((v) => {
@@ -35,5 +34,5 @@ export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal
         }
     }, [runing, setCounter]);
 
-    React.useEffect(() => stopTimer, []);
+    useEffect(() => stopTimer, []);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { usePreviousRef } from "./usePrevious";
 
 export function cleanupValueFloat(s: string) {
@@ -15,8 +15,8 @@ export function cleanupValueUInt(s: string) { // unsigned int
 }
 
 export function useNumberInput(value: number, setValue: (v: number) => void, cleanup?: (s: string) => string) {
-    const [local, setLocal] = React.useState('' + value);
-    React.useEffect(() => setLocal('' + value), [value]);
+    const [local, setLocal] = useState('' + value);
+    useEffect(() => setLocal('' + value), [value]);
 
     function convertToNumber(s: string) {
         s = (cleanup || cleanupValueFloat)(s);
@@ -29,7 +29,7 @@ export function useNumberInput(value: number, setValue: (v: number) => void, cle
         (!local || isNaN(+local)) && setLocal('' + value);
     }
 
-    function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function onChange(event: ChangeEvent<HTMLInputElement>) {
         convertToNumber(event.target.value);
     }
 
@@ -41,8 +41,8 @@ export function useNumberInput(value: number, setValue: (v: number) => void, cle
 }
 
 export function useNumberInputStable(value: number, setValue: (v: number) => void, cleanup?: (s: string) => string) { // stable in sense of callback functions
-    const [local, setLocal] = React.useState('' + value);
-    React.useEffect(() => setLocal('' + value), [value]);
+    const [local, setLocal] = useState('' + value);
+    useEffect(() => setLocal('' + value), [value]);
 
     const localRef = usePreviousRef(local);
     const valueRef = usePreviousRef(value);
@@ -54,11 +54,11 @@ export function useNumberInputStable(value: number, setValue: (v: number) => voi
         s && !isNaN(newValue) && setValue(newValue);
     }
 
-    const resetInvalid = React.useCallback(function resetInvalid() {
+    const resetInvalid = useCallback(function resetInvalid() {
         (!localRef.current || isNaN(+localRef.current)) && setLocal('' + valueRef.current);
     }, []);
 
-    const onChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         convertToNumber(event.target.value);
     }, []);
 

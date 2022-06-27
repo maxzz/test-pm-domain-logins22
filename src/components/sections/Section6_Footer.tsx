@@ -7,7 +7,7 @@ export function IconSiteLink({ label, className, ...rest }: { label: string; } &
     return (
         <a className={classNames(
             "w-[18px] h-[18px] text-xs text-yellow-100 border-current opacity-30 border rounded-full flex items-center justify-center",
-            "hover:opacity-100 hover:text-white hover:bg-[#4445] hover:scale-[1.5] transition-transform",
+            "hover:opacity-100 hover:text-white hover:bg-[#4445] hover:scale-[1.25] transition-transform",
             className
         )}
             {...rest}
@@ -33,7 +33,4 @@ export function Section6_Footer() {
     );
 }
 
-//TODO: popup with image preview
-
-//Commit
-//WIP. footer. add xlinks file; links highlight; update favicon
+//TODO: for 1,2,3,4 links add popup with image preview
