@@ -89,46 +89,59 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
+function Wrap({ children }: { children: ReactNode; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return (
+        <>
+            {useWebComp ? <tm-wrap>{children}</tm-wrap> : <>{children}</>}
+        </>
+    );
+}
+
 export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
-            <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
-                logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
-            />
-
-            <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
-                <FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" />
-                <FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" />
-            </div>
-
-            <div className="self-end">
-                <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
-            </div>
-        </form>
+        <Wrap>
+            <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
+                <LoginTitle
+                    label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
+                    logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
+                />
+                <Wrap>
+                    <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
+                        <Wrap><FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
+                        <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
+                    </div>
+                </Wrap>
+                <div className="self-end">
+                    <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
+                </div>
+            </form>
+        </Wrap>
     );
 }
 
 export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
-            <LoginTitle
-                label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
-                logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
-            />
-
-            <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
-                <FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" />
-                <FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" />
-                <FieldPass fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" />
-            </div>
-
-            <div className="self-end">
-                <FieldSubmit className="m-4" label="Change" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
-            </div>
-        </form>
+        <Wrap>
+            <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
+                <LoginTitle
+                    label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+                    logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
+                />
+                <Wrap>
+                    <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
+                        <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
+                        <Wrap><FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
+                        <Wrap><FieldPass fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" /></Wrap>
+                    </div>
+                </Wrap>
+                <div className="self-end">
+                    <FieldSubmit className="m-4" label="Change" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
+                </div>
+            </form>
+        </Wrap>
     );
 }
 
