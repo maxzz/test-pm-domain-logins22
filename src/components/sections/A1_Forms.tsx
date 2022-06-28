@@ -101,7 +101,7 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
             <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
                 <FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" />
                 <FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" />
-                <my-component></my-component>
+                <my-component>111</my-component>
             </div>
 
             <div className="self-end">
