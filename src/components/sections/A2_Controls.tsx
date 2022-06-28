@@ -1,6 +1,19 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { doNextScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils/classnames";
+import { InputHTMLAttributes } from "react";
+
+function Checkbox({ label, checked, onChange }: { label: string; } & InputHTMLAttributes<HTMLInputElement>) {
+    return (
+        <label className="flex items-center space-x-2 cursor-pointer">
+            <input
+                className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
+                type="checkbox" {...{ checked, onChange }}
+            />
+            <div className="whitespace-nowrap">{label}</div>
+        </label>
+    );
+}
 
 function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, } = screenLoginOptionAtoms;
@@ -10,13 +23,16 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
-            <label className="flex items-center space-x-2 cursor-pointer">
+
+            <Checkbox label="Reveal passwords" checked={reveal} onChange={() => setReveal((v) => !v)} />
+            {/* <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                     type="checkbox" checked={reveal} onChange={() => setReveal((v) => !v)}
                 />
                 <div className="whitespace-nowrap">Reveal passwords</div>
-            </label>
+            </label> */}
+
             <div className="flex items-center">
                 <label className="flex items-center space-x-2 cursor-pointer">
                     <input
@@ -39,6 +55,7 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
                     </div>
                 }
             </div>
+
             <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                     className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
@@ -46,6 +63,7 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
                 />
                 <div className="whitespace-nowrap">Reload page vs. form</div>
             </label>
+
         </div>
     );
 }
