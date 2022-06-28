@@ -68,7 +68,7 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
     );
 }
 
-export function Controls() {
+export function A2_Controls() {
     const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);

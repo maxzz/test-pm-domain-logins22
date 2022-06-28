@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { countdownAtom, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { useCountdownTimer } from '@/hooks/useCountdownTimer';
-import { Controls } from './A2_Controls';
-import { Screens } from './A3_Screens';
+import { A2_Controls } from './A2_Controls';
+import { A3_Screens } from './A3_Screens';
 
 function CountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
@@ -19,9 +19,9 @@ function CountdownTimer() {
 export function Section_LoginArea() {
     return (
         <div className="flex flex-col justify-between text-slate-800">
-            <Screens />
+            <A3_Screens />
             <CountdownTimer />
-            <Controls />
+            <A2_Controls />
         </div>
     );
 }

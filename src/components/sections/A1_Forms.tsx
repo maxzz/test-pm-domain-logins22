@@ -89,7 +89,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
-export function FormLogin({ suffix = '' }: { suffix?: string; }) {
+export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
         <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
@@ -111,7 +111,7 @@ export function FormLogin({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-export function FormCPass({ suffix = '' }: { suffix?: string; }) {
+export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
         <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
@@ -133,7 +133,7 @@ export function FormCPass({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-export function FormSearch({ suffix = '' }: { suffix?: string; }) {
+export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
     const showSearch = useSetAtom(navOptionAtoms.showSearchAtom);
     return (<>
         {/* Don't use 'search' word in form name or field names/IDs */}

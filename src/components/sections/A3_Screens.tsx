@@ -1,7 +1,7 @@
 import { PrimitiveAtom, useAtomValue, useSetAtom } from "jotai";
 import { navOptionAtoms } from "@/store/store";
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from "@react-spring/web";
-import { FormCPass, FormLogin, FormSearch } from "./A1_Forms";
+import { A1_FormCPass, A1_FormLogin, A1_FormSearch } from "./A1_Forms";
 
 function Mount({ showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
@@ -19,8 +19,8 @@ function Mount({ showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & R
 }
 
 const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
-    ({ style }: { style: any; }) => <a.div style={style}><FormLogin suffix={'-1'} /></a.div>,
-    ({ style }: { style: any; }) => <a.div style={style}><FormCPass suffix={'-2'} /></a.div>,
+    ({ style }: { style: any; }) => <a.div style={style}><A1_FormLogin suffix={'-1'} /></a.div>,
+    ({ style }: { style: any; }) => <a.div style={style}><A1_FormCPass suffix={'-2'} /></a.div>,
 ];
 
 function BlankScreen() {
@@ -44,7 +44,7 @@ function BlankScreen() {
     );
 }
 
-export function Screens() {
+export function A3_Screens() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);
     //const blankScreen = true;
     const blankScreen = useAtomValue(navOptionAtoms.blankScreenAtom);
@@ -72,7 +72,7 @@ export function Screens() {
                     : showSearch
                         ?
                         <Mount showAtom={navOptionAtoms.showSearchAtom}>
-                            <FormSearch />
+                            <A1_FormSearch />
                         </Mount>
                         : <>
                             {transitions((styles, item, transition) => {
