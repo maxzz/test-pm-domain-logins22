@@ -1,6 +1,6 @@
 import React from 'react';
 import { App_Header } from './App1_Header';
-import { Section1_LoginArea } from './sections/Section1_LoginArea';
+import { Section_LoginArea } from './sections/Section_LoginArea';
 import { App3_Footer } from './App3_Footer';
 import { classNames } from '@/utils/classnames';
 
@@ -22,7 +22,7 @@ export function App_Main() {
             >
                 <div className="h-full mx-auto max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl flex flex-col space-y-4">
                     <div className="h-full grid grid-cols-1">
-                        <Section1_LoginArea />
+                        <Section_LoginArea />
                     </div>
 
                 </div>

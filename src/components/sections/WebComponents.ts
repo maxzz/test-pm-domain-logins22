@@ -1,5 +1,3 @@
-import { classNames } from "@/utils/classnames";
-
 class Example extends HTMLElement {
     constructor() {
         super();
@@ -14,3 +12,5 @@ class Example extends HTMLElement {
 }
 
 customElements.define("my-component", Example);
+
+export {};
