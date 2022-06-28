@@ -15,10 +15,10 @@ class Example extends HTMLElement {
         button.onclick = () => alert("Hi");
         button.innerText = "Hello";
 
-        const className = "bg-primary-500";
+        const className = "px-2 py-1 border rounded bg-sky-500";
         button.className = className;
-        //button.className = "bg-primary-100";
-        //const classNames = '<div class="bg-primary-500"></div>';
+        //button.className = "px-2 py-1 border rounded bg-sky-500";
+        //const classNames = '<div class="px-2 py-1 border rounded bg-sky-500"></div>';
 
         shadow.append(button);
     }
