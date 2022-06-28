@@ -23,25 +23,10 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
     return (
         <div className={classNames("px-2 py-1 text-xs bg-slate-100 border-slate-400 border rounded-sm shadow select-none", className)} {...rest}>
-
             <Checkbox label="Reveal passwords" checked={reveal} onChange={() => setReveal((v) => !v)} />
-            {/* <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                    className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                    type="checkbox" checked={reveal} onChange={() => setReveal((v) => !v)}
-                />
-                <div className="whitespace-nowrap">Reveal passwords</div>
-            </label> */}
 
             <div className="flex items-center">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                        className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                        type="checkbox" checked={doInterval} onChange={() => setDoInterval((v) => !v)}
-                    />
-                    <div className="whitespace-nowrap">Reload interval</div>
-                </label>
-
+                <Checkbox label="Reload interval" checked={doInterval} onChange={() => setDoInterval((v) => !v)} />
                 {doInterval
                     ?
                     <div className="h-[18px] pl-1 pt-0.5"><span className="font-bold">{interval}</span> sec</div>
@@ -56,14 +41,7 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
                 }
             </div>
 
-            <label className="flex items-center space-x-2 cursor-pointer">
-                <input
-                    className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
-                    type="checkbox" checked={pageReload} onChange={() => setPageReload((v) => !v)}
-                />
-                <div className="whitespace-nowrap">Reload page vs. form</div>
-            </label>
-
+            <Checkbox label="Reload page vs. form" checked={pageReload} onChange={() => setPageReload((v) => !v)} />
         </div>
     );
 }
