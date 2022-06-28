@@ -30,6 +30,7 @@ namespace Storage {
             doInterval: false,
             interval: 10,
             pageReload: false,
+            useWebComp: false,
         },
     };
 
@@ -63,6 +64,7 @@ namespace Storage {
                 doInterval: get(screenLoginOptionAtoms.doIntervalAtom),
                 interval: get(screenLoginOptionAtoms.intervalAtom),
                 pageReload: get(screenLoginOptionAtoms.pageReloadAtom),
+                useWebComp: get(screenLoginOptionAtoms.useWebCompAtom),
             },
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
@@ -141,6 +143,7 @@ type ScreenLoginOptions = {
     doInterval: boolean;    // Use reload interval
     interval: number;       // Interval in seconds
     pageReload: boolean;    // Reload page vs. form
+    useWebComp: boolean;    // use WebComponents
 };
 
 export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
@@ -148,6 +151,7 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, Storage.save),
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
+    useWebCompAtom: atomWithCallback(Storage.initialData.screenLoginOptions.useWebComp, Storage.save),
 };
 
 //#endregion ScreenOptions
