@@ -89,11 +89,17 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
-function Wrap({ children }: { children: ReactNode; }) {
+function Wrap({ children, level = 3 }: { children: ReactNode; level?: number; }) {
     const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    const nestLevel = useAtomValue(screenLoginOptionAtoms.nestLevelAtom);
     return (
         <>
-            {useWebComp ? <tm-wrap>{children}</tm-wrap> : <>{children}</>}
+            {useWebComp
+                ? nestLevel >= level
+                    ? <tm-wrap>{children}</tm-wrap>
+                    : null
+                : <>{children}</>
+            }
         </>
     );
 }
@@ -101,13 +107,13 @@ function Wrap({ children }: { children: ReactNode; }) {
 export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <Wrap>
+        <Wrap level={1}>
             <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
                     logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
                 />
-                <Wrap>
+                <Wrap level={2}>
                     <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
                         <Wrap><FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
@@ -124,13 +130,13 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
 export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <Wrap>
+        <Wrap level={1}>
             <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
                     logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
                 />
-                <Wrap>
+                <Wrap level={2}>
                     <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
@@ -173,3 +179,5 @@ export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
         </form>
     </>);
 }
+
+//TODO: Wrap: make the nested level more visible
