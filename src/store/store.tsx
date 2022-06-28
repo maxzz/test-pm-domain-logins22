@@ -1,6 +1,11 @@
 import { atom, Getter, PrimitiveAtom, SetStateAction } from 'jotai';
 import { Atomize, atomWithCallback } from '@/hooks/atomsX';
 import { debounce } from '@/utils/debounce';
+import { debug } from 'console';
+
+export const enum CONST {
+    MaxLevel = 3,
+}
 
 //#region Storage
 
@@ -31,6 +36,7 @@ namespace Storage {
             interval: 10,
             pageReload: false,
             useWebComp: false,
+            nestLevel: CONST.MaxLevel,
         },
     };
 
@@ -39,7 +45,11 @@ namespace Storage {
         if (s) {
             try {
                 let obj = JSON.parse(s) as Store;
-                initialData = { ...initialData, ...obj };
+                const { creds, navOptions, screenLoginOptions, } = obj;
+                // initialData = { ...initialData, creds: {...creds}, navOptions: {...navOptions}, screenLoginOptions: {...screenLoginOptions}, };
+                initialData.creds = { ...initialData.creds, ...creds };
+                initialData.navOptions = { ...initialData.navOptions, ...navOptions };
+                initialData.screenLoginOptions = { ...initialData.screenLoginOptions, ...screenLoginOptions };
             } catch (error) {
             }
         }
@@ -65,6 +75,7 @@ namespace Storage {
                 interval: get(screenLoginOptionAtoms.intervalAtom),
                 pageReload: get(screenLoginOptionAtoms.pageReloadAtom),
                 useWebComp: get(screenLoginOptionAtoms.useWebCompAtom),
+                nestLevel: get(screenLoginOptionAtoms.nestLevelAtom),
             },
         };
         localStorage.setItem(KEY, JSON.stringify(newStore));
@@ -72,6 +83,9 @@ namespace Storage {
 
     export const save = ({ get }: { get: Getter; }) => Storage.saveDebounced(get);
 }
+
+console.log('level', CONST.MaxLevel);
+console.log('Storage', Storage.initialData);
 
 //#endregion Storage
 
@@ -143,7 +157,8 @@ type ScreenLoginOptions = {
     doInterval: boolean;    // Use reload interval
     interval: number;       // Interval in seconds
     pageReload: boolean;    // Reload page vs. form
-    useWebComp: boolean;    // use WebComponents
+    useWebComp: boolean;    // Use WebComponents
+    nestLevel: number;      // Show WebComponents at nested level N
 };
 
 export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
@@ -152,6 +167,7 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
     useWebCompAtom: atomWithCallback(Storage.initialData.screenLoginOptions.useWebComp, Storage.save),
+    nestLevelAtom: atomWithCallback(Storage.initialData.screenLoginOptions.nestLevel, Storage.save),
 };
 
 //#endregion ScreenOptions
