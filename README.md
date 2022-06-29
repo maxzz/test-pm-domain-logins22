@@ -2,7 +2,7 @@
 
 Application for testing different login forms and password change in one domain.
 
-![](src/assets/previews/2022-03-01_19-09-50.jpg)
+![](src/assets/previews/2022-06-29_1-32-01.png)
 
 ## Other test pages
 
