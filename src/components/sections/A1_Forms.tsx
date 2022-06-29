@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { a, useSpring } from "@react-spring/web";
@@ -89,14 +89,14 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
-function Wrap({ children, level = 3 }: { children: ReactNode; level?: number; }) {
+function Wrap({ children, level = 3, className }: { children: ReactNode; level?: number; } & HTMLAttributes<HTMLElement>) {
     const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
     const nestLevel = useAtomValue(screenLoginOptionAtoms.nestLevelAtom);
     return (
         <>
             {useWebComp
                 ? nestLevel >= level
-                    ? <tm-wrap>{children}</tm-wrap>
+                    ? <tm-wrap class={className}>{children}</tm-wrap>
                     : null
                 : <>{children}</>
             }
@@ -113,7 +113,7 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
                     logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
                 />
-                <Wrap level={2}>
+                <Wrap level={2} className="flex-1">
                     <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
                         <Wrap><FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
@@ -136,7 +136,7 @@ export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
                     logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
                 />
-                <Wrap level={2}>
+                <Wrap level={2} className="flex-1">
                     <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
