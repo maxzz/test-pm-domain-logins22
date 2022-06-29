@@ -1,9 +1,9 @@
-import { PrimitiveAtom, useAtomValue, useSetAtom } from "jotai";
+import { Atom, PrimitiveAtom, useAtomValue, useSetAtom } from "jotai";
 import { navOptionAtoms } from "@/store/store";
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from "@react-spring/web";
 import { A1_FormCPass, A1_FormLogin, A1_FormSearch } from "./A1_Forms";
 
-function Mount({ showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
+function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
     const transitions = useTransition(show, {
         from: { y: -400, opacity: 0, },
@@ -17,11 +17,6 @@ function Mount({ showAtom, children }: { showAtom: PrimitiveAtom<boolean>; } & R
         </a.div>)
     );
 }
-
-const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
-    ({ style }: { style: any; }) => <a.div style={style}><A1_FormLogin suffix={'-1'} /></a.div>,
-    ({ style }: { style: any; }) => <a.div style={style}><A1_FormCPass suffix={'-2'} /></a.div>,
-];
 
 function BlankScreen() {
     const blankScreen = useSetAtom(navOptionAtoms.blankScreenAtom);
@@ -43,6 +38,11 @@ function BlankScreen() {
         </div>
     );
 }
+
+const screens: ((props: AnimatedProps<{ style: React.CSSProperties; }>) => React.ReactElement)[] = [
+    ({ style }: { style: any; }) => <a.div style={style}><A1_FormLogin suffix={'-1'} /></a.div>,
+    ({ style }: { style: any; }) => <a.div style={style}><A1_FormCPass suffix={'-2'} /></a.div>,
+];
 
 export function A3_Screens() {
     const showSearch = useAtomValue(navOptionAtoms.showSearchAtom);

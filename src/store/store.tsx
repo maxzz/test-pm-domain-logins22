@@ -138,7 +138,14 @@ export const navOptionAtoms: Atomize<NavOptions> & {
     ),
 };
 
-export const isLoginScreenAtom = atom((get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom));
+export const isLoginScreenAtom = atom(
+    (get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom),
+    // (get, set, value: SetStateAction<boolean>) => {
+    //     const v = typeof value === 'function' ? value(!get(navOptionAtoms.showSearchAtom)) : value;
+    //     set(navOptionAtoms.showSearchAtom, !v);
+    // }
+);
+
 export const doNextScreenAtom = atom(null, (get, set,) => set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1));
 export const doReloadScreenAtom = atom(null, (get, set,) => {
     if (get(screenLoginOptionAtoms.pageReloadAtom)) {
