@@ -74,7 +74,7 @@ export function A2_Controls() {
             <div className="flex flex-col space-y-4">
                 <FormOptions className={`${!isLoginScreen && 'invisible'}`} />
 
-                <div className="flex space-x-4">
+                <div className="flex items-end justify-between">
                     {/* Show search page */}
                     <label className="flex items-center justify-center space-x-2 cursor-pointer">
                         <input
