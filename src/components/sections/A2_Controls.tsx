@@ -83,7 +83,8 @@ function MountOptions({ showAtom, children }: { showAtom: Atom<boolean>; } & Rea
 
 function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
-    const transitions = useTransition(show ? 1 : 0, {
+    const doIntevel = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const transitions = useTransition(show && !doIntevel, {
         from: { x: -200, opacity: 0, },
         enter: { x: 0, opacity: 1, config: { duration: 150, easing: easings.easeOutCubic }, },
         leave: { x: -100, opacity: 0, config: { duration: 150, easing: easings.easeOutQuad }, /* onRest: () => console.log('done') */ },
