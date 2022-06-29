@@ -96,7 +96,7 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
         <>
             {useWebComp
                 ? nestLevel >= level
-                    ? <tm-wrap class={classNames("border border-red-500", className)} style={{outline: '1px solid gold'}}>{children}</tm-wrap>
+                    ? <div className="border border-red-500"><tm-wrap>{children}</tm-wrap></div>
                     : null
                 : <>{children}</>
             }
