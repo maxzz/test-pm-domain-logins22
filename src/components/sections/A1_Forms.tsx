@@ -96,7 +96,7 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
         <>
             {useWebComp
                 ? nestLevel >= level
-                    ? <tm-wrap class={className}>{children}</tm-wrap>
+                    ? <tm-wrap class={classNames("border border-red-500", className)} style={{outline: '1px solid gold'}}>{children}</tm-wrap>
                     : null
                 : <>{children}</>
             }
@@ -107,7 +107,7 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
 export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <Wrap level={1}>
+        <Wrap level={1} className="">
             <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
