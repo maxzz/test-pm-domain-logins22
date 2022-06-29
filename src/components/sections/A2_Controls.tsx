@@ -29,7 +29,6 @@ function LevelSwitch({ className }: React.HTMLAttributes<HTMLUListElement>) {
     );
 }
 
-
 function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
     const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, useWebCompAtom, } = screenLoginOptionAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
@@ -66,12 +65,28 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
     );
 }
 
-function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
+/* Too many motion * /
+function MountOptions({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
     const transitions = useTransition(show ? 1 : 0, {
         from: { x: -200, opacity: 0, },
         enter: { x: 0, opacity: 1, config: { duration: 200, easing: easings.easeOutCubic }, },
-        leave: { x: -100, opacity: 0, config: { duration: 200, easing: easings.easeOutQuad }, /* onRest: () => console.log('done') */ },
+        leave: { x: -100, opacity: 0, config: { duration: 200, easing: easings.easeOutQuad }, },
+    });
+    return transitions((styles, item) => !!item && (
+        <a.div style={styles}>
+            {children}
+        </a.div>)
+    );
+}
+/**/
+
+function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
+    const show = useAtomValue(showAtom);
+    const transitions = useTransition(show ? 1 : 0, {
+        from: { x: -200, opacity: 0, },
+        enter: { x: 0, opacity: 1, config: { duration: 150, easing: easings.easeOutCubic }, },
+        leave: { x: -100, opacity: 0, config: { duration: 150, easing: easings.easeOutQuad }, /* onRest: () => console.log('done') */ },
     });
     return transitions((styles, item) => !!item && (
         <a.div style={styles}>
@@ -85,31 +100,36 @@ export function A2_Controls() {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
     return (
-        <div className="mb-1 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
+        <div className="mb-4 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
+                {/* <MountOptions showAtom={isLoginScreenAtom}>
+                    <FormOptions className={`${!isLoginScreen && 'invisible'}`} />
+                </MountOptions> */}
                 <FormOptions className={`${!isLoginScreen && 'invisible'}`} />
 
                 <div className="h-9 flex items-end justify-between">
+                    
                     {/* Show search page */}
                     <label className="flex items-center justify-center space-x-2 cursor-pointer">
                         <input
-                            className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 rounded cursor-pointer"
+                            className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 focus:ring-1 rounded cursor-pointer"
                             type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
                         />
                         <div className="">Search page</div>
                     </label>
+
                     {/* Next */}
                     <Mount showAtom={isLoginScreenAtom}>
                         <input
                             className={classNames(
-                                `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
+                                `px-4 py-1 border-slate-400 hover:bg-slate-300 focus:bg-slate-300 focus:ring-1 focus:ring-offset-2 focus:ring-slate-500 outline-none border rounded active:scale-[.97] cursor-pointer`,
                                 //showSearch && 'invisible'
                             )}
                             type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
                         />
                     </Mount>
+                    
                 </div>
-
             </div>
         </div>
     );

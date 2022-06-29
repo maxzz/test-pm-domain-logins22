@@ -76,7 +76,7 @@ function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & R
     return (
         <button
             className={classNames(
-                'px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded select-none',
+                'px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-600 border rounded select-none',
                 className
             )}
             {...rest}
@@ -169,7 +169,7 @@ export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
                 <div className="flex items-center space-x-2">
                     <FieldUser fieldAtom={credAtoms.searchAAAtom} fieldId={`sear${suffix}`} placeholder="Search" />
                     <div className="">
-                        <select className="h-[37px] px-1 py-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 border-slate-300 border" name="state">
+                        <select className="h-[37px] px-1 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-500 border-slate-300 border" name="state">
                             <option value="">CA</option>
                             <option value="">WA</option>
                         </select>

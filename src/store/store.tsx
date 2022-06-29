@@ -140,6 +140,7 @@ export const navOptionAtoms: Atomize<NavOptions> & {
 
 export const isLoginScreenAtom = atom(
     (get) => /* get(navOptionAtoms.screenIdxAtom) === 0 && */ !get(navOptionAtoms.showSearchAtom),
+    // OK but no need:
     // (get, set, value: SetStateAction<boolean>) => {
     //     const v = typeof value === 'function' ? value(!get(navOptionAtoms.showSearchAtom)) : value;
     //     set(navOptionAtoms.showSearchAtom, !v);
