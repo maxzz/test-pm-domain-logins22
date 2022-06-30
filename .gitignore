@@ -5,3 +5,4 @@ dist-ssr
 *.local
 visualization.html
 yarn.error.log
+yarn-error.log
