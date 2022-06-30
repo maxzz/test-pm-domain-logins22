@@ -33,6 +33,7 @@ var define = {
 type Options = {
     shadow?: boolean;
     dashStyleAttributes?: any;
+    css?: string;
 };
 
 /**
@@ -54,6 +55,12 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
         var self = Reflect.construct(HTMLElement, arguments, this.constructor);
         if (options.shadow) {
             self.attachShadow({ mode: 'open' });
+
+            if (options.css) {
+                const styles = document.createElement("style");
+                styles.innerText = options.css;
+                self.append(styles);
+            }
         }
         return self;
     };
@@ -128,7 +135,6 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
                 if (!this[rootSymbol]) {
                     this[rootSymbol] = (ReactDOM as any).createRoot(container);
                 }
-
                 this[rootSymbol].render(element);
             }
             else {

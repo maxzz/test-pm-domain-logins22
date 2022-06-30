@@ -19,7 +19,7 @@ export { };
 
 
 
-//import styles from "../../index.css?inline";
+import styles from "../../index.css?inline";
 
 import React from 'react';
 import ReactDom from 'react-dom';
@@ -29,7 +29,7 @@ import { A1_FormCPass, Greeting } from './A1_Forms';
 
 // const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
 //const WebGreeting = reactToWebComponent(A1_FormCPass, React, ReactDom, { shadow: true });
-const WebGreeting = webComponentWrap(A1_FormCPass, { shadow: true });
+const WebGreeting = webComponentWrap(A1_FormCPass, { shadow: true, css: styles });
 
 customElements.define("web-wrapshadow", WebGreeting);
 
