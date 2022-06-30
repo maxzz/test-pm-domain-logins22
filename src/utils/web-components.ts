@@ -148,9 +148,13 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
             console.log('element', element);
 
             if (options.css) {
-                const styles = document.createElement("style");
-                styles.innerText = options.css;
-                container.append(styles);
+                // const styles = document.createElement("style");
+                // styles.innerText = options.css;
+                // container.append(styles);
+
+                const tailwind = [...document.querySelectorAll('style')];
+                console.log('st', tailwind[tailwind.length - 1]);
+                container.adoptedStyleSheets = [tailwind[tailwind.length - 1].sheet];
             }
 
             rendering = false;
