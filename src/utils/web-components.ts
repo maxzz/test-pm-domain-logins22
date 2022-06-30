@@ -56,11 +56,15 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
         if (options.shadow) {
             self.attachShadow({ mode: 'open' });
 
-            if (options.css) {
-                const styles = document.createElement("style");
-                styles.innerText = options.css;
-                self.append(styles);
-            }
+            // if (options.css) {
+            //     const styles = document.createElement("style");
+            //     styles.innerText = options.css;
+            //     self.append(styles);
+            // }
+
+            const tailwind = [...document.querySelectorAll('style')];
+            console.log('st', tailwind[tailwind.length - 1]);
+            self.adoptedStyleSheets = [tailwind[tailwind.length - 1]];
         }
         return self;
     };

@@ -17,8 +17,6 @@ export { };
     import { webComponentWrap } from '@/utils/web-components';
 /**/
 
-
-
 import styles from "../../index.css?inline";
 
 import React from 'react';
