@@ -1,3 +1,4 @@
+/**/
 class CustomElementWrap extends HTMLElement {
     constructor() {
         super();
@@ -13,3 +14,19 @@ class CustomElementWrap extends HTMLElement {
 customElements.define("tm-wrap", CustomElementWrap);
 
 export { };
+/**/
+
+
+
+
+
+import React from 'react';
+import ReactDom from 'react-dom';
+import reactToWebComponent from 'react-to-webcomponent';
+import { Greeting } from './A1_Forms';
+
+
+const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
+
+customElements.define("web-greeting", WebGreeting);
+

@@ -5,12 +5,6 @@ import { a, useSpring } from "@react-spring/web";
 import { classNames } from "@/utils/classnames";
 import { IconCPass, IconLogin, IconSearch } from "../UI/icons/UIIcons";
 
-export const Greeting = ({ name }: {name: string}) => {
-    return (
-        <h1>Hello, { name } </h1>
-    );
-};
-
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
     textShadow: '1px 1px #c4c4c4',
@@ -132,7 +126,6 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
                 <div className="self-end">
                     <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
                 </div>
-                <web-greeting></web-greeting>
             </form>
         </Wrap>
     );
