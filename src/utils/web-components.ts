@@ -62,9 +62,9 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
             //     self.append(styles);
             // }
 
-            const tailwind = [...document.querySelectorAll('style')];
-            console.log('st', tailwind[tailwind.length - 1]);
-            self.adoptedStyleSheets = [tailwind[tailwind.length - 1]];
+            // const tailwind = [...document.querySelectorAll('style')];
+            // console.log('st', tailwind[tailwind.length - 1]);
+            // self.adoptedStyleSheets = [tailwind[tailwind.length - 1]];
         }
         return self;
     };
@@ -143,6 +143,14 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
             }
             else {
                 ReactDOM.render(element, container);
+            }
+
+            console.log('element', element);
+
+            if (options.css) {
+                const styles = document.createElement("style");
+                styles.innerText = options.css;
+                container.append(styles);
             }
 
             rendering = false;
