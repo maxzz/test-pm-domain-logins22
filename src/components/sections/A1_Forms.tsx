@@ -105,7 +105,8 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
                     ?
                     <div className={classNames("relative outline outline-1 outline-sky-500/50", className)}>
                         <div className="absolute left-1 top-0 z-10 text-[.65rem] text-sky-500">{level}</div>
-                        <tm-wrap>{children}</tm-wrap>
+                        {/* <tm-wrap>{children}</tm-wrap> */}
+                        <tm-wrap><div slot="tm-default">{children}</div> </tm-wrap>
                     </div>
                     : null
                 : <>{children}</>

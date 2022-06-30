@@ -5,7 +5,7 @@ class CustomElementWrap extends HTMLElement {
         const shadow = this.attachShadow({ mode: "open" });
 
         const div = document.createElement("div");
-        div.innerHTML = `<slot>label</slot>`;
+        div.innerHTML = `<slot name="tm-default">label</slot>`;
 
         shadow.append(div);
     }
@@ -18,7 +18,7 @@ export { };
 
 
 
-
+//import styles from "../../index.css?inline";
 
 import React from 'react';
 import ReactDom from 'react-dom';
