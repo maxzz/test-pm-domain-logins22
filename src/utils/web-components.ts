@@ -145,7 +145,7 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
                 ReactDOM.render(element, container);
             }
 
-            console.log('element', element);
+            //console.log('element', element);
 
             if (options.css) {
                 // 1

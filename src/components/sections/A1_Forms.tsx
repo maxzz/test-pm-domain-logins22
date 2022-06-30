@@ -5,9 +5,9 @@ import { a, useSpring } from "@react-spring/web";
 import { classNames } from "@/utils/classnames";
 import { IconCPass, IconLogin, IconSearch } from "../UI/icons/UIIcons";
 
-export const Greeting = ({ name }: {name: string}) => {
+export const Greeting = ({ name }: { name: string; }) => {
     return (
-        <h1>Hello, { name } </h1>
+        <h1>Hello, {name} </h1>
     );
 };
 
@@ -115,7 +115,7 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
     );
 }
 
-export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
+export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
         <Wrap level={1} className="">
@@ -133,13 +133,17 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
                 <div className="self-end">
                     <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
                 </div>
-                <web-wrapshadow></web-wrapshadow>
             </form>
         </Wrap>
     );
 }
 
-export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
+export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return useWebComp ? <web-wrapshadow-login /> : <A1_FormLogin_Raw suffix={suffix} />;
+}
+
+export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
         <Wrap level={1}>
@@ -161,6 +165,11 @@ export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
             </form>
         </Wrap>
     );
+}
+
+export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return useWebComp ? <web-wrapshadow-cpass /> : <A1_FormCPass_Raw suffix={suffix} />;
 }
 
 export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
