@@ -133,7 +133,7 @@ export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
                 <div className="self-end">
                     <FieldSubmit className="m-4" label="Log in" onClick={(e) => { e.preventDefault(); doNextLoginOrCPassScreen(); }} />
                 </div>
-                <web-greeting></web-greeting>
+                <web-wrapshadow></web-wrapshadow>
             </form>
         </Wrap>
     );

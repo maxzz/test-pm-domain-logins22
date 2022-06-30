@@ -23,10 +23,11 @@ export { };
 import React from 'react';
 import ReactDom from 'react-dom';
 import reactToWebComponent from 'react-to-webcomponent';
-import { Greeting } from './A1_Forms';
+import { A1_FormCPass, Greeting } from './A1_Forms';
 
 
-const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
+// const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
+const WebGreeting = reactToWebComponent(A1_FormCPass, React, ReactDom, { shadow: true });
 
-customElements.define("web-greeting", WebGreeting);
+customElements.define("web-wrapshadow", WebGreeting);
 
