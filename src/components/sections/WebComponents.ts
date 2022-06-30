@@ -14,6 +14,7 @@ class CustomElementWrap extends HTMLElement {
 customElements.define("tm-wrap", CustomElementWrap);
 
 export { };
+    import { webComponentWrap } from '@/utils/web-components';
 /**/
 
 
@@ -27,7 +28,8 @@ import { A1_FormCPass, Greeting } from './A1_Forms';
 
 
 // const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
-const WebGreeting = reactToWebComponent(A1_FormCPass, React, ReactDom, { shadow: true });
+//const WebGreeting = reactToWebComponent(A1_FormCPass, React, ReactDom, { shadow: true });
+const WebGreeting = webComponentWrap(A1_FormCPass, { shadow: true });
 
 customElements.define("web-wrapshadow", WebGreeting);
 

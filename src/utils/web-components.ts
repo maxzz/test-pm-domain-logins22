@@ -30,6 +30,11 @@ var define = {
     }
 };
 
+type Options = {
+    shadow?: boolean;
+    dashStyleAttributes?: any;
+};
+
 /**
  * Converts a React component into a webcomponent by wrapping it in a Proxy object.
  * @param {ReactComponent}
@@ -39,7 +44,7 @@ var define = {
  * @param {String?} options.shadow - Use shadow DOM rather than light DOM.
  * @param {String?} options.dashStyleAttributes - Use dashed style of attributes to reflect camelCase properties
  */
-export default function (ReactComponent: React.Component & { propTypes?: any; }, options: { shadow?: boolean; dashStyleAttributes?: any; } = {}) {
+export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: any; }, options: Options = {}): CustomElementConstructor {
     var renderAddedProperties: { isConnected: boolean; } & Record<string | symbol, any> = {
         isConnected: "isConnected" in HTMLElement.prototype
     };
@@ -52,7 +57,6 @@ export default function (ReactComponent: React.Component & { propTypes?: any; },
         }
         return self;
     };
-
 
     // Make the class extend HTMLElement
     var targetPrototype = Object.create(HTMLElement.prototype);
@@ -149,5 +153,5 @@ export default function (ReactComponent: React.Component & { propTypes?: any; },
         };
     }
 
-    return WebComponent;
+    return WebComponent as any as CustomElementConstructor;
 }
