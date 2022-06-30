@@ -148,13 +148,27 @@ export function webComponentWrap<T>(ReactComponent: React.FC<T> & { propTypes?: 
             console.log('element', element);
 
             if (options.css) {
-                // const styles = document.createElement("style");
-                // styles.innerText = options.css;
-                // container.append(styles);
+                // 1
+                const styles = document.createElement("style");
+                styles.innerText = options.css;
+                container.append(styles);
+                //console.log('attach CSS', styles);
 
-                const tailwind = [...document.querySelectorAll('style')];
-                console.log('st', tailwind[tailwind.length - 1]);
-                container.adoptedStyleSheets = [tailwind[tailwind.length - 1].sheet];
+                // 2
+                // const tailwind = [...document.querySelectorAll('style')];
+                // console.log('st', tailwind[tailwind.length - 1]);
+                // container.adoptedStyleSheets = [tailwind[tailwind.length - 1].sheet];
+
+
+                // 3
+                // const tailwind = [...document.querySelectorAll('style')].pop()?.innerText;
+                // console.log('tailwind', [...document.querySelectorAll('style')]);
+
+                // const styles = document.createElement("style");
+                // styles.innerText = tailwind || '';
+                // styles.innerText && container.append(styles);
+
+                // console.log('st', styles.innerText);
             }
 
             rendering = false;
