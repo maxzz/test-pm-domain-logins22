@@ -138,11 +138,6 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     );
 }
 
-export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
-    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
-    return useWebComp ? <web-wrapshadow-login /> : <A1_FormLogin_Raw suffix={suffix} />;
-}
-
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
@@ -165,11 +160,6 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
             </form>
         </Wrap>
     );
-}
-
-export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
-    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
-    return useWebComp ? <web-wrapshadow-cpass /> : <A1_FormCPass_Raw suffix={suffix} />;
 }
 
 export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
@@ -199,6 +189,16 @@ export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
             </div>
         </form>
     </>);
+}
+
+export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return useWebComp ? <web-wrapshadow-login /> : <A1_FormLogin_Raw suffix={suffix} />;
+}
+
+export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return useWebComp ? <web-wrapshadow-cpass /> : <A1_FormCPass_Raw suffix={suffix} />;
 }
 
 //TODO: Wrap: make the nested level more visible

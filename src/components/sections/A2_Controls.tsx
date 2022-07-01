@@ -10,6 +10,7 @@ function Checkbox({ label, checked, onChange }: { label: string; } & InputHTMLAt
             <input
                 className="w-3 h-3 form-checkbox text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 rounded cursor-pointer"
                 type="checkbox" {...{ checked, onChange }}
+                data-dbg-tm
             />
             <div className="whitespace-nowrap">{label}</div>
         </label>
@@ -21,10 +22,10 @@ function LevelSwitch({ className }: React.HTMLAttributes<HTMLUListElement>) {
     const onChange = (event: ChangeEvent<HTMLInputElement>) => setNestLevel(+event.target.value);
     return (
         <ul className={classNames("ml-2 flex items-center space-x-0.5", className)} title="WebComponents render level">
-            <label className="flex items-center"><input className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 0} value={0} name="nestLevel" /></label>
-            <label className="flex items-center"><input className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 1} value={1} name="nestLevel" /></label>
-            <label className="flex items-center"><input className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 2} value={2} name="nestLevel" /></label>
-            <label className="flex items-center"><input className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 3} value={3} name="nestLevel" /></label>
+            <label className="flex items-center"><input data-dbg-tm className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 0} value={0} name="nestLevel" /></label>
+            <label className="flex items-center"><input data-dbg-tm className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 1} value={1} name="nestLevel" /></label>
+            <label className="flex items-center"><input data-dbg-tm className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 2} value={2} name="nestLevel" /></label>
+            <label className="flex items-center"><input data-dbg-tm className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500" type="radio" onChange={onChange} checked={nestLevel === 3} value={3} name="nestLevel" /></label>
         </ul>
     );
 }
@@ -50,6 +51,7 @@ function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement
                         <input
                             className="w-10 px-1 border-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 border rounded" type="text"
                             value={interval} onChange={((e) => setInterval(+e.target.value))}
+                            data-dbg-tm
                         />
                         <div className="">sec</div>
                     </div>
@@ -109,12 +111,13 @@ export function A2_Controls() {
                 <FormOptions className={`${!isLoginScreen && 'invisible'}`} />
 
                 <div className="h-9 flex items-end justify-between">
-                    
+
                     {/* Show search page */}
                     <label className="flex items-center justify-center space-x-2 cursor-pointer">
                         <input
                             className="w-5 h-5 form-checkbox text-slate-400 focus:ring-slate-500 focus:ring-1 rounded cursor-pointer"
                             type="checkbox" checked={showSearch} onChange={() => setShowSearch((v) => !v)}
+                            data-dbg-tm
                         />
                         <div className="">Search page</div>
                     </label>
@@ -127,9 +130,10 @@ export function A2_Controls() {
                                 //showSearch && 'invisible'
                             )}
                             type="button" value="Next" onClick={doNextLoginOrCPassScreen} title="Next screen"
+                            data-dbg-tm
                         />
                     </Mount>
-                    
+
                 </div>
             </div>
         </div>
