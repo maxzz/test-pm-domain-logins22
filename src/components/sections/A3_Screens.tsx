@@ -66,7 +66,7 @@ export function A3_Screens() {
     
     return (
         <div className="overflow-hidden">
-            <div className="my-8 flex items-start justify-center">
+            <div className="mt-8 min-h-[26rem] flex items-start justify-center">
                 {blankScreen
                     ? <BlankScreen />
                     : showSearch
