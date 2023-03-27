@@ -4,18 +4,43 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = plugin(function ({ addUtilities }) {
     const utils = {
+
+        // overflow-overlay
+
         '.overflow-overlay': {
             'overflow': 'auto',
-            'overflow': 'overlay',
         },
-        '.overflow-y-overlay': {
-            'overflow-y': 'auto',
-            'overflow-y': 'overlay',
+
+        '@supports (overflow: overlay)': {
+            '.overflow-overlay': {
+                'overflow': 'overlay',
+            },
         },
+
+        // overflow-x-overlay
+
         '.overflow-x-overlay': {
             'overflow-x': 'auto',
-            'overflow-x': 'overlay',
-        }
+        },
+
+        '@supports (overflow-x: overlay)': {
+            '.overflow-x-overlay': {
+                'overflow-x': 'overlay',
+            }
+        },
+
+        // overflow-y-overlay
+
+        '.overflow-y-overlay': {
+            'overflow-y': 'auto',
+        },
+        
+        '@supports (overflow-y: overlay)': {
+            '.overflow-y-overlay': {
+                'overflow-y': 'overlay',
+            },
+        },
+
     };
     addUtilities(utils);
 });
