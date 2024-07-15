@@ -1,3 +1,4 @@
+// https://github.com/bitovi/react-to-webcomponent/blob/master/react-to-webcomponent.js commit 'Support React 18 APIs'
 import React from "react";
 import ReactDOM from "react-dom/client";
 
