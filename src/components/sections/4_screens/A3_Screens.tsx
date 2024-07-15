@@ -1,7 +1,7 @@
 import { Atom, PrimitiveAtom, useAtomValue, useSetAtom } from "jotai";
 import { navOptionAtoms } from "@/store/store";
 import { a, AnimatedProps, config, easings, useSpring, useTransition } from "@react-spring/web";
-import { A1_FormCPass, A1_FormLogin, A1_FormSearch } from "./A1_Forms";
+import { A1_FormCPass, A1_FormLogin, A1_FormSearch } from "../1-forms/A1_Forms";
 
 function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { App_Header } from './App1_Header';
-import { Section_LoginArea } from './sections/Section_LoginArea';
+import { Section_LoginArea } from './sections/5-section-login-area/Section_LoginArea';
 import { App3_Footer } from './App3_Footer';
 import { classNames } from '@/utils/classnames';
 

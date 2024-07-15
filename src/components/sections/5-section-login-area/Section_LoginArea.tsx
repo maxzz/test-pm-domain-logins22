@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { countdownAtom, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { useCountdownTimer } from '@/hooks/useCountdownTimer';
-import { A2_Controls } from './A2_Controls';
-import { A3_Screens } from './A3_Screens';
+import { A2_Controls } from '../3-controls/A2_Controls';
+import { A3_Screens } from '../4_screens/A3_Screens';
 
 function CountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
