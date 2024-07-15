@@ -24,8 +24,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       jotai:
-        specifier: 1.7.2
-        version: 1.7.2(@babel/core@7.24.9)(@babel/template@7.24.7)(react@18.3.1)
+        specifier: 2.9.0
+        version: 2.9.0(@types/react@18.3.3)(react@18.3.1)
       leva:
         specifier: 0.9.35
         version: 0.9.35(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -88,8 +88,8 @@ importers:
         specifier: 3.4.5
         version: 3.4.5
       typescript:
-        specifier: 4.7.4
-        version: 4.7.4
+        specifier: 5.5.3
+        version: 5.5.3
       vite:
         specifier: 5.3.3
         version: 5.3.3(@types/node@20.14.10)(sass@1.77.8)
@@ -1141,38 +1141,16 @@ packages:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
     hasBin: true
 
-  jotai@1.7.2:
-    resolution: {integrity: sha512-ksvpW1Wu+/HwW1iDYq23PpXLu2df5Vv+eWw70jRAx7IEY4c+qRsORULnqPFurSy/X8LSoPcRhVDJx/cyf8jjMg==}
-    engines: {node: '>=12.7.0'}
+  jotai@2.9.0:
+    resolution: {integrity: sha512-MioTpMvR78IGfJ+W8EwQj3kwTkb+u0reGnTyg3oJZMWK9rK9v8NBSC9Rhrg9jrrFYA6bGZtzJa96zsuAYF6W3w==}
+    engines: {node: '>=12.20.0'}
     peerDependencies:
-      '@babel/core': '*'
-      '@babel/template': '*'
-      '@urql/core': '*'
-      immer: '*'
-      optics-ts: '*'
-      react: '>=16.8'
-      react-query: '*'
-      valtio: '*'
-      wonka: '*'
-      xstate: '*'
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
     peerDependenciesMeta:
-      '@babel/core':
+      '@types/react':
         optional: true
-      '@babel/template':
-        optional: true
-      '@urql/core':
-        optional: true
-      immer:
-        optional: true
-      optics-ts:
-        optional: true
-      react-query:
-        optional: true
-      valtio:
-        optional: true
-      wonka:
-        optional: true
-      xstate:
+      react:
         optional: true
 
   js-cookie@2.2.1:
@@ -1618,9 +1596,9 @@ packages:
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
-  typescript@4.7.4:
-    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
-    engines: {node: '>=4.2.0'}
+  typescript@5.5.3:
+    resolution: {integrity: sha512-/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   undici-types@5.26.5:
@@ -2658,12 +2636,10 @@ snapshots:
 
   jiti@1.21.6: {}
 
-  jotai@1.7.2(@babel/core@7.24.9)(@babel/template@7.24.7)(react@18.3.1):
-    dependencies:
-      react: 18.3.1
+  jotai@2.9.0(@types/react@18.3.3)(react@18.3.1):
     optionalDependencies:
-      '@babel/core': 7.24.9
-      '@babel/template': 7.24.7
+      '@types/react': 18.3.3
+      react: 18.3.1
 
   js-cookie@2.2.1: {}
 
@@ -3132,7 +3108,7 @@ snapshots:
 
   tslib@2.6.3: {}
 
-  typescript@4.7.4: {}
+  typescript@5.5.3: {}
 
   undici-types@5.26.5: {}
 
