@@ -30,8 +30,8 @@ importers:
         specifier: 0.9.35
         version: 0.9.35(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       marked:
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: 13.0.2
+        version: 13.0.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -57,9 +57,6 @@ importers:
       '@tailwindcss/forms':
         specifier: 0.5.7
         version: 0.5.7(tailwindcss@3.4.5)
-      '@types/marked':
-        specifier: 4.0.8
-        version: 4.0.8
       '@types/node':
         specifier: 20.14.10
         version: 20.14.10
@@ -764,9 +761,6 @@ packages:
   '@types/js-cookie@2.2.7':
     resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==}
 
-  '@types/marked@4.0.8':
-    resolution: {integrity: sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==}
-
   '@types/node@20.14.10':
     resolution: {integrity: sha512-MdiXf+nDuMvY0gJKxyfZ7/6UFsETO7mGKF54MVD/ekJS6HdFtpZFBgrh6Pseu64XTb2MLyFPlbW6hj8HYRQNOQ==}
 
@@ -1199,9 +1193,9 @@ packages:
   magic-string@0.30.10:
     resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
 
-  marked@4.3.0:
-    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
-    engines: {node: '>= 12'}
+  marked@13.0.2:
+    resolution: {integrity: sha512-J6CPjP8pS5sgrRqxVRvkCIkZ6MFdRIjDkwUwgJ9nL2fbmM6qGQeB2C16hi8Cc9BOzj6xXzy0jyi0iPIfnMHYzA==}
+    engines: {node: '>= 18'}
     hasBin: true
 
   mdn-data@2.0.14:
@@ -2278,8 +2272,6 @@ snapshots:
 
   '@types/js-cookie@2.2.7': {}
 
-  '@types/marked@4.0.8': {}
-
   '@types/node@20.14.10':
     dependencies:
       undici-types: 5.26.5
@@ -2688,7 +2680,7 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  marked@4.3.0: {}
+  marked@13.0.2: {}
 
   mdn-data@2.0.14: {}
 

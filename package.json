@@ -12,7 +12,7 @@
         "dom-confetti": "^0.2.2",
         "jotai": "2.9.0",
         "leva": "0.9.35",
-        "marked": "4.3.0",
+        "marked": "13.0.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-hot-toast": "2.4.1",
@@ -23,7 +23,6 @@
     "devDependencies": {
         "@rollup/plugin-replace": "^5.0.7",
         "@tailwindcss/forms": "0.5.7",
-        "@types/marked": "4.0.8",
         "@types/node": "20.14.10",
         "@types/react": "18.3.3",
         "@types/react-dom": "18.3.0",
