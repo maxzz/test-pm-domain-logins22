@@ -4,19 +4,19 @@
     "license": "MIT",
     "description": "QA test pages",
     "dependencies": {
-        "@popperjs/core": "2.11.7",
-        "@react-spring/web": "9.7.1",
-        "@use-gesture/react": "10.2.24",
+        "@popperjs/core": "2.11.8",
+        "@react-spring/web": "9.7.3",
+        "@use-gesture/react": "10.3.1",
         "dom-confetti": "^0.2.2",
         "jotai": "1.7.2",
-        "leva": "0.9.28",
+        "leva": "0.9.35",
         "marked": "4.3.0",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
-        "react-hot-toast": "2.4.0",
+        "react-hot-toast": "2.4.1",
         "react-popper": "2.3.0",
         "react-popper-tooltip": "4.4.2",
-        "react-use": "17.4.0"
+        "react-use": "17.5.0"
     },
     "devDependencies": {
         "@rollup/plugin-replace": "^4.0.0",
