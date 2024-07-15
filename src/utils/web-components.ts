@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 
 const renderSymbol = Symbol.for("r2wc.reactRender");
 const shouldRenderSymbol = Symbol.for("r2wc.shouldRender");
