@@ -16,7 +16,7 @@ customElements.define("tm-wrap", CustomElementWrap);
 export { };
 /**/
 
-import { webComponentWrap } from '@/utils/web-components';
+import r2wc from '@r2wc/react-to-web-component';
 import styles from "../../index.css?inline";
 
 // import React from 'react';
@@ -29,8 +29,11 @@ import styles from "../../index.css?inline";
 
 import { A1_FormCPass_Raw, A1_FormLogin_Raw, } from './A1_Forms';
 
-const WebLogin = webComponentWrap(A1_FormLogin_Raw, { shadow: true, css: styles });
-const WebCPass = webComponentWrap(A1_FormCPass_Raw, { shadow: true, css: styles });
+// const WebLogin = webComponentWrap(A1_FormLogin_Raw, { shadow: true, css: styles });
+// const WebCPass = webComponentWrap(A1_FormCPass_Raw, { shadow: true, css: styles });
+
+const WebLogin = r2wc(A1_FormLogin_Raw);
+const WebCPass = r2wc(A1_FormCPass_Raw);
 
 customElements.define("web-wrapshadow-login", WebLogin);
 customElements.define("web-wrapshadow-cpass", WebCPass);

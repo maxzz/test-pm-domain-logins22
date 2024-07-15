@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useAtomValue } from 'jotai';
 import { countdownAtom, isCountdownDoneAtom } from '@/store/store';
 import { a, easings, useSpring, useTrail } from '@react-spring/web';
@@ -121,7 +121,7 @@ function NavLinks0() {
 }
 /**/
 
-const Trail: React.FC<{ open: boolean; }> = ({ open, children }) => {
+const Trail: React.FC<{ open: boolean; children: ReactNode; }> = ({ open, children }) => {
     const items = React.Children.toArray(children);
     const trail = useTrail(items.length, {
         from: {
