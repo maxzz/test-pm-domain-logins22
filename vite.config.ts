@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import visualizer from 'rollup-plugin-visualizer';
+import { visualizer } from 'rollup-plugin-visualizer';
 import replace from '@rollup/plugin-replace';
 
 const buildAt = () => {
@@ -36,6 +36,9 @@ export default (({ command }) => defineConfig({
             brotliSize: true,
         }),
     ],
+    server: {
+        port: 3000,
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
