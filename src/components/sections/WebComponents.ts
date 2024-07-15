@@ -17,7 +17,7 @@ export { };
 /**/
 
 import r2wc from '@r2wc/react-to-web-component';
-import styles from "../../index.css?inline";
+// import styles from "../../index.css?inline";
 
 // import React from 'react';
 // import ReactDom from 'react-dom';

@@ -1,6 +1,6 @@
 {
     "name": "test-domain-logins22",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "license": "MIT",
     "description": "QA test pages",
     "type": "module",

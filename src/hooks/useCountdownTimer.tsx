@@ -1,7 +1,13 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PrimitiveAtom, useAtom, useSetAtom } from "jotai";
 
-export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal: number; counterAtom: PrimitiveAtom<number>; runAtom: PrimitiveAtom<boolean>; }) {
+type useCountdownTimerProps = {
+    startVal: number;
+    counterAtom: PrimitiveAtom<number>;
+    runAtom: PrimitiveAtom<boolean>;
+};
+
+export function useCountdownTimer({ startVal, counterAtom, runAtom }: useCountdownTimerProps) {
     const setCounter = useSetAtom(counterAtom);
     const [run, setRun] = useAtom(runAtom);
     const [runing, setRuning] = useState(false);

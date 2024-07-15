@@ -1,4 +1,4 @@
-import { Atom, PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
+import { Atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { doNextScreenAtom, isLoginScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils/classnames";
 import { ChangeEvent, InputHTMLAttributes } from "react";

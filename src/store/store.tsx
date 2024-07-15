@@ -127,7 +127,7 @@ export const navOptionAtoms: Atomize<NavOptions> & {
         }
         Storage.save({ get });
     }),
-    blankScreenAtom: atom<boolean, SetStateAction<boolean>>(
+    blankScreenAtom: atom(
         (get) => get(_blankScreenAtom),
         (get, set, value: SetStateAction<boolean>) => {
             const show = typeof value === 'function' ? value(get(_blankScreenAtom)) : value;
@@ -183,7 +183,7 @@ export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
 
 const _countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.reload(); -2 initial state on page load
 
-export const countdownAtom = atom<number, SetStateAction<number>>(
+export const countdownAtom = atom(
     (get) => get(_countdownAtom),
     (get, set, value: SetStateAction<number>) => {
         const countdown = typeof value === 'function' ? value(get(_countdownAtom)) : value;
