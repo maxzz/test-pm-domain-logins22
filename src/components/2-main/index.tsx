@@ -1,8 +1,7 @@
-import React from 'react';
 import { App_Header } from '../1-header';
 import { Section_LoginArea } from '../sections/5-section-login-area';
 import { App3_Footer } from '../3-footer';
-import { classNames } from '@/utils/classnames';
+import { classNames } from '@/utils';
 
 export function App_Main() {
     return (
@@ -24,7 +23,6 @@ export function App_Main() {
                     <div className="h-full grid grid-cols-1">
                         <Section_LoginArea />
                     </div>
-
                 </div>
             </div>
 

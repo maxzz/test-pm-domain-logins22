@@ -3,7 +3,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { countdownAtom, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { useCountdownTimer } from '@/util-hooks';
 import { A2_Controls } from '../3-controls';
-import { A3_Screens } from '../4_screens';
+import { A3_Screens } from '../4-screens';
 
 function CountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
