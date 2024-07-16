@@ -1,18 +1,25 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { usePreviousRef } from "./usePrevious";
 
-export function cleanupValueFloat(s: string) {
+// cleanup functions
+
+export function cleanupValueFloat(s: string): string {
     return s.replace(/[\u066B,]/g, '.').replace(/[^\-0-9.eE]/g, ''); //replace unicode-arabic-decimal-separator and remove non-float chars.
 }
-export function cleanupValueInt(s: string) {
+
+export function cleanupValueInt(s: string): string {
     return s.replace(/[^\-0-9]/g, '');
 }
-export function cleanupValueUFloat(s: string) { // unsigned float
+
+export function cleanupValueUFloat(s: string): string { // unsigned float
     return s.replace(/[\u066B,]/g, '.').replace(/[^0-9.eE]/g, '');
 }
-export function cleanupValueUInt(s: string) { // unsigned int
+
+export function cleanupValueUInt(s: string): string { // unsigned int
     return s.replace(/[^0-9]/g, '');
 }
+
+// use versions
 
 export function useNumberInput(value: number, setValue: (v: number) => void, cleanup?: (s: string) => string) {
     const [local, setLocal] = useState('' + value);

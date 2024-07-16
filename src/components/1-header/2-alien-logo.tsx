@@ -1,8 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useAtomValue } from 'jotai';
-import { isCountdownDoneAtom } from '@/store/store';
 import { a, easings, useSpring } from '@react-spring/web';
-import { IconHero } from '../ui/icons/UIIcons';
+import { isCountdownDoneAtom } from '@/store/store';
+import { IconHero } from '../ui/icons';
 
 const alienAnimProps = {
     from: {
@@ -41,14 +41,14 @@ export function AlienLogo() {
     // useAtom... call api
     const isCountdownDone = useAtomValue(isCountdownDoneAtom);
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (isCountdownDone) {
     //         //api.reset();
     //         api.
     //     }
     // }, [isCountdownDone]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isCountdownDone) {
             // api.set(animValues.from);
             // api.start(animValues.to);
@@ -56,14 +56,14 @@ export function AlienLogo() {
         }
     }, [isCountdownDone]);
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     if (isCountdownDone) {
     //         api.set(animValues.to);
     //         api.start(animValues.from);
     //     }
     // }, [isCountdownDone]);
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     async function run() {
     //         if (isCountdownDone) {
     //             //console.log('111111');

@@ -1,5 +1,5 @@
-import { classNames } from "@/utils/classnames";
 import { forwardRef, HTMLAttributes, SVGProps } from "react";
+import { classNames } from "@/utils/classnames";
 
 export function IconHIDLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
     const { title, ...rest } = props;

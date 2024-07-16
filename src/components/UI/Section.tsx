@@ -1,4 +1,3 @@
-import React from "react";
 import { PrimitiveAtom, useAtom } from "jotai";
 import { UISectionPane } from "./UISectionPane";
 import { UIAccordion } from "./UIAccordion";
