@@ -1,6 +1,6 @@
-import { App_Main } from './components/App2_Main';
-import { UIToaster } from './components/UI/UiToaster';
-import '@/components/sections/WebComponents';
+import { App_Main } from './components/2-main';
+import { UIToaster } from './components/ui/UiToaster';
+import '@/components/sections/6-web-components';
 import './App.scss';
 
 function PopperRoot() {

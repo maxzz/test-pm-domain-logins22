@@ -1,6 +1,6 @@
 import { atom, Getter, PrimitiveAtom, SetStateAction } from 'jotai';
-import { Atomize, atomWithCallback } from '@/hooks/atomsX';
-import { debounce } from '@/utils/debounce';
+import { Atomize, atomWithCallback } from '@/util-hooks';
+import { debounce } from '@/utils';
 
 export const enum CONST {
     MaxLevel = 3,

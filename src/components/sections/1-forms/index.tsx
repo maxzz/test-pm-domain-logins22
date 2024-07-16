@@ -1,9 +1,9 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
-import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { a, useSpring } from "@react-spring/web";
-import { classNames } from "@/utils/classnames";
-import { IconCPass, IconLogin, IconSearch } from "../../UI/icons/UIIcons";
+import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
+import { classNames } from "@/utils";
+import { IconCPass, IconLogin, IconSearch } from "@/components/ui";
 
 export const Greeting = ({ name }: { name: string; }) => {
     return (

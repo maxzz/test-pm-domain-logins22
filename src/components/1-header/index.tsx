@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react';
 import { useAtomValue } from 'jotai';
 import { countdownAtom, isCountdownDoneAtom } from '@/store/store';
 import { a, easings, useSpring, useTrail } from '@react-spring/web';
-import { IconHero, IconHeroLines, IconHIDLogo } from './UI/icons/UIIcons';
-import { SvgScreenLogin } from './UI/icons/screen-1-login';
-import { SvgScreenCPass } from './UI/icons/screen-2-cpass';
+import { IconHero, IconHeroLines, IconHIDLogo } from '../ui/icons/UIIcons';
+import { SvgScreenLogin } from '../ui/icons/screen-1-login';
+import { SvgScreenCPass } from '../ui/icons/screen-2-cpass';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
@@ -93,7 +93,6 @@ function AlienLogo() {
         <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
             <IconHero className="" preserveAspectRatio="xMidYMid slice" />
         </a.div>
-
     );
 }
 

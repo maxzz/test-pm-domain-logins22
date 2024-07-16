@@ -2,7 +2,7 @@ import React from "react";
 import { PrimitiveAtom, useAtom } from "jotai";
 import { UISectionPane } from "./UISectionPane";
 import { UIAccordion } from "./UIAccordion";
-import { textShadow } from "../App1_Header";
+import { textShadow } from "../1-header";
 
 function Section({ title, children, openAtom }: { title: React.ReactNode; children: React.ReactNode; openAtom: PrimitiveAtom<boolean>; }) {
     const [open, setOpen] = useAtom(openAtom);

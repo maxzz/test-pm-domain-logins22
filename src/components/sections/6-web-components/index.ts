@@ -27,7 +27,7 @@ import r2wc from '@r2wc/react-to-web-component';
 // const WebGreeting = reactToWebComponent(Greeting, React, ReactDom, { shadow: true });
 //const WebGreeting = reactToWebComponent(A1_FormCPass, React, ReactDom, { shadow: true });
 
-import { A1_FormCPass_Raw, A1_FormLogin_Raw, } from '../1-forms/A1_Forms';
+import { A1_FormCPass_Raw, A1_FormLogin_Raw, } from '../1-forms';
 
 // const WebLogin = webComponentWrap(A1_FormLogin_Raw, { shadow: true, css: styles });
 // const WebCPass = webComponentWrap(A1_FormCPass_Raw, { shadow: true, css: styles });

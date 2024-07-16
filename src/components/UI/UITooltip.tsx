@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { classNames } from '@/utils';
 import { Config, usePopperTooltip } from 'react-popper-tooltip';
-import { classNames } from '@/utils/classnames';
 import 'react-popper-tooltip/dist/styles.css';
 
 type UITooltipOptions = {
