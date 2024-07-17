@@ -3,7 +3,7 @@ import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { a, useSpring } from "@react-spring/web";
 import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
-import { IconCPass, IconLogin, IconSearch } from "@/components/ui";
+import { IconCpass, IconLogin, IconSearch } from "@/components/ui";
 
 export const Greeting = ({ name }: { name: string; }) => {
     return (
@@ -145,7 +145,7 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
             <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
-                    logo={<div className="inset-0"><IconCPass className="w-12 h-12 stroke-slate-400/50" /></div>}
+                    logo={<div className="inset-0"><IconCpass className="w-12 h-12 stroke-slate-400/50" /></div>}
                 />
                 <Wrap level={2} className="flex-1">
                     <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">

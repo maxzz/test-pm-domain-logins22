@@ -1,5 +1,5 @@
-import { classNames } from "@/utils";
 import { IconProps } from "./90-icon-props";
+import { classNames } from "@/utils";
 
 export function IconHIDLogo({ title, className, ...rest }: IconProps) {
     return (
