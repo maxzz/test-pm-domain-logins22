@@ -2,8 +2,7 @@ import { forwardRef } from "react";
 import { IconProps, svgRoundedCaps } from "./90-icon-props";
 import { classNames } from "@/utils/classnames";
 
-export function IconHeroLines(props: IconProps) {
-    const { title, ...rest } = props;
+export function IconHeroLines({ title, ...rest }: IconProps) {
     return (
         <svg viewBox="0 0 520 171" {...rest}>
             {title && <title>{title}</title>}
@@ -16,8 +15,7 @@ export function IconHeroLines(props: IconProps) {
     );
 }
 
-export function IconHero(props: IconProps) {
-    const { title, ...rest } = props;
+export function IconHero({ title, ...rest }: IconProps) {
     return (
         <svg viewBox="0 0 100 100" {...rest}>
             {title && <title>{title}</title>}
@@ -67,8 +65,7 @@ export function IconLogin({ title, className, ...rest }: IconProps) {
 //     );
 // }
 
-export function IconGithubLogo(props: IconProps) {
-    const { title, ...rest } = props;
+export function IconGithubLogo({ title, ...rest }: IconProps) {
     return (
         <svg viewBox="0 0 1024 1024" {...rest}>
             {title && <title>{title}</title>}
@@ -77,8 +74,7 @@ export function IconGithubLogo(props: IconProps) {
     );
 }
 
-// export const IconHeroWRef = forwardRef<SVGSVGElement, IconProps>((props: IconProps, ref) => {
-//     const { title, ...rest } = props;
+// export const IconHeroWRef { title, ...rest }forwardRef<SVGSVGElement, IconProps>((props: IconProps, ref) => {
 //     return (
 //         <svg ref={ref} viewBox="0 0 14 14" {...rest}>
 //             {title && <title>{title}</title>}

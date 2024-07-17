@@ -2,7 +2,7 @@ import { CountdownDisplay } from './1-countdown-display';
 import { AlienLogo } from './2-alien-logo';
 import { NavLinks } from './3-nav-links';
 import { IconHeroLines } from '../ui/icons/normal/UIIcons';
-import { IconHIDLogo } from "../ui/icons/normal/01-hid-logo";
+import { IconHIDLogo } from "../ui/icons";
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
