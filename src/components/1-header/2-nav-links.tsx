@@ -26,7 +26,7 @@ function NavLinks0() {
 }
 /**/
 
-const Trail: FC<{ open: boolean; children: ReactNode; }> = ({ open, children }) => {
+function Trail({ open, children }: { open: boolean; children: ReactNode; }) {
     const items = Children.toArray(children);
     const trail = useTrail(items.length, {
         from: {
@@ -61,19 +61,21 @@ const Trail: FC<{ open: boolean; children: ReactNode; }> = ({ open, children }) 
             </a.div>
         ))}
     </>);
-};
+}
 
 export function NavLinks() {
     const open = true;
     //const [open, setOpen] = useState(true);
     return (
         <div className="absolute bottom-1 left-2 h-12 flex ">
-            {/* <input
+            {/* 
+            <input
                 className="self-center mr-2 px-2 py-1 text-xs text-yellow-100 border-yellow-100 hover:bg-slate-900/50 border rounded active:scale-[.97] cursor-pointer"
                 type="button"
                 value="Reload"
                 onClick={() => setOpen((v) => !v)}
-            /> */}
+            /> 
+            */}
             <div className="flex space-x-2">
                 <Trail open={open}>
                     <SvgScreenLogin className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />

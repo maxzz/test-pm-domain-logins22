@@ -1,5 +1,5 @@
 import { CountdownDisplay } from './1-countdown-display';
-import { NavLinks } from './3-nav-links';
+import { NavLinks } from './2-nav-links';
 import { IconAlienLogo, IconHeroLines, IconHIDLogo } from "../ui/icons";
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
