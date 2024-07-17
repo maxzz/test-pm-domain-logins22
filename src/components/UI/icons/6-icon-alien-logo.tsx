@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { a, easings, useSpring } from '@react-spring/web';
 import { isCountdownDoneAtom } from '@/store/store';
-import { IconHero } from '@/components/ui/icons';
+import { IconHeroAlien } from '@/components/ui/icons';
 
 const alienAnimProps = {
     from: {
@@ -79,7 +79,7 @@ export function IconAlienLogo() {
 
     return (
         <a.div style={styles} className="w-56 h-56 flex items-center justify-center">
-            <IconHero className="" preserveAspectRatio="xMidYMid slice" />
+            <IconHeroAlien className="" preserveAspectRatio="xMidYMid slice" />
         </a.div>
     );
 }
