@@ -3,11 +3,13 @@ import { NavLinks } from './2-nav-links';
 import { IconAlienLogo, IconHeroLines, IconHIDLogo } from "../ui/icons";
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
-export const elevation4Shadow = { boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)' };
+export const elevation4Shadow = {
+    boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)',
+};
 
 export function App_Header() {
     return (<>
-        <div className="h-2/5 relative bg-[#003165] shadow-sm cursor-default">
+        <div className="h-2/5 relative bg-hid-bg shadow-sm cursor-default">
 
             <IconHeroLines
                 className="absolute left-0 top-0 w-full h-full fill-transparent stroke-slate-500/20 stroke-[.05vmin]"
@@ -20,7 +22,7 @@ export function App_Header() {
 
                         <div className="flex items-center space-x-3">
                             <div className="w-20 py-2 flex items-center justify-center bg-white rounded-md">
-                                <IconHIDLogo className="px-2" fill="#003165" />
+                                <IconHIDLogo className="px-2 fill-hid-bg" />
                             </div>
 
                             <div className="font-old-normal pb-1">

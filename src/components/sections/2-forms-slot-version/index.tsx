@@ -11,7 +11,7 @@ const font = {
     // WebkitTextStroke: '1px #6e6e6e45',
     // WebkitTextFillColor: 'white',
     WebkitTextStroke: '1px #dadada3d',
-    WebkitTextFillColor: '#003165',
+    WebkitTextFillColor: '#003165', // hid-bg
     //transform: 'scaleY(1.2)',
 };
 

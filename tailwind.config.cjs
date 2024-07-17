@@ -6,6 +6,7 @@ module.exports = {
         extend: {
             colors: {
                 url: '#0047cc',
+                'hid-bg': '#003165',
             },
             fontFamily: {
                 'old-normal': [...defaultTheme.fontFamily.sans],
