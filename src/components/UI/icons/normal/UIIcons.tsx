@@ -1,7 +1,8 @@
-import { forwardRef, HTMLAttributes, SVGProps } from "react";
+import { forwardRef } from "react";
+import { IconProps } from "./90-icon-props";
 import { classNames } from "@/utils/classnames";
 
-export function IconHIDLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconHIDLogo(props: IconProps) {
     const { title, className, ...rest } = props;
     return (
         <svg className={classNames("fill-current", className)} viewBox="0 0 125.2 33.4" {...rest}>
@@ -11,7 +12,7 @@ export function IconHIDLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGS
     );
 }
 
-export function IconHeroLines(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconHeroLines(props: IconProps) {
     const { title, ...rest } = props;
     return (
         <svg viewBox="0 0 520 171" {...rest}>
@@ -25,7 +26,7 @@ export function IconHeroLines(props: SVGProps<SVGSVGElement> & HTMLAttributes<SV
     );
 }
 
-export function IconHero(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconHero(props: IconProps) {
     const { title, ...rest } = props;
     return (
         <svg viewBox="0 0 100 100" {...rest}>
@@ -35,7 +36,7 @@ export function IconHero(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGE
     );
 }
 
-export function IconSearch({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconSearch({ title, ...rest }: IconProps) {
     return (
         <svg viewBox="0 0 24 24" {...rest}>
             {title && <title>{title}</title>}
@@ -44,7 +45,7 @@ export function IconSearch({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAtt
     );
 }
 
-export function IconCPass({ title, className, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconCPass({ title, className, ...rest }: IconProps) {
     return (
         <svg className={classNames("fill-current", className)} viewBox="0 0 24 24" {...rest}>
             {title && <title>{title}</title>}
@@ -53,7 +54,7 @@ export function IconCPass({ title, className, ...rest }: SVGProps<SVGSVGElement>
     );
 }
 
-export function IconLogin({ title, className, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconLogin({ title, className, ...rest }: IconProps) {
     return (
         <svg className={classNames("fill-current", className)} viewBox="0 0 32 32" {...rest}>
             {title && <title>{title}</title>}
@@ -64,7 +65,7 @@ export function IconLogin({ title, className, ...rest }: SVGProps<SVGSVGElement>
     );
 }
 
-// export function IconSiteLink({ title, ...rest }: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+// export function IconSiteLink({ title, ...rest }: IconProps) {
 //     return (
 //         <svg viewBox="0 0 12 12" {...rest}>
 //             {title && <title>{title}</title>}
@@ -76,7 +77,7 @@ export function IconLogin({ title, className, ...rest }: SVGProps<SVGSVGElement>
 //     );
 // }
 
-export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconGithubLogo(props: IconProps) {
     const { title, ...rest } = props;
     return (
         <svg viewBox="0 0 1024 1024" {...rest}>
@@ -86,7 +87,7 @@ export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<S
     );
 }
 
-// export const IconHeroWRef = forwardRef<SVGSVGElement, SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>>((props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>, ref) => {
+// export const IconHeroWRef = forwardRef<SVGSVGElement, IconProps>((props: IconProps, ref) => {
 //     const { title, ...rest } = props;
 //     return (
 //         <svg ref={ref} viewBox="0 0 14 14" {...rest}>
@@ -96,7 +97,7 @@ export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<S
 //     );
 // })
 
-// export function IconImagePlus(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+// export function IconImagePlus(props: IconProps) {
 //     const { title, className, ...rest } = props;
 //     return (
 //         <svg className={classNames("fill-current", className)} viewBox="0 0 24 24" {...rest}>
@@ -106,7 +107,7 @@ export function IconGithubLogo(props: SVGProps<SVGSVGElement> & HTMLAttributes<S
 //     );
 // }
 
-export function IconDownload(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconDownload(props: IconProps) {
     const { title, className, ...rest } = props;
     return (
         <svg className={classNames("fill-none text-current stroke-2", className)} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" {...rest}>
@@ -116,7 +117,7 @@ export function IconDownload(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVG
     );
 }
 
-export function IconClipboard(props: SVGProps<SVGSVGElement> & HTMLAttributes<SVGSVGElement>) {
+export function IconClipboard(props: IconProps) {
     const { title, className, ...rest } = props;
     return (
         <svg className={classNames("fill-none text-current stroke-2", className)} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24" {...rest}>
