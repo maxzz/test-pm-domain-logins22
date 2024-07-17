@@ -2,15 +2,6 @@ import { forwardRef } from "react";
 import { IconProps, svgRoundedCaps } from "./90-icon-props";
 import { classNames } from "@/utils/classnames";
 
-export function IconSearch({ title, ...rest }: IconProps) {
-    return (
-        <svg viewBox="0 0 24 24" {...rest}>
-            {title && <title>{title}</title>}
-            <path d="M15.5 15.5L19 19M5 11a6 6 0 1 0 12 0a6 6 0 0 0-12 0Z" />
-        </svg>
-    );
-}
-
 export function IconCPass({ title, className, ...rest }: IconProps) {
     return (
         <svg className={classNames("fill-current", className)} viewBox="0 0 24 24" {...rest}>

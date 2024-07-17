@@ -2,8 +2,8 @@ import { HTMLAttributes, ReactNode } from "react";
 import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { a, useSpring } from "@react-spring/web";
 import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
+import { IconCPass, IconLogin, IconSearch } from "@/components/ui/icons";
 import { classNames } from "@/utils";
-import { IconCPass, IconLogin, IconSearch } from "@/components/ui";
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
