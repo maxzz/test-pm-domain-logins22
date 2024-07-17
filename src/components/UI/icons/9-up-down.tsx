@@ -3,7 +3,7 @@ import { a, useSpring } from "@react-spring/web";
 import { classNames } from "@/utils";
 import { animationConfig } from "../UIListTransition";
 
-export function UIIconUpDown({ open, className, ...rest }: { open: boolean; } & SVGAttributes<SVGSVGElement>) {
+export function IconUpDown({ open, className, ...rest }: { open: boolean; } & SVGAttributes<SVGSVGElement>) {
     const styles = useSpring({ open: open ? 1 : 0, ...animationConfig });
     return (
         <svg className={classNames("size-6 p-1 stroke-current stroke-[.6rem] fill-transparent", className)} viewBox="0 0 100 100" {...rest}>

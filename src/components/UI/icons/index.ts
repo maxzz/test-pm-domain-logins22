@@ -1,4 +1,4 @@
-export * from "./screen-1-login";
-export * from "./screen-2-cpass";
+export * from "./7-screen-1-login";
+export * from "./8-screen-2-cpass";
 export * from "./UIIcons";
-export * from "./UIIconUpDown";
+export * from "./9-up-down";
