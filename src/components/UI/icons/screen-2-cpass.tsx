@@ -1,21 +1,26 @@
-import * as React from "react";
 import { SVGProps } from "react";
 
-interface SVGRProps {
+type SvgScreenCPassProps = SVGProps<SVGSVGElement> & {
     title?: string;
     titleId?: string;
 }
 
-export const SvgScreenCPass = ({ title, titleId, ...props }: SVGProps<SVGSVGElement> & SVGRProps) => (
+const SVGStyles = "\
+.screen-c-d{fill:#2f2e41}\
+.screen-c-j{fill:#e6e6e6} \
+.screen-c-e{fill:#fff}\
+.screen-c-g{fill:#ffb8b8}\
+.screen-c-h{fill:#63ccff}\
+.screen-c-i{fill:#f2f2f2}";
+
+export const SvgScreenCPass = ({ title, titleId, ...props }: SvgScreenCPassProps) => (
     <svg viewBox="0 0 99.48 99.48" aria-labelledby={titleId} {...props}>
         {title ? <title id={titleId}>{title}</title> : null}
+
         <defs>
-            <style>
-                {
-                    ".screen-c-d{fill:#2f2e41}.screen-c-e{fill:#fff}.screen-c-g{fill:#ffb8b8}.screen-c-h{fill:#63ccff}.screen-c-i{fill:#f2f2f2}"
-                }
-            </style>
+            <style>{SVGStyles}</style>
         </defs>
+
         {/* <path className="screen-c-i" d="M0 0h99.48v99.48H0z" /> */}
         <g>
             <path
@@ -42,8 +47,8 @@ export const SvgScreenCPass = ({ title, titleId, ...props }: SVGProps<SVGSVGElem
         </g>
         <g>
             <path
+                className="screen-c-j"
                 d="M48.2 91.73c0 .98 10.48 1.78 23.4 1.78s23.4-.8 23.4-1.78c0-.87-8.14-1.58-18.92-1.74-1.45-.02-2.95-.04-4.48-.04h-2.4c-11.79.09-21 .85-21 1.77Z"
-                fill="#e6e6e6"
             />
             <path
                 className="screen-c-d"
