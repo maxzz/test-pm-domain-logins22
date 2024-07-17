@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { a, easings, useSpring } from '@react-spring/web';
 import { isCountdownDoneAtom } from '@/store/store';
-import { IconHero } from '../ui/icons';
+import { IconHero } from '@/components/ui/icons';
 
 const alienAnimProps = {
     from: {
@@ -20,7 +20,7 @@ const alienAnimProps = {
     },
 };
 
-export function AlienLogo() {
+export function IconAlienLogo() {
     const [styles, api] = useSpring(() => ({
         ...alienAnimProps,
         // from: {
