@@ -36,5 +36,8 @@ import r2wc from '@r2wc/react-to-web-component';
 const WebLogin = r2wc(A1_FormLogin_Raw);
 const WebCPass = r2wc(A1_FormCPass_Raw);
 
+// const WebLogin = r2wc(A1_FormLogin_Raw, { shadow: "open" });
+// const WebCPass = r2wc(A1_FormCPass_Raw, { shadow: "open" });
+
 customElements.define("web-wrapshadow-login", WebLogin);
 customElements.define("web-wrapshadow-cpass", WebCPass);
