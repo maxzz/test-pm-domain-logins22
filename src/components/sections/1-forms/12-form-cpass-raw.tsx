@@ -4,7 +4,7 @@ import { IconCpass } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
-import { boxShadow } from "./11-form-login-raw";
+import { boxShadow } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
 
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {

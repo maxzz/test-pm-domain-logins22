@@ -5,10 +5,8 @@ import { LoginTitle } from "./1-login-title";
 import { FieldUser } from "./2-field-user";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
+import { boxShadow } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
-
-// const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
-export const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 
 export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
