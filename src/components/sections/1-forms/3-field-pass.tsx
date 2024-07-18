@@ -1,5 +1,5 @@
-import { screenLoginOptionAtoms } from "@/store/store";
 import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
+import { screenLoginOptionAtoms } from "@/store/store";
 
 export function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder: string; }) {
     const [value, setValue] = useAtom(fieldAtom);

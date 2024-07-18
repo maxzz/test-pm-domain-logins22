@@ -1,10 +1,10 @@
-import { IconSearch } from "@/components/ui";
-import { navOptionAtoms, credAtoms } from "@/store/store";
 import { useSetAtom } from "jotai";
+import { navOptionAtoms, credAtoms } from "@/store/store";
+import { IconSearch } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
-import { boxShadow } from "./11-form-login-raw";
 import { FieldUser } from "./2-field-user";
 import { FieldSubmit } from "./4-field-submit";
+import { boxShadow } from "./11-form-login-raw";
 
 export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
     const showSearch = useSetAtom(navOptionAtoms.showSearchAtom);

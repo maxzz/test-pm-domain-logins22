@@ -1,7 +1,7 @@
+import { ReactNode, HTMLAttributes } from "react";
+import { useAtomValue } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
-import { useAtomValue } from "jotai";
-import { ReactNode, HTMLAttributes } from "react";
 
 export function Wrap({ children, level = 3, className }: { children: ReactNode; level?: number; } & HTMLAttributes<HTMLElement>) {
     const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);

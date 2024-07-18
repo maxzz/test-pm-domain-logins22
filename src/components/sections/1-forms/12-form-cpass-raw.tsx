@@ -1,11 +1,11 @@
-import { IconCpass } from "@/components/ui";
-import { doNextScreenAtom, credAtoms } from "@/store/store";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import { doNextScreenAtom, credAtoms, screenLoginOptionAtoms } from "@/store/store";
+import { IconCpass } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
-import { Wrap } from "./10-wrap";
-import { boxShadow } from "./11-form-login-raw";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
+import { boxShadow } from "./11-form-login-raw";
+import { Wrap } from "./10-wrap";
 
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
@@ -27,5 +27,14 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
                 </div>
             </form>
         </Wrap>
+    );
+}
+
+export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return (
+        useWebComp
+            ? <web-wrapshadow-cpass />
+            : <A1_FormCPass_Raw suffix={suffix} />
     );
 }

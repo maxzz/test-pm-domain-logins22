@@ -1,11 +1,11 @@
-import { IconLogin } from "@/components/ui";
-import { doNextScreenAtom, credAtoms } from "@/store/store";
-import { useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
+import { doNextScreenAtom, credAtoms, screenLoginOptionAtoms } from "@/store/store";
+import { IconLogin } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
-import { Wrap } from "./10-wrap";
 import { FieldUser } from "./2-field-user";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
+import { Wrap } from "./10-wrap";
 
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 export const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
@@ -29,5 +29,14 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
                 </div>
             </form>
         </Wrap>
+    );
+}
+
+export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
+    const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+    return (
+        useWebComp
+            ? <web-wrapshadow-login />
+            : <A1_FormLogin_Raw suffix={suffix} />
     );
 }
