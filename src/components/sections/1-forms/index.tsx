@@ -1,9 +1,13 @@
 import { HTMLAttributes, ReactNode } from "react";
-import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import { a, useSpring } from "@react-spring/web";
 import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
 import { IconCpass, IconLogin, IconSearch } from "@/components/ui";
+import { LoginTitle } from "./1-login-title";
+import { FieldUser } from "./2-field-user";
+import { FieldPass } from "./3-field-pass";
+import { FieldSubmit } from "./4-field-submit";
 
 export const Greeting = ({ name }: { name: string; }) => {
     return (
@@ -11,86 +15,6 @@ export const Greeting = ({ name }: { name: string; }) => {
     );
 };
 
-const font = {
-    fontFamily: 'Source Sans Pro, sans-serif',
-    textShadow: '1px 1px #c4c4c4',
-    // WebkitTextStroke: '1px #6e6e6e45',
-    // WebkitTextFillColor: 'white',
-    WebkitTextStroke: '1px #dadada3d',
-    WebkitTextFillColor: '#003165', // hid-bg
-    //transform: 'scaleY(1.2)',
-};
-
-function LoginTitle({ label, logo, className, ...rest }: { label: React.ReactNode; logo: ReactNode; } & React.HTMLAttributes<HTMLDivElement>) {
-    const styles = useSpring({ from: { scale: 0, borderWidth: '4px', opacity: 0 }, to: { scale: 1, borderWidth: '1px', opacity: 1, }, delay: 400, });
-    return (
-        <div className={classNames("px-4 py-4 flex items-center justify-between border-b border-slate-200 bg-slate-200 rounded-t-sm shadow select-none", className)} {...rest}>
-            <div className="font-bold" style={font}>
-                {label}
-            </div>
-
-            <a.div style={styles}
-                className="px-4 w-16 h-16 text-5xl flex items-center justify-center text-slate-50 bg-slate-300/40 border-slate-50 border-4 rounded-md"
-            >
-                {logo}
-            </a.div>
-        </div>
-    );
-}
-
-function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder?: string; }) {
-    const [value, setValue] = useAtom(fieldAtom);
-    return (
-        <label className="relative">
-            <input
-                className="py-1.5 w-full peer float-input border-slate-300 border"
-                id={fieldId}
-                type="text"
-                placeholder={placeholder}
-                value={value}
-                onChange={((e) => setValue(e.target.value))}
-            />
-            <div className="float-label">
-                {placeholder}
-            </div>
-        </label>
-    );
-}
-
-function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder: string; }) {
-    const [value, setValue] = useAtom(fieldAtom);
-    const reveal = useAtomValue(screenLoginOptionAtoms.revealAtom);
-    return (
-        <label className="relative">
-            <input
-                className="py-1.5 w-full peer float-input border-slate-300 border"
-                id={fieldId}
-                type={reveal ? "text" : "password"}
-                placeholder={placeholder}
-                autoComplete="current-password"
-                value={value}
-                onChange={((e) => setValue(e.target.value))}
-            />
-            <div className="float-label">
-                {placeholder}
-            </div>
-        </label>
-    );
-}
-
-function FieldSubmit({ label = '', className, ...rest }: { label?: string; } & React.HTMLAttributes<HTMLButtonElement>) {
-    return (
-        <button
-            className={classNames(
-                'px-4 py-1.5 hover:bg-slate-300 focus:bg-slate-300 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-500 active:scale-[.97] border-slate-400 border rounded shadow-sm select-none',
-                className
-            )}
-            {...rest}
-        >
-            {label}
-        </button>
-    );
-}
 
 // const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
 const boxShadow = { boxShadow: '0 1px 1px 0px rgba(0,0,0,.1), 0 1px 3px 0 rgba(0,0,0,.1)', };
@@ -118,7 +42,7 @@ function Wrap({ children, level = 3, className }: { children: ReactNode; level?:
 export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
     return (
-        <Wrap level={1} className="">
+        <Wrap level={1}>
             <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
