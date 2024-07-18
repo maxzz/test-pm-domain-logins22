@@ -1,7 +1,6 @@
 import { useSetAtom } from "jotai";
 import { doNextScreenAtom, credAtoms } from "@/store/store";
-import { IconCpass } from "@/components/ui/icons";
-import { LoginTitle } from "./1-login-title";
+import { LoginTitleCpass } from "./1-login-title";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formClasses } from "./49-shared-styles";
@@ -14,10 +13,7 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
         <Wrap level={1}>
             <form id="tm-cpass-a-form" className={formClasses} style={boxShadow}>
 
-                <LoginTitle
-                    label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
-                    logo={<div className="inset-0"><IconCpass className="size-12 stroke-slate-400/50" /></div>}
-                />
+                <LoginTitleCpass />
 
                 <Wrap level={2} className="flex-1">
                     <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
@@ -37,7 +33,7 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
 }
 
 export function A1_FormCPass({ suffix = '' }: { suffix?: string; }) {
-    
+
     // The following code will trigger warning: Attempted to synchronously unmount a root while React was already rendering.
     // const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
     // if (useWebComponents) {

@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { a, useSpring } from "@react-spring/web";
+import { IconLogin, IconCpass } from "@/components/ui";
 import { classNames } from "@/utils";
 
 type LoginTitleProps = HTMLAttributes<HTMLDivElement> & {
@@ -48,5 +49,23 @@ export function LoginTitle({ label, logo, className, ...rest }: LoginTitleProps)
                 {logo}
             </a.div>
         </div>
+    );
+}
+
+export function LoginTitleLogin() {
+    return (
+        <LoginTitle
+            label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
+            logo={<div className="inset-0"><IconLogin className="size-12 stroke-slate-400/50" /></div>}
+        />
+    );
+}
+
+export function LoginTitleCpass() {
+    return (
+        <LoginTitle
+            label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+            logo={<div className="inset-0"><IconCpass className="size-12 stroke-slate-400/50" /></div>}
+        />
     );
 }
