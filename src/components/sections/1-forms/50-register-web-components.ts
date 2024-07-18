@@ -16,8 +16,8 @@ customElements.define("tm-wrap", CustomElementWrap);
 export { };
 /**/
 
-import { A1_FormCPass_Raw } from "./12-form-cpass-raw";
 import { A1_FormLogin_Raw } from "./11-form-login-raw";
+import { A1_FormCPass_Raw } from "./12-form-cpass-raw";
 
 import r2wc from '@r2wc/react-to-web-component';
 

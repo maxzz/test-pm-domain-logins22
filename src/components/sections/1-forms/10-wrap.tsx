@@ -3,12 +3,13 @@ import { useAtomValue } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
 
+/*
 type FormWrapperProps = HTMLAttributes<HTMLElement> & {
     children: ReactNode;
     level?: number;
 };
 
-export function Wrap2({ children, level = 3, className }: FormWrapperProps) {
+export function Wrap({ children, level = 3, className }: FormWrapperProps) {
 
     const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
     const nestLevel = useAtomValue(screenLoginOptionAtoms.nestLevelAtom);
@@ -37,6 +38,7 @@ export function Wrap2({ children, level = 3, className }: FormWrapperProps) {
         </div>
     </>);
 }
+*/
 
 export function Wrap({ children, level = 3, className }: { children: ReactNode; level?: number; } & HTMLAttributes<HTMLElement>) {
     const useWebComp = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
