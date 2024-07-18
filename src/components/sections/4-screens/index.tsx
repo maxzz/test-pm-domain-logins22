@@ -1,7 +1,8 @@
 import { useAtomValue } from "jotai";
 import { a, AnimatedProps, config, easings, useTransition } from "@react-spring/web";
 import { navOptionAtoms } from "@/store/store";
-import { A1_FormCPass, A1_FormLogin, A1_FormSearch } from "../1-forms";
+import { A1_FormCPass, A1_FormLogin } from "../1-forms";
+import { A1_FormSearch } from "../1-forms/20_form-search";
 import { Mount } from "./1-mount";
 import { BlankScreen } from "./2-blank-screen";
 
