@@ -4,1754 +4,33 @@
 <head>
     <base target="_parent">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <style type="text/css">
-        sdf-file-uploader,
-        sdf-search,
-        sdf-select,
-        sdf-time-picker,
-        sdf-date-picker,
-        sdf-page-layout,
-        sdf-currency-input,
-        sdf-phone-number-input,
-        sdf-time-spinner,
-        sdf-checkbox-group,
-        sdf-focus-pane,
-        sdf-form-control-layout,
-        sdf-home-page-layout,
-        sdf-radio-group,
-        sdf-readonly-field,
-        sdf-switch,
-        sdf-textarea,
-        sdf-wizard-steps-vertical,
-        sdf-table,
-        sdf-action-area,
-        sdf-carousel,
-        sdf-inline-modal,
-        sdf-promo-box,
-        sdf-tab-group,
-        sdf-tag,
-        sdf-card-header-collapsible,
-        sdf-multi-select,
-        sdf-select-option,
-        sdf-tab,
-        sdf-accordion,
-        sdf-app-loader,
-        sdf-badge,
-        sdf-box-stack,
-        sdf-button-group,
-        sdf-button-layout,
-        sdf-card-footer,
-        sdf-card-header,
-        sdf-card-header-advanced,
-        sdf-carousel-item,
-        sdf-chart,
-        sdf-checkbox,
-        sdf-column-chart,
-        sdf-dashboard,
-        sdf-dashboard-cell,
-        sdf-data-ring,
-        sdf-flag-layout,
-        sdf-grid,
-        sdf-icon-legacy,
-        sdf-icon-stack,
-        sdf-layout-list-item,
-        sdf-layout-row,
-        sdf-layout-three-col,
-        sdf-layout-two-col,
-        sdf-line-chart,
-        sdf-link,
-        sdf-menu-divider,
-        sdf-menu-title,
-        sdf-mfe-loader,
-        sdf-pie-chart,
-        sdf-quick-stat,
-        sdf-radio-button,
-        sdf-segment-filler,
-        sdf-segmented-control,
-        sdf-select-group,
-        sdf-select-list,
-        sdf-skeleton,
-        sdf-slider,
-        sdf-super-title,
-        sdf-text-editor,
-        sdf-toggle,
-        sdf-view-stack,
-        sdf-wizard-layout,
-        sdf-wizard-steps-vertical-item,
-        snapshot-test-bed,
-        sdf-icon,
-        sdf-page-header-layout,
-        sdf-calendar,
-        sdf-expandable-box,
-        sdf-spinner,
-        sdf-layout-justify-edge,
-        sdf-scroller,
-        sdf-select-simple,
-        sdf-spot-illustration,
-        sdf-alert,
-        sdf-box,
-        sdf-card,
-        sdf-mini-card,
-        sdf-avatar,
-        sdf-progress-bar,
-        sdf-shimmer,
-        sdf-alert-icon,
-        sdf-close-button,
-        sdf-button,
-        sdf-busy-indicator,
-        sdf-tooltip,
-        sdf-icon-button,
-        sdf-floating-pane,
-        sdf-floating-pane-portal,
-        sdf-select-item,
-        sdf-select-item-list,
-        sdf-input,
-        sdf-action-menu,
-        sdf-menu,
-        sdf-menu-item {
-            visibility: hidden;
-        }
-
-        .hydrated {
-            visibility: inherit;
-        }
-    </style>
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <link rel="shortcut icon" href="https://online.adp.com/favicon.ico">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
-    <title>Sign In | ADP WFNPORTAL</title>
-    <style type="text/css">
-        .react-tel-input {
-            font-family: Roboto, sans-serif;
-            font-size: 15px;
-            position: relative;
-            width: 100%;
-        }
-
-        .react-tel-input :disabled {
-            cursor: not-allowed;
-        }
-
-        .react-tel-input .flag {
-            width: 16px;
-            height: 11px;
-        }
-
-        .react-tel-input .ad {
-            background-position: -16px 0px;
-        }
-
-        .react-tel-input .ae {
-            background-position: -32px 0px;
-        }
-
-        .react-tel-input .af {
-            background-position: -48px 0px;
-        }
-
-        .react-tel-input .ag {
-            background-position: -64px 0px;
-        }
-
-        .react-tel-input .ai {
-            background-position: -80px 0px;
-        }
-
-        .react-tel-input .al {
-            background-position: -96px 0px;
-        }
-
-        .react-tel-input .am {
-            background-position: -112px 0px;
-        }
-
-        .react-tel-input .ao {
-            background-position: -128px 0px;
-        }
-
-        .react-tel-input .ar {
-            background-position: -144px 0px;
-        }
-
-        .react-tel-input .as {
-            background-position: -160px 0px;
-        }
-
-        .react-tel-input .at {
-            background-position: -176px 0px;
-        }
-
-        .react-tel-input .au {
-            background-position: -192px 0px;
-        }
-
-        .react-tel-input .aw {
-            background-position: -208px 0px;
-        }
-
-        .react-tel-input .az {
-            background-position: -224px 0px;
-        }
-
-        .react-tel-input .ba {
-            background-position: -240px 0px;
-        }
-
-        .react-tel-input .bb {
-            background-position: 0px -11px;
-        }
-
-        .react-tel-input .bd {
-            background-position: -16px -11px;
-        }
-
-        .react-tel-input .be {
-            background-position: -32px -11px;
-        }
-
-        .react-tel-input .bf {
-            background-position: -48px -11px;
-        }
-
-        .react-tel-input .bg {
-            background-position: -64px -11px;
-        }
-
-        .react-tel-input .bh {
-            background-position: -80px -11px;
-        }
-
-        .react-tel-input .bi {
-            background-position: -96px -11px;
-        }
-
-        .react-tel-input .bj {
-            background-position: -112px -11px;
-        }
-
-        .react-tel-input .bm {
-            background-position: -128px -11px;
-        }
-
-        .react-tel-input .bn {
-            background-position: -144px -11px;
-        }
-
-        .react-tel-input .bo {
-            background-position: -160px -11px;
-        }
-
-        .react-tel-input .br {
-            background-position: -176px -11px;
-        }
-
-        .react-tel-input .bs {
-            background-position: -192px -11px;
-        }
-
-        .react-tel-input .bt {
-            background-position: -208px -11px;
-        }
-
-        .react-tel-input .bw {
-            background-position: -224px -11px;
-        }
-
-        .react-tel-input .by {
-            background-position: -240px -11px;
-        }
-
-        .react-tel-input .bz {
-            background-position: 0px -22px;
-        }
-
-        .react-tel-input .ca {
-            background-position: -16px -22px;
-        }
-
-        .react-tel-input .cd {
-            background-position: -32px -22px;
-        }
-
-        .react-tel-input .cf {
-            background-position: -48px -22px;
-        }
-
-        .react-tel-input .cg {
-            background-position: -64px -22px;
-        }
-
-        .react-tel-input .ch {
-            background-position: -80px -22px;
-        }
-
-        .react-tel-input .ci {
-            background-position: -96px -22px;
-        }
-
-        .react-tel-input .ck {
-            background-position: -112px -22px;
-        }
-
-        .react-tel-input .cl {
-            background-position: -128px -22px;
-        }
-
-        .react-tel-input .cm {
-            background-position: -144px -22px;
-        }
-
-        .react-tel-input .cn {
-            background-position: -160px -22px;
-        }
-
-        .react-tel-input .co {
-            background-position: -176px -22px;
-        }
-
-        .react-tel-input .cr {
-            background-position: -192px -22px;
-        }
-
-        .react-tel-input .cu {
-            background-position: -208px -22px;
-        }
-
-        .react-tel-input .cv {
-            background-position: -224px -22px;
-        }
-
-        .react-tel-input .cw {
-            background-position: -240px -22px;
-        }
-
-        .react-tel-input .cy {
-            background-position: 0px -33px;
-        }
-
-        .react-tel-input .cz {
-            background-position: -16px -33px;
-        }
-
-        .react-tel-input .de {
-            background-position: -32px -33px;
-        }
-
-        .react-tel-input .dj {
-            background-position: -48px -33px;
-        }
-
-        .react-tel-input .dk {
-            background-position: -64px -33px;
-        }
-
-        .react-tel-input .dm {
-            background-position: -80px -33px;
-        }
-
-        .react-tel-input .do {
-            background-position: -96px -33px;
-        }
-
-        .react-tel-input .dz {
-            background-position: -112px -33px;
-        }
-
-        .react-tel-input .ec {
-            background-position: -128px -33px;
-        }
-
-        .react-tel-input .ee {
-            background-position: -144px -33px;
-        }
-
-        .react-tel-input .eg {
-            background-position: -160px -33px;
-        }
-
-        .react-tel-input .er {
-            background-position: -176px -33px;
-        }
-
-        .react-tel-input .es {
-            background-position: -192px -33px;
-        }
-
-        .react-tel-input .et {
-            background-position: -208px -33px;
-        }
-
-        .react-tel-input .fi {
-            background-position: -224px -33px;
-        }
-
-        .react-tel-input .fj {
-            background-position: -240px -33px;
-        }
-
-        .react-tel-input .fk {
-            background-position: 0px -44px;
-        }
-
-        .react-tel-input .fm {
-            background-position: -16px -44px;
-        }
-
-        .react-tel-input .fo {
-            background-position: -32px -44px;
-        }
-
-        .react-tel-input .bl,
-        .react-tel-input .fr,
-        .react-tel-input .mf {
-            background-position: -48px -44px;
-        }
-
-        .react-tel-input .ga {
-            background-position: -64px -44px;
-        }
-
-        .react-tel-input .gb {
-            background-position: -80px -44px;
-        }
-
-        .react-tel-input .gd {
-            background-position: -96px -44px;
-        }
-
-        .react-tel-input .ge {
-            background-position: -112px -44px;
-        }
-
-        .react-tel-input .gf {
-            background-position: -128px -44px;
-        }
-
-        .react-tel-input .gh {
-            background-position: -144px -44px;
-        }
-
-        .react-tel-input .gi {
-            background-position: -160px -44px;
-        }
-
-        .react-tel-input .gl {
-            background-position: -176px -44px;
-        }
-
-        .react-tel-input .gm {
-            background-position: -192px -44px;
-        }
-
-        .react-tel-input .gn {
-            background-position: -208px -44px;
-        }
-
-        .react-tel-input .gp {
-            background-position: -224px -44px;
-        }
-
-        .react-tel-input .gq {
-            background-position: -240px -44px;
-        }
-
-        .react-tel-input .gr {
-            background-position: 0px -55px;
-        }
-
-        .react-tel-input .gt {
-            background-position: -16px -55px;
-        }
-
-        .react-tel-input .gu {
-            background-position: -32px -55px;
-        }
-
-        .react-tel-input .gw {
-            background-position: -48px -55px;
-        }
-
-        .react-tel-input .gy {
-            background-position: -64px -55px;
-        }
-
-        .react-tel-input .hk {
-            background-position: -80px -55px;
-        }
-
-        .react-tel-input .hn {
-            background-position: -96px -55px;
-        }
-
-        .react-tel-input .hr {
-            background-position: -112px -55px;
-        }
-
-        .react-tel-input .ht {
-            background-position: -128px -55px;
-        }
-
-        .react-tel-input .hu {
-            background-position: -144px -55px;
-        }
-
-        .react-tel-input .id {
-            background-position: -160px -55px;
-        }
-
-        .react-tel-input .ie {
-            background-position: -176px -55px;
-        }
-
-        .react-tel-input .il {
-            background-position: -192px -55px;
-        }
-
-        .react-tel-input .in {
-            background-position: -208px -55px;
-        }
-
-        .react-tel-input .io {
-            background-position: -224px -55px;
-        }
-
-        .react-tel-input .iq {
-            background-position: -240px -55px;
-        }
-
-        .react-tel-input .ir {
-            background-position: 0px -66px;
-        }
-
-        .react-tel-input .is {
-            background-position: -16px -66px;
-        }
-
-        .react-tel-input .it {
-            background-position: -32px -66px;
-        }
-
-        .react-tel-input .je {
-            background-position: -144px -154px;
-        }
-
-        .react-tel-input .jm {
-            background-position: -48px -66px;
-        }
-
-        .react-tel-input .jo {
-            background-position: -64px -66px;
-        }
-
-        .react-tel-input .jp {
-            background-position: -80px -66px;
-        }
-
-        .react-tel-input .ke {
-            background-position: -96px -66px;
-        }
-
-        .react-tel-input .kg {
-            background-position: -112px -66px;
-        }
-
-        .react-tel-input .kh {
-            background-position: -128px -66px;
-        }
-
-        .react-tel-input .ki {
-            background-position: -144px -66px;
-        }
-
-        .react-tel-input .xk {
-            background-position: -128px -154px;
-        }
-
-        .react-tel-input .km {
-            background-position: -160px -66px;
-        }
-
-        .react-tel-input .kn {
-            background-position: -176px -66px;
-        }
-
-        .react-tel-input .kp {
-            background-position: -192px -66px;
-        }
-
-        .react-tel-input .kr {
-            background-position: -208px -66px;
-        }
-
-        .react-tel-input .kw {
-            background-position: -224px -66px;
-        }
-
-        .react-tel-input .ky {
-            background-position: -240px -66px;
-        }
-
-        .react-tel-input .kz {
-            background-position: 0px -77px;
-        }
-
-        .react-tel-input .la {
-            background-position: -16px -77px;
-        }
-
-        .react-tel-input .lb {
-            background-position: -32px -77px;
-        }
-
-        .react-tel-input .lc {
-            background-position: -48px -77px;
-        }
-
-        .react-tel-input .li {
-            background-position: -64px -77px;
-        }
-
-        .react-tel-input .lk {
-            background-position: -80px -77px;
-        }
-
-        .react-tel-input .lr {
-            background-position: -96px -77px;
-        }
-
-        .react-tel-input .ls {
-            background-position: -112px -77px;
-        }
-
-        .react-tel-input .lt {
-            background-position: -128px -77px;
-        }
-
-        .react-tel-input .lu {
-            background-position: -144px -77px;
-        }
-
-        .react-tel-input .lv {
-            background-position: -160px -77px;
-        }
-
-        .react-tel-input .ly {
-            background-position: -176px -77px;
-        }
-
-        .react-tel-input .ma {
-            background-position: -192px -77px;
-        }
-
-        .react-tel-input .mc {
-            background-position: -208px -77px;
-        }
-
-        .react-tel-input .md {
-            background-position: -224px -77px;
-        }
-
-        .react-tel-input .me {
-            background-position: -112px -154px;
-            height: 12px;
-        }
-
-        .react-tel-input .mg {
-            background-position: 0px -88px;
-        }
-
-        .react-tel-input .mh {
-            background-position: -16px -88px;
-        }
-
-        .react-tel-input .mk {
-            background-position: -32px -88px;
-        }
-
-        .react-tel-input .ml {
-            background-position: -48px -88px;
-        }
-
-        .react-tel-input .mm {
-            background-position: -64px -88px;
-        }
-
-        .react-tel-input .mn {
-            background-position: -80px -88px;
-        }
-
-        .react-tel-input .mo {
-            background-position: -96px -88px;
-        }
-
-        .react-tel-input .mp {
-            background-position: -112px -88px;
-        }
-
-        .react-tel-input .mq {
-            background-position: -128px -88px;
-        }
-
-        .react-tel-input .mr {
-            background-position: -144px -88px;
-        }
-
-        .react-tel-input .ms {
-            background-position: -160px -88px;
-        }
-
-        .react-tel-input .mt {
-            background-position: -176px -88px;
-        }
-
-        .react-tel-input .mu {
-            background-position: -192px -88px;
-        }
-
-        .react-tel-input .mv {
-            background-position: -208px -88px;
-        }
-
-        .react-tel-input .mw {
-            background-position: -224px -88px;
-        }
-
-        .react-tel-input .mx {
-            background-position: -240px -88px;
-        }
-
-        .react-tel-input .my {
-            background-position: 0px -99px;
-        }
-
-        .react-tel-input .mz {
-            background-position: -16px -99px;
-        }
-
-        .react-tel-input .na {
-            background-position: -32px -99px;
-        }
-
-        .react-tel-input .nc {
-            background-position: -48px -99px;
-        }
-
-        .react-tel-input .ne {
-            background-position: -64px -99px;
-        }
-
-        .react-tel-input .nf {
-            background-position: -80px -99px;
-        }
-
-        .react-tel-input .ng {
-            background-position: -96px -99px;
-        }
-
-        .react-tel-input .ni {
-            background-position: -112px -99px;
-        }
-
-        .react-tel-input .bq,
-        .react-tel-input .nl {
-            background-position: -128px -99px;
-        }
-
-        .react-tel-input .no {
-            background-position: -144px -99px;
-        }
-
-        .react-tel-input .np {
-            background-position: -160px -99px;
-        }
-
-        .react-tel-input .nr {
-            background-position: -176px -99px;
-        }
-
-        .react-tel-input .nu {
-            background-position: -192px -99px;
-        }
-
-        .react-tel-input .nz {
-            background-position: -208px -99px;
-        }
-
-        .react-tel-input .om {
-            background-position: -224px -99px;
-        }
-
-        .react-tel-input .pa {
-            background-position: -240px -99px;
-        }
-
-        .react-tel-input .pe {
-            background-position: 0px -110px;
-        }
-
-        .react-tel-input .pf {
-            background-position: -16px -110px;
-        }
-
-        .react-tel-input .pg {
-            background-position: -32px -110px;
-        }
-
-        .react-tel-input .ph {
-            background-position: -48px -110px;
-        }
-
-        .react-tel-input .pk {
-            background-position: -64px -110px;
-        }
-
-        .react-tel-input .pl {
-            background-position: -80px -110px;
-        }
-
-        .react-tel-input .pm {
-            background-position: -96px -110px;
-        }
-
-        .react-tel-input .pr {
-            background-position: -112px -110px;
-        }
-
-        .react-tel-input .ps {
-            background-position: -128px -110px;
-        }
-
-        .react-tel-input .pt {
-            background-position: -144px -110px;
-        }
-
-        .react-tel-input .pw {
-            background-position: -160px -110px;
-        }
-
-        .react-tel-input .py {
-            background-position: -176px -110px;
-        }
-
-        .react-tel-input .qa {
-            background-position: -192px -110px;
-        }
-
-        .react-tel-input .re {
-            background-position: -208px -110px;
-        }
-
-        .react-tel-input .ro {
-            background-position: -224px -110px;
-        }
-
-        .react-tel-input .rs {
-            background-position: -240px -110px;
-        }
-
-        .react-tel-input .ru {
-            background-position: 0px -121px;
-        }
-
-        .react-tel-input .rw {
-            background-position: -16px -121px;
-        }
-
-        .react-tel-input .sa {
-            background-position: -32px -121px;
-        }
-
-        .react-tel-input .sb {
-            background-position: -48px -121px;
-        }
-
-        .react-tel-input .sc {
-            background-position: -64px -121px;
-        }
-
-        .react-tel-input .sd {
-            background-position: -80px -121px;
-        }
-
-        .react-tel-input .se {
-            background-position: -96px -121px;
-        }
-
-        .react-tel-input .sg {
-            background-position: -112px -121px;
-        }
-
-        .react-tel-input .sh {
-            background-position: -128px -121px;
-        }
-
-        .react-tel-input .si {
-            background-position: -144px -121px;
-        }
-
-        .react-tel-input .sk {
-            background-position: -160px -121px;
-        }
-
-        .react-tel-input .sl {
-            background-position: -176px -121px;
-        }
-
-        .react-tel-input .sm {
-            background-position: -192px -121px;
-        }
-
-        .react-tel-input .sn {
-            background-position: -208px -121px;
-        }
-
-        .react-tel-input .so {
-            background-position: -224px -121px;
-        }
-
-        .react-tel-input .sr {
-            background-position: -240px -121px;
-        }
-
-        .react-tel-input .ss {
-            background-position: 0px -132px;
-        }
-
-        .react-tel-input .st {
-            background-position: -16px -132px;
-        }
-
-        .react-tel-input .sv {
-            background-position: -32px -132px;
-        }
-
-        .react-tel-input .sx {
-            background-position: -48px -132px;
-        }
-
-        .react-tel-input .sy {
-            background-position: -64px -132px;
-        }
-
-        .react-tel-input .sz {
-            background-position: -80px -132px;
-        }
-
-        .react-tel-input .tc {
-            background-position: -96px -132px;
-        }
-
-        .react-tel-input .td {
-            background-position: -112px -132px;
-        }
-
-        .react-tel-input .tg {
-            background-position: -128px -132px;
-        }
-
-        .react-tel-input .th {
-            background-position: -144px -132px;
-        }
-
-        .react-tel-input .tj {
-            background-position: -160px -132px;
-        }
-
-        .react-tel-input .tk {
-            background-position: -176px -132px;
-        }
-
-        .react-tel-input .tl {
-            background-position: -192px -132px;
-        }
-
-        .react-tel-input .tm {
-            background-position: -208px -132px;
-        }
-
-        .react-tel-input .tn {
-            background-position: -224px -132px;
-        }
-
-        .react-tel-input .to {
-            background-position: -240px -132px;
-        }
-
-        .react-tel-input .tr {
-            background-position: 0px -143px;
-        }
-
-        .react-tel-input .tt {
-            background-position: -16px -143px;
-        }
-
-        .react-tel-input .tv {
-            background-position: -32px -143px;
-        }
-
-        .react-tel-input .tw {
-            background-position: -48px -143px;
-        }
-
-        .react-tel-input .tz {
-            background-position: -64px -143px;
-        }
-
-        .react-tel-input .ua {
-            background-position: -80px -143px;
-        }
-
-        .react-tel-input .ug {
-            background-position: -96px -143px;
-        }
-
-        .react-tel-input .us {
-            background-position: -112px -143px;
-        }
-
-        .react-tel-input .uy {
-            background-position: -128px -143px;
-        }
-
-        .react-tel-input .uz {
-            background-position: -144px -143px;
-        }
-
-        .react-tel-input .va {
-            background-position: -160px -143px;
-        }
-
-        .react-tel-input .vc {
-            background-position: -176px -143px;
-        }
-
-        .react-tel-input .ve {
-            background-position: -192px -143px;
-        }
-
-        .react-tel-input .vg {
-            background-position: -208px -143px;
-        }
-
-        .react-tel-input .vi {
-            background-position: -224px -143px;
-        }
-
-        .react-tel-input .vn {
-            background-position: -240px -143px;
-        }
-
-        .react-tel-input .vu {
-            background-position: 0px -154px;
-        }
-
-        .react-tel-input .wf {
-            background-position: -16px -154px;
-        }
-
-        .react-tel-input .ws {
-            background-position: -32px -154px;
-        }
-
-        .react-tel-input .ye {
-            background-position: -48px -154px;
-        }
-
-        .react-tel-input .za {
-            background-position: -64px -154px;
-        }
-
-        .react-tel-input .zm {
-            background-position: -80px -154px;
-        }
-
-        .react-tel-input .zw {
-            background-position: -96px -154px;
-        }
-
-        .react-tel-input * {
-            box-sizing: border-box;
-        }
-
-        .react-tel-input .hide {
-            display: none;
-        }
-
-        .react-tel-input .v-hide {
-            visibility: hidden;
-        }
-
-        .react-tel-input .form-control {
-            position: relative;
-            font-size: 14px;
-            letter-spacing: 0.01rem;
-            padding-left: 48px;
-            margin-left: 0px;
-            background: rgb(255, 255, 255);
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 5px;
-            line-height: 25px;
-            height: 35px;
-            width: 300px;
-            outline: none;
-            margin-top: 0px !important;
-            margin-bottom: 0px !important;
-        }
-
-        .react-tel-input .form-control.invalid-number,
-        .react-tel-input .form-control.invalid-number:focus {
-            background-color: rgb(250, 240, 240);
-            border-width: 1px;
-            border-style: solid;
-            border-color: rgb(215, 159, 159) rgb(215, 159, 159) rgb(215, 159, 159) rgb(202, 202, 202);
-            border-image: initial;
-        }
-
-        .react-tel-input .flag-dropdown {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            padding: 0px;
-            background-color: rgb(245, 245, 245);
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 3px 0px 0px 3px;
-        }
-
-        .react-tel-input .flag-dropdown:focus,
-        .react-tel-input .flag-dropdown:hover {
-            cursor: pointer;
-        }
-
-        .react-tel-input .flag-dropdown.invalid-number {
-            border-color: rgb(215, 159, 159);
-        }
-
-        .react-tel-input .flag-dropdown.open {
-            z-index: 2;
-        }
-
-        .react-tel-input .flag-dropdown.open,
-        .react-tel-input .flag-dropdown.open .selected-flag {
-            background: rgb(255, 255, 255);
-            border-radius: 3px 0px 0px;
-        }
-
-        .react-tel-input input[disabled]+.flag-dropdown:hover {
-            cursor: default;
-        }
-
-        .react-tel-input input[disabled]+.flag-dropdown:hover .selected-flag {
-            background-color: initial;
-        }
-
-        .react-tel-input .selected-flag {
-            outline: none;
-            position: relative;
-            width: 38px;
-            height: 100%;
-            padding: 0px 0px 0px 8px;
-            border-radius: 3px 0px 0px 3px;
-        }
-
-        .react-tel-input .selected-flag:focus,
-        .react-tel-input .selected-flag:hover {
-            background-color: rgb(255, 255, 255);
-        }
-
-        .react-tel-input .selected-flag .flag {
-            position: absolute;
-            top: 50%;
-            margin-top: -5px;
-        }
-
-        .react-tel-input .selected-flag .arrow {
-            position: relative;
-            top: 50%;
-            margin-top: -2px;
-            left: 20px;
-            width: 0px;
-            height: 0px;
-            border-left: 3px solid transparent;
-            border-right: 3px solid transparent;
-            border-top: 4px solid rgb(85, 85, 85);
-        }
-
-        .react-tel-input .selected-flag .arrow.up {
-            border-top: none;
-            border-bottom: 4px solid rgb(85, 85, 85);
-        }
-
-        .react-tel-input .country-list {
-            outline: none;
-            z-index: 1;
-            list-style: none;
-            position: absolute;
-            padding: 0px;
-            margin: 10px 0px 10px -1px;
-            box-shadow: rgba(0, 0, 0, 0.35) 1px 2px 10px;
-            background-color: rgb(255, 255, 255);
-            width: 300px;
-            max-height: 200px;
-            overflow-y: scroll;
-            border-radius: 0px 0px 3px 3px;
-        }
-
-        .react-tel-input .country-list .flag {
-            display: inline-block;
-        }
-
-        .react-tel-input .country-list .divider {
-            padding-bottom: 5px;
-            margin-bottom: 5px;
-            border-bottom: 1px solid rgb(204, 204, 204);
-        }
-
-        .react-tel-input .country-list .country {
-            padding: 7px 9px;
-        }
-
-        .react-tel-input .country-list .country .dial-code {
-            color: rgb(107, 107, 107);
-        }
-
-        .react-tel-input .country-list .country.highlight,
-        .react-tel-input .country-list .country:hover {
-            background-color: rgb(241, 241, 241);
-        }
-
-        .react-tel-input .country-list .flag {
-            margin-right: 7px;
-            margin-top: 2px;
-        }
-
-        .react-tel-input .country-list .country-name {
-            margin-right: 6px;
-        }
-
-        .react-tel-input .country-list .search {
-            position: sticky;
-            top: 0px;
-            background-color: rgb(255, 255, 255);
-            padding: 10px 0px 6px 10px;
-        }
-
-        .react-tel-input .country-list .search-emoji {
-            font-size: 15px;
-        }
-
-        .react-tel-input .country-list .search-box {
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 3px;
-            font-size: 15px;
-            line-height: 15px;
-            margin-left: 6px;
-            padding: 3px 8px 5px;
-            outline: none;
-        }
-
-        .react-tel-input .country-list .no-entries-message {
-            padding: 7px 10px 11px;
-            opacity: 0.7;
-        }
-
-        .react-tel-input .invalid-number-message {
-            color: rgb(222, 0, 0);
-        }
-
-        .react-tel-input .invalid-number-message,
-        .react-tel-input .special-label {
-            position: absolute;
-            z-index: 1;
-            font-size: 13px;
-            left: 46px;
-            top: -8px;
-            background: rgb(255, 255, 255);
-            padding: 0px 2px;
-        }
-
-        .react-tel-input .special-label {
-            display: none;
-            white-space: nowrap;
-        }
-    </style>
-    <style type="text/css">
-        html {
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        body {
-            height: 100%;
-            margin: 0px;
-        }
-
-        .busy-indicator {
-            inset: 0px;
-            background-color: rgba(255, 255, 255, 0.5);
-            align-items: center;
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            z-index: 50;
-        }
-
-        .spinner {
-            height: 64px;
-            width: 64px;
-            stroke: rgb(121, 103, 174);
-            animation: 0.9875s linear 0s infinite normal none running rotator;
-        }
-
-        @keyframes rotator {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(1turn);
-            }
-        }
-
-        .wrapper {
-            animation: 6s ease-in-out 0s infinite normal none running dashrotator;
-            stroke: rgb(121, 103, 174);
-        }
-
-        @keyframes dashrotator {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(270deg);
-            }
-        }
-
-        .track {
-            stroke-width: 8px;
-            stroke: rgb(227, 221, 244);
-            fill: none;
-            stroke-linecap: round;
-        }
-
-        .path {
-            transform-origin: center center;
-            stroke-dasharray: 187;
-            stroke-dashoffset: 187;
-            stroke: rgb(121, 103, 174);
-            stroke-width: 8px;
-            animation: 6s cubic-bezier(0.42, 0.01, 0.58, 1) 0s infinite normal none running dash;
-            fill: none;
-            stroke-linecap: round;
-        }
-
-        @keyframes dash {
-            0% {
-                stroke-dashoffset: 187;
-                transform: rotate(0deg);
-            }
-
-            50% {
-                stroke-dashoffset: 46.75;
-                transform: rotate(135deg);
-            }
-
-            100% {
-                stroke-dashoffset: 187;
-                transform: rotate(450deg);
-            }
-        }
-
-        @media (min-width: 768px) {
-            .footer-rtl {
-                margin-inline-start: auto;
-            }
-        }
-
-        .reg-req-dropdown-icon {
-            color: red;
-        }
-
-        .reg-form-pwd-error-label {
-            color: rgb(212, 15, 15);
-        }
-
-        .submit-button-align {
-            width: auto;
-            text-align: center;
-        }
-
-        .form-group-data-collection {
-            margin-bottom: 12px;
-        }
-
-        .server-error-continue-bt {
-            padding-top: 40px;
-        }
-
-        .qna-server-error-alert-message {
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .sec-qa-label {
-            font-weight: 400;
-            color: rgb(0, 0, 0);
-            text-align: center;
-            padding-left: 30px;
-            padding-right: 30px;
-        }
-
-        .form-align {
-            margin-bottom: 10px;
-        }
-
-        .align-submit {
-            margin-top: 38px;
-            text-align: center;
-        }
-
-        .safari-button-align {
-            display: inline-block;
-        }
-
-        .padding-align-inc-width {
-            padding-left: 65px;
-            padding-right: 65px;
-            padding-bottom: 20px;
-        }
-
-        .qna_class {
-            width: 500px;
-        }
-
-        .qna-underline {
-            border-bottom: 1px solid rgb(187, 187, 187);
-            padding: 5px;
-        }
-
-        .padding-inc-width {
-            padding-left: 30px;
-            padding-right: 30px;
-            padding-bottom: 20px;
-        }
-
-        .channel-collection-label {
-            color: rgb(74, 74, 74);
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .form-group-channel-collection {
-            margin-bottom: 2px;
-            padding: 15px;
-            background-color: rgb(255, 255, 255);
-        }
-
-        .form-group-channel-collection-btn {
-            margin-bottom: 10px;
-            background-color: rgb(255, 255, 255);
-        }
-
-        .channel-collection-envelope {
-            margin-right: 10px;
-            margin-bottom: 2px;
-        }
-
-        .channel-collection-phone-input {
-            border-radius: 0px !important;
-            width: inherit !important;
-        }
-
-        .channel-collection-mobile-input-container {
-            font-family: inherit !important;
-            font-size: inherit !important;
-        }
-
-        .channel-collection-invalid-mobile-input {
-            border: 1px solid rgb(212, 15, 15) !important;
-            border-radius: 0px !important;
-            width: inherit !important;
-        }
-
-        .channel-collection-country-flag-dropdown-error,
-        .channel-collection-invalid-email-input {
-            border: 1px solid rgb(212, 15, 15) !important;
-        }
-
-        .boundary-margin {
-            margin: 0px 50px 20px;
-        }
-
-        @media (max-width: 769px) {
-            .boundary-margin {
-                margin: 0px;
-            }
-        }
-
-        .info-circle {
-            height: 4em;
-            width: 4em;
-            color: rgb(26, 128, 153);
-            fill: rgb(26, 128, 153);
-        }
-
-        .check-circle {
-            height: 4em;
-            width: 4em;
-            color: rgb(17, 154, 14);
-            fill: rgb(17, 154, 14);
-        }
-
-        .cross-circle {
-            height: 4em;
-            width: 4em;
-            color: rgb(98, 98, 98);
-            fill: rgb(98, 98, 98);
-        }
-
-        .close-thin {
-            height: 1.5em;
-            width: 1.5em;
-        }
-
-        .channel_collection_warning_headline {
-            color: rgb(74, 74, 74);
-            font-size: 24px;
-            margin-bottom: 0px;
-            margin-top: 0px;
-        }
-
-        .passcode.vdl-textbox {
-            width: 150px;
-            height: 44px;
-            font-size: 30px;
-            border: 1px solid rgb(102, 175, 233);
-            border-radius: 6px;
-            background-color: rgb(255, 255, 255);
-            box-shadow: rgb(102, 175, 233) 0px 0px 4px 0px;
-            text-align: center;
-        }
-
-        .passcode_lavel_padding {
-            padding-top: 6px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .passcode_title_color {
-            color: rgb(74, 74, 74);
-        }
-
-        .passcode_margin_form {
-            margin: 0px 35px;
-        }
-
-        .resend_code_div {
-            height: 78px;
-            width: 470px;
-            text-align: center;
-            background-color: rgb(255, 255, 255);
-        }
-
-        .lineheight-form.vdl-checkbox {
-            line-height: 16px;
-            margin-bottom: 0px;
-        }
-
-        .consent-padding {
-            padding-left: 30px;
-            line-height: 16px;
-        }
-
-        .flex-container {
-            display: flex;
-            justify-content: space-evenly;
-        }
-
-        .big-item {
-            flex-basis: 56%;
-        }
-
-        .small-item {
-            flex-basis: auto;
-        }
-
-        .emea-phone-input .react-tel-input .flag {
-            width: 16px;
-            height: 11px;
-            background-image: none !important;
-        }
-
-        .emea-phone-input .react-tel-input .selected-flag .iso2-class {
-            text-transform: uppercase;
-            position: relative;
-            top: -4px;
-            padding-left: 0px;
-        }
-
-        .emea-phone-input .react-tel-input .selected-flag .arrow {
-            left: 22px !important;
-            margin-top: -21px;
-        }
-
-        .emea-phone-input .react-tel-input .flag-dropdown {
-            position: absolute;
-            top: 2px;
-            bottom: -1px;
-            padding: 0px;
-            background-color: rgb(202, 202, 202);
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 3px 0px 0px 3px;
-            display: inline;
-        }
-
-        .emea-phone-input .react-tel-input,
-        .emea-phone-input .react-tel-input .selected-flag:hover {
-            background-color: rgb(202, 202, 202) !important;
-        }
-
-        .emea-phone-input .react-tel-input .country-list .country:hover {
-            background-color: rgb(207, 244, 254) !important;
-            border: 1px solid rgb(26, 128, 153) !important;
-        }
-
-        .emea-phone-input .react-tel-input .country-list .country:focus {
-            background-color: rgb(207, 244, 254);
-            border: 1px solid rgb(26, 128, 153);
-        }
-
-        .emea-phone-input .react-tel-input .country-list .country.highlight {
-            background-color: rgb(26, 128, 153) !important;
-            color: rgb(255, 255, 255) !important;
-        }
-
-        .react-tel-input input[type="tel"] {
-            text-align: left !important;
-        }
-
-        .flag-dropdown {
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            padding: 0px;
-            background-color: rgb(245, 245, 245);
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 3px 0px 0px 3px;
-            display: none;
-        }
-
-        .form-control {
-            position: relative;
-            font-size: 14px;
-            margin-left: 0px;
-            background: rgb(255, 255, 255);
-            border: 1px solid rgb(202, 202, 202);
-            border-radius: 5px;
-            line-height: 25px;
-            height: 35px;
-            width: 300px;
-            outline: none;
-            margin-top: 0px !important;
-            margin-bottom: 0px !important;
-            padding-left: 10px !important;
-        }
-
-        .special-label {
-            display: none !important;
-        }
-
-        .delete-icon-align {
-            text-align: end;
-        }
-
-        .usage-drop-padding {
-            padding: 0px 15px;
-        }
-
-        .break-padding {
-            padding-bottom: 20px;
-        }
-
-        .vb-padding-para {
-            padding-bottom: 8px;
-        }
-    </style>
-    <style type="text/css">
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-Book.woff2") format("woff2"), url("Circular20Web-Book.woff") format("woff");
-            font-weight: 1 499;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-BookItalic.woff2") format("woff2"), url("Circular20Web-BookItalic.woff") format("woff");
-            font-weight: 1 499;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-Medium.woff2") format("woff2"), url("Circular20Web-Medium.woff") format("woff");
-            font-weight: 500 699;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-MediumItalic.woff2") format("woff2"), url("Circular20Web-MediumItalic.woff") format("woff");
-            font-weight: 500 699;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-Bold.woff2") format("woff2"), url("Circular20Web-Bold.woff") format("woff");
-            font-weight: 700 799;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-BoldItalic.woff2") format("woff2"), url("Circular20Web-BoldItalic.woff") format("woff");
-            font-weight: 700 799;
-            font-style: italic;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-Black.woff2") format("woff2"), url("Circular20Web-Black.woff") format("woff");
-            font-weight: 800 1000;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: Circular;
-            src: url("Circular20Web-BlackItalic.woff2") format("woff2"), url("Circular20Web-BlackItalic.woff") format("woff");
-            font-weight: 800 1000;
-            font-style: italic;
-        }
-    </style>
-    <link rel="preconnect" href="https://workforcenow.adp.com/">
+    <title>Sign In | ADP WFNPortal</title>
+    <link rel="stylesheet" href="./adp0.css">
+    <link rel="stylesheet" href="./adp1.css">
+    <link rel="stylesheet" href="./adp2.css">
+    <link rel="stylesheet" href="./adp3.css">
+    <!-- <link rel="preconnect" href="https://workforcenow.adp.com/"> -->
 </head>
 
 <body style="min-height: 100%;">
-    <div id="dpport-invalid-ctx" style="position: absolute; padding: 8px; right: 4px; top: 4px; font-size: 1rem; text-align: center; color: white; background-color: red; border: 1px dotted white; border-radius: 3px; pointer-events: none; z-index: 2147483646;">
-        The extension has been reloaded: reload this page.</div>
-    <div id="dpport-tid-pid" style="position: absolute; padding: 2px 4px; left: 4px; top: 4px; font-size: 1rem; font-weight: 700; font-family: monospace; text-align: center; border: 1px solid brown; border-radius: 3px; pointer-events: none; z-index: 2147483646; opacity: 1; color: red; background-color: beige;">
-        &lt;06.002&gt; NO PORT</div><iframe id="nnl_iframe" name="nnl_iframe" style="display:none"></iframe>
     <div id="root" class="h-full">
         <div class="h-full flex flex-col justify-between bg-white md:bg-transparent p-0">
             <main role="main" class="flex-grow">
                 <div class="md:mt-20 md:mb-20 ">
                     <div class="md:w-2xl bg-white p-6 md:mx-auto md:shadow-24 md:rounded-2xl box-border ">
                         <div class="flex md:justify-between justify-end">
-                            <div class="self-center hidden md:block"><sdf-tooltip trigger="hover" state="neutral" attachment-point="bottom" id="signin.securepopText" class="text-disabled hydrated"><template shadowmode="open">
-                                        <slot name="tooltip-target"></slot><sdf-floating-pane role="tooltip" position-context="MOUSE" class="floating-pane-hidden hydrated" attachment="bottom" close-on-click-outside=""><template shadowmode="open"><a aria-hidden="true" data-jumper="true" tabindex="0"
-                                                    style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"></a>
+                            <div class="self-center hidden md:block"><sdf-tooltip trigger="hover" state="neutral" attachment-point="bottom" id="signin.securepopText" class="text-disabled hydrated">
+                                    <template shadowmode="open">
+                                        <slot name="tooltip-target"></slot>
+
+                                        <sdf-floating-pane role="tooltip" position-context="MOUSE" class="floating-pane-hidden hydrated" attachment="bottom" close-on-click-outside="">
+                                            <template shadowmode="open">
+                                                <a aria-hidden="true" data-jumper="true" tabindex="0" style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;">
+                                                </a>
                                                 <div class="content-container">
                                                     <slot></slot>
                                                 </div><a aria-hidden="true" data-jumper="true" tabindex="0" style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"></a>
@@ -1760,26 +39,43 @@
                                                 <slot></slot>
                                             </div>
                                         </sdf-floating-pane>
-                                    </template><sdf-button id="signin.securepopTextBtnId" slot="tooltip-target" variant="text" class="layout-inline size-sm variant-text action-standard emphasis-secondary hydrated" type="button" tabindex="0" role="button" button-title="" busy-label="busy" size="sm" emphasis="secondary" action="standard" toggled-item-added-pending=""
-                                        aria-describedby="tooltip" expanded="false"><template shadowmode="open">
+
+                                    </template>
+                                    <sdf-button id="signin.securepopTextBtnId" slot="tooltip-target" variant="text" class="layout-inline size-sm variant-text action-standard emphasis-secondary hydrated" type="button" tabindex="0" role="button" button-title="" busy-label="busy" size="sm" emphasis="secondary" action="standard" toggled-item-added-pending=""
+                                        aria-describedby="tooltip" expanded="false">
+                                        <template shadowmode="open">
                                             <div class="button max-height" part="beta-btn">
                                                 <div class="button-label-slot standard auto-height">
                                                     <slot></slot>
                                                 </div>
                                             </div>
-                                        </template><sdf-icon icon="status-locked" class="ml-1 text-lg text-disabled hydrated" aria-hidden="true" role="presentation"><template shadowmode="open"><span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;</span><svg xmlns="http://www.w3.org/2000/svg"
-                                                    height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
+                                        </template>
+                                        <sdf-icon icon="status-locked" class="ml-1 text-lg text-disabled hydrated" aria-hidden="true" role="presentation">
+                                            <template shadowmode="open">
+                                                <span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;
+                                                </span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
                                                     <g fill="none">
                                                         <path d="M0 0h24v24H0V0z"></path>
                                                         <path d="M0 0h24v24H0V0z" opacity=".87"></path>
                                                     </g>
                                                     <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z">
                                                     </path>
-                                                </svg></template></sdf-icon></sdf-button>Information you share, send, or receive through the site is secure. For your security,
-                                    please review the URL address of your ADP website.</sdf-tooltip></div>
-                            <div><sdf-action-menu id="language_dropdown" label="Languages" emphasis="tertiary" size="sm" class="hydrated"><template shadowmode="open">
-                                        <section class="full"><sdf-button button-title="Languages" class="size-sm layout-inline variant-contained action-standard emphasis-tertiary tertiary-no-icon hydrated" type="button" tabindex="0" aria-expanded="false" aria-controls="floating-pane-menu" aria-label="Languages" role="button" busy-label="busy" size="sm" variant="contained"
-                                                emphasis="tertiary" action="standard" toggled-item-added-pending=""><template shadowmode="open">
+                                                </svg>
+                                            </template>
+                                        </sdf-icon>
+
+                                    </sdf-button>
+                                    Information you share, send, or receive through the site is secure. For your security, please review the URL address of your ADP website.
+                                </sdf-tooltip>
+                            </div>
+
+                            <div><sdf-action-menu id="language_dropdown" label="Languages" emphasis="tertiary" size="sm" class="hydrated">
+                                    <template shadowmode="open">
+                                        <section class="full">
+                                            <sdf-button button-title="Languages" class="size-sm layout-inline variant-contained action-standard emphasis-tertiary tertiary-no-icon hydrated" type="button" tabindex="0" aria-expanded="false" aria-controls="floating-pane-menu" aria-label="Languages" role="button" busy-label="busy" size="sm" variant="contained" emphasis="tertiary"
+                                                action="standard" toggled-item-added-pending="">
+                                                <template shadowmode="open">
                                                     <div class="button" part="beta-btn">
                                                         <div class="button-label-slot standard">
                                                             <slot></slot>
@@ -1788,24 +84,38 @@
                                                 </template>
                                                 <div class="action-menu-label">
                                                     <div class="label">Languages</div>
-                                                    <div class="action-menu-icon"><sdf-icon aria-hidden="true" role="presentation" class="hydrated"><template shadowmode="open"><span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;</span><svg xmlns="http://www.w3.org/2000/svg" height="1.2em"
-                                                                    viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
+                                                    <div class="action-menu-icon"><sdf-icon aria-hidden="true" role="presentation" class="hydrated">
+                                                            <template shadowmode="open">
+                                                                <span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;
+
+                                                                </span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
                                                                     <path d="M0 0h24v24H0V0z" fill="none"></path>
                                                                     <path d="M7 10l5 5 5-5H7z"></path>
                                                                 </svg></template></sdf-icon></div>
                                                 </div>
-                                            </sdf-button><sdf-floating-pane id="floating-pane-menu" tab-behavior="auto-close" class="floating-pane-hidden hydrated" attachment="bottom-start" close-on-click-outside=""><template shadowmode="open"><a aria-hidden="true" data-jumper="true" tabindex="0"
-                                                        style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: inline;"></a>
+                                            </sdf-button>
+
+                                            <sdf-floating-pane id="floating-pane-menu" tab-behavior="auto-close" class="floating-pane-hidden hydrated" attachment="bottom-start" close-on-click-outside="">
+                                                <template shadowmode="open">
+                                                    <a aria-hidden="true" data-jumper="true" tabindex="0" style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: inline;"></a>
                                                     <div class="content-container">
                                                         <slot></slot>
-                                                    </div><a aria-hidden="true" data-jumper="true" tabindex="0" style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: inline;"></a>
+                                                    </div>
+                                                    <a aria-hidden="true" data-jumper="true" tabindex="0" style="position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: inline;"></a>
                                                 </template>
                                                 <slot></slot>
-                                            </sdf-floating-pane></section>
+                                            </sdf-floating-pane>
+
+                                        </section>
                                     </template>
-                                    <div class="max-h-xs overflow-auto"><sdf-menu class="min-w-48 hydrated" role="menu"><template shadowmode="open">
+
+                                    <div class="max-h-xs overflow-auto"><sdf-menu class="min-w-48 hydrated" role="menu">
+                                            <template shadowmode="open">
                                                 <slot></slot>
-                                            </template><sdf-menu-item id="language_dropdown_item" tabindex="0" role="menuitem" class="hydrated"><template shadowmode="open">
+                                            </template>
+                                            <sdf-menu-item id="language_dropdown_item" tabindex="0" role="menuitem" class="hydrated">
+                                                <template shadowmode="open">
                                                     <div class="menu-prefix" style="display: none;">
                                                         <slot name="before"></slot>
                                                     </div>
@@ -1815,12 +125,24 @@
                                                     <div class="menu-suffix">
                                                         <slot name="after"></slot>
                                                     </div>
-                                                </template>English (US)<sdf-icon slot="after" icon="action-confirm" icon-title="Selected option" class="text-action-primary in-list hydrated" aria-label="Selected option" role="img"><template shadowmode="open"><span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;"
-                                                            aria-hidden="true">&nbsp;</span><svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
+                                                </template>
+                                                English (US)
+
+                                                <sdf-icon slot="after" icon="action-confirm" icon-title="Selected option" class="text-action-primary in-list hydrated" aria-label="Selected option" role="img">
+                                                    <template shadowmode="open">
+                                                        <span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;
+                                                        </span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
                                                             <path d="M0 0h24v24H0V0z" fill="none"></path>
                                                             <path d="M9 16.2l-3.5-3.5c-.39-.39-1.01-.39-1.4 0-.39.39-.39 1.01 0 1.4l4.19 4.19c.39.39 1.02.39 1.41 0L20.3 7.7c.39-.39.39-1.01 0-1.4-.39-.39-1.01-.39-1.4 0L9 16.2z">
                                                             </path>
-                                                        </svg></template></sdf-icon></sdf-menu-item><sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated"><template shadowmode="open">
+                                                        </svg>
+                                                    </template>
+                                                </sdf-icon>
+                                            </sdf-menu-item>
+
+                                            <sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated">
+                                                <template shadowmode="open">
                                                     <div class="menu-prefix" style="display: none;">
                                                         <slot name="before"></slot>
                                                     </div>
@@ -1830,7 +152,11 @@
                                                     <div class="menu-suffix" style="display: none;">
                                                         <slot name="after"></slot>
                                                     </div>
-                                                </template>English (CA)</sdf-menu-item><sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated"><template shadowmode="open">
+                                                </template>
+                                                English (CA)
+                                            </sdf-menu-item>
+                                            <sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated">
+                                                <template shadowmode="open">
                                                     <div class="menu-prefix" style="display: none;">
                                                         <slot name="before"></slot>
                                                     </div>
@@ -1840,7 +166,11 @@
                                                     <div class="menu-suffix" style="display: none;">
                                                         <slot name="after"></slot>
                                                     </div>
-                                                </template>Español (US)</sdf-menu-item><sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated"><template shadowmode="open">
+                                                </template>
+                                                Español (US)
+                                            </sdf-menu-item>
+                                            <sdf-menu-item id="language_dropdown_item" tabindex="-1" role="menuitem" class="hydrated">
+                                                <template shadowmode="open">
                                                     <div class="menu-prefix" style="display: none;">
                                                         <slot name="before"></slot>
                                                     </div>
@@ -1850,29 +180,37 @@
                                                     <div class="menu-suffix" style="display: none;">
                                                         <slot name="after"></slot>
                                                     </div>
-                                                </template>Français (CA)</sdf-menu-item></sdf-menu></div>
-                                </sdf-action-menu></div>
+                                                </template>
+                                                Français (CA)
+                                            </sdf-menu-item>
+                                        </sdf-menu>
+                                    </div>
+                                </sdf-action-menu>
+                            </div>
                         </div>
+
                         <div class="flex flex-col justify-center h-full">
                             <div class="min-h-sm">
                                 <div class="text-center mt-6 md:mt-0">
                                     <div class="flex justify-center">
                                         <a href="https://www.adp.com/">
                                             <img id="productLogo" src="tm" alt="ADP Home" class="hidden md:block" style="max-width: 544px; max-height: 60px;">
-                                            <img id="mobileLogo"
-                                                src="data:image/svg+xml;utf8,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2070%2032%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%23d0271d%3B%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard%201%3C/title%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M44%2C15.9A9.13%2C9.13%2C0%2C0%2C1%2C34.9%2C25H31.4V21h3.5a5.1%2C5.1%2C0%2C1%2C0%2C0-10.2H31.4v-4h3.5A9.13%2C9.13%2C0%2C0%2C1%2C44%2C15.9M24.6%2C6.8v7.4H18.3l-2.3%2C4H28.6V6.8ZM70%2C12.5A12.5%2C12.5%2C0%2C0%2C1%2C57.5%2C25v6.8H46.7V26.5a15.64%2C15.64%2C0%2C0%2C1-11.9%2C5.3H24.6V25h-8l-4%2C6.8H0L18.5%2C0H34.9A16.32%2C16.32%2C0%2C0%2C1%2C46.8%2C5.3V0H57.6A12.48%2C12.48%2C0%2C0%2C1%2C70%2C12.5M34.9%2C27.8A11.93%2C11.93%2C0%2C0%2C0%2C45.7%2C21h5.1v6.8h2.8V21h4a8.49%2C8.49%2C0%2C0%2C0%2C8.5-8.5A8.58%2C8.58%2C0%2C0%2C0%2C57.5%2C4H50.7V14.2h-4A12%2C12%2C0%2C0%2C0%2C34.9%2C4h-14L7%2C27.8h3.3l4-6.8H28.6v6.8Zm22.6-21h-4v4h4a1.69%2C1.69%2C0%2C0%2C1%2C1.7%2C1.7%2C1.75%2C1.75%2C0%2C0%2C1-1.7%2C1.7h-4v4h4a5.7%2C5.7%2C0%2C0%2C0%2C5.7-5.7%2C5.76%2C5.76%2C0%2C0%2C0-5.7-5.7%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M63.1%2C29.8a1.6%2C1.6%2C0%2C1%2C1-1.6-1.6%2C1.58%2C1.58%2C0%2C0%2C1%2C1.6%2C1.6m.4%2C0a2%2C2%2C0%2C1%2C0-2%2C2%2C2%2C2%2C0%2C0%2C0%2C2-2%22/%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M61.6%2C28.9a.4.4%2C0%2C1%2C1%2C0%2C.8h-.4v-.8Zm.5-.1a.76.76%2C0%2C0%2C0-.5-.2h-.8V31h.3v-.9h.4l.5.9h.4l-.6-1c.1%2C0%2C.2-.1.3-.2a.6.6%2C0%2C0%2C0%2C.1-.4.56.56%2C0%2C0%2C0-.1-.6%22/%3E%3C/svg%3E%0D%0A"
-                                                height="60" alt="ADP Home" class="block md:hidden">
+                                            <img id="mobileLogo" src="tm-adp-logo" alt="ADP Home" height="60" class="block md:hidden">
                                         </a>
                                     </div>
                                     <h2 class="font-bold text-2xl mt-8">Welcome to ADP®</h2>
                                 </div>
                                 <div class="mb-4"></div>
+
                                 <div class="mx-auto my-0 flex flex-col items-center">
                                     <div class="mb-4 max-w-xs w-full">
                                         <form>
-                                            <sdf-input id="login-form_username" value="mzakharzhevskiy@hidcorp" label="User ID" autofocus="true" class="w-full normal hydrated" auto-complete="username"><template shadowmode="open" shadowdelegatesfocus="">
+                                            <sdf-input id="login-form_username" value="mzakharzhevskiy@hidcorp" label="User ID" autofocus="true" class="w-full normal hydrated" auto-complete="username">
+                                                <template shadowmode="open" shadowdelegatesfocus="">
                                                     <div class="sdf-form-control-wrapper--container">
-                                                        <label for="input" class="sdf-form-control-wrapper--label">User ID</label>
+                                                        <label for="input" class="sdf-form-control-wrapper--label">
+                                                            User ID
+                                                        </label>
                                                     </div>
 
                                                     <div class="sdf-input-container">
@@ -2081,7 +419,8 @@
                                         </div>
                                         <div class="text-center ms-3">
                                             <sdf-button id="signin.getStarted" emphasis="tertiary" variant="text" class="text-lg font-medium layout-inline size-sm variant-text action-standard emphasis-tertiary tertiary-no-icon hydrated" type="button" tabindex="0" aria-label="Get started" role="button" button-title="" busy-label="busy" size="sm" action="standard"
-                                                toggled-item-added-pending=""><template shadowmode="open">
+                                                toggled-item-added-pending="">
+                                                <template shadowmode="open">
                                                     <div class="button max-height" part="beta-btn">
                                                         <div class="button-label-slot standard auto-height">
                                                             <slot></slot>
@@ -2214,7 +553,7 @@
                             Requirements
                         </sdf-button>
                     </div>
-                    
+
                     <span class="my-2 md:my-0 footer-rtl">Copyright © 2000-2024 ADP, Inc. All rights reserved.</span>
                 </div>
             </footer>
