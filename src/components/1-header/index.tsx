@@ -26,7 +26,7 @@ export function App_Header() {
                             </div>
 
                             <div className="font-old-normal pb-1">
-                                PM Credential Test Pages 2024
+                                PM Credentials Test Pages 2024
                             </div>
                         </div>
                     </div>
