@@ -1,7 +1,13 @@
 import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 
-export function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder: string; }) {
+type FieldPassProps = {
+    fieldAtom: PrimitiveAtom<string>;
+    fieldId: string;
+    placeholder: string;
+};
+
+export function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: FieldPassProps) {
     const [value, setValue] = useAtom(fieldAtom);
     const reveal = useAtomValue(screenLoginOptionAtoms.revealAtom);
     return (

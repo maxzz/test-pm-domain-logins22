@@ -1,7 +1,14 @@
 import { PrimitiveAtom, useAtom } from "jotai";
 
-export function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom: PrimitiveAtom<string>; fieldId: string; placeholder?: string; }) {
+type FieldUserProps = {
+    fieldAtom: PrimitiveAtom<string>;
+    fieldId: string;
+    placeholder?: string;
+};
+
+export function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: FieldUserProps) {
     const [value, setValue] = useAtom(fieldAtom);
+
     return (
         <label className="relative">
             <input
@@ -10,7 +17,9 @@ export function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: { fieldAtom
                 type="text"
                 placeholder={placeholder}
                 value={value}
-                onChange={((e) => setValue(e.target.value))} />
+                onChange={((e) => setValue(e.target.value))}
+            />
+            
             <div className="float-label">
                 {placeholder}
             </div>
