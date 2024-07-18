@@ -42,11 +42,13 @@ export function A3_Screens() {
                             </Mount>
                         )
                         : (<>
-                            {transitions((styles, item, transition) => {
-                                // console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
-                                const Screen = screens[currentIdx];
-                                return Screen ? <Screen style={styles} /> : null;
-                            })}
+                            {transitions(
+                                (styles, item, transition) => {
+                                    // console.log('%c...................transitions() currentIdx = %i %o phase %c%s%c transition', colorIdx(), currentIdx, { item }, 'color: green', transition.phase, 'color: gray', transition);
+                                    const Screen = screens[currentIdx];
+                                    return Screen ? <Screen style={styles} /> : null;
+                                })
+                            }
                         </>)
                 }
             </div>

@@ -13,6 +13,7 @@ function CountdownTimer() {
 
     const runCountdown = useSetAtom(runCountdownAtom);
     useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
+    
     return null;
 }
 

@@ -12,12 +12,16 @@ export function BlankScreen() {
             { scaleY: 1, scaleX: 0, config: { duration: 1, } },
             { scaleY: 1, scaleX: .9, opacity: 0, config: { easing: easings.easeOutCubic, duration: 1000, } },
         ],
-        //config: { duration: 400, },
         onRest: () => blankScreen(false),
+        //config: { duration: 400, },
     });//bg-orange-400/20
+
     return (
         <div className="relative w-full h-[24rem] flex items-center justify-center">
-            <div className="text-2xl text-white">Reloading...</div>
+            <div className="text-2xl text-white">
+                Reloading...
+            </div>
+            
             <a.div style={styles} className="absolute inset-0"></a.div>
         </div>
     );
