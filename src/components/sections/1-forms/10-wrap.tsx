@@ -3,12 +3,13 @@ import { useAtomValue } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
 
-type FormWrapperProps = {
+type FormWrapperProps = HTMLAttributes<HTMLElement> & {
     children: ReactNode;
     level?: number;
-} & HTMLAttributes<HTMLElement>;
+};
 
 export function Wrap({ children, level = 3, className }: FormWrapperProps) {
+
     const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
     const nestLevel = useAtomValue(screenLoginOptionAtoms.nestLevelAtom);
 
@@ -18,23 +19,21 @@ export function Wrap({ children, level = 3, className }: FormWrapperProps) {
         </>);
     }
 
-    return (<>
-        {nestLevel >= level
-            ? (
-                <div className={classNames("relative outline outline-1 outline-sky-500/50", className)}>
-                    <div className="absolute left-1 top-0 z-10 text-[.65rem] text-sky-500">
-                        {level}
-                    </div>
+    if (nestLevel < level) {
+        return null;
+    }
 
-                    {/* <tm-wrap>{children}</tm-wrap> */}
-                    <tm-wrap>
-                        <div slot="tm-default">
-                            {children}
-                        </div>
-                    </tm-wrap>
+    return (<>
+        <div className={classNames("relative outline outline-1 outline-sky-500/50", className)}>
+            <div className="absolute left-1 top-0 z-10 text-[.65rem] text-sky-500">
+                {level}
+            </div>
+
+            <tm-wrap>
+                <div slot="tm-default">
+                    {children}
                 </div>
-            )
-            : null
-        }
+            </tm-wrap>
+        </div>
     </>);
 }
