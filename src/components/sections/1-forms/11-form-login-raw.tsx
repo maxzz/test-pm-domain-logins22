@@ -1,5 +1,5 @@
-import { useAtomValue, useSetAtom } from "jotai";
-import { doNextScreenAtom, credAtoms, screenLoginOptionAtoms } from "@/store/store";
+import { useSetAtom } from "jotai";
+import { doNextScreenAtom, credAtoms } from "@/store/store";
 import { IconLogin } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
 import { FieldUser } from "./2-field-user";
@@ -37,8 +37,9 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
 }
 
 export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
-    const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
-
+    
+    // The following code will trigger warning: Attempted to synchronously unmount a root while React was already rendering.
+    // const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
     // if (useWebComponents) {
     //     return <div><web-wrapshadow-login /></div>;
     // }
