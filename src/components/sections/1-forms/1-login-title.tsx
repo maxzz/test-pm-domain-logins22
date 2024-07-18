@@ -52,7 +52,7 @@ export function LoginTitle({ label, logo, className, ...rest }: LoginTitleProps)
     );
 }
 
-export function LoginTitleLogin() {
+function LoginTitleLogin() {
     return (
         <LoginTitle
             label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
@@ -61,11 +61,15 @@ export function LoginTitleLogin() {
     );
 }
 
-export function LoginTitleCpass() {
+function LoginTitleCpass() {
     return (
         <LoginTitle
             label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
             logo={<div className="inset-0"><IconCpass className="size-12 stroke-slate-400/50" /></div>}
         />
     );
+}
+
+export function FormHeader({isLogin}: {isLogin: boolean}) {
+    return isLogin ? <LoginTitleLogin /> : <LoginTitleCpass />;
 }
