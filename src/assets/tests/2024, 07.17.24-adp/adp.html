@@ -206,7 +206,7 @@
                                     <div class="mb-4 max-w-xs w-full">
                                         <form>
                                             <sdf-input id="login-form_username" value="mzakharzhevskiy@hidcorp" label="User ID" autofocus="true" class="w-full normal hydrated" auto-complete="username">
-                                                <template shadowmode="open" shadowdelegatesfocus="">
+                                                <template shadowmode="open">
                                                     <div class="sdf-form-control-wrapper--container">
                                                         <label for="input" class="sdf-form-control-wrapper--label">
                                                             User ID
@@ -216,8 +216,8 @@
                                                     <div class="sdf-input-container">
                                                         <slot name="before"></slot>
 
-                                                        <input id="input" aria-describedby="description" autofocus="" name="sdf-input" placeholder="" tabindex="0" type="text" inputmode="text" data-maxzaid="{~}{'rol':1,'joi':'adp-login'}" data-maxzpsw="0">
-
+                                                        <input id="input" aria-describedby="description" autofocus="" name="sdf-input" tabindex="0" type="text" inputmode="text" data-maxzaid="{~}{'rol':1,'joi':'adp-login'}" data-maxzpsw="0">
+<!-- 
                                                         <dp-fbi>
                                                             <template shadowmode="open">
                                                                 <dp-ico>
@@ -283,7 +283,7 @@
                                                                             </svg>
                                                                         </tm-div></template></dp-ico></template>
                                                         </dp-fbi>
-
+ -->
 
                                                         <slot name="after"></slot>
                                                     </div>
@@ -296,7 +296,8 @@
                                         <div class="mt-4 flex max-w-xs">
                                             <sdf-checkbox id="user-remember-checkbox" checked="false" role="checkbox" aria-checked="false" tabindex="0" value="on" class="hydrated">
 
-                                                <template shadowmode="open"><svg height="25" width="25" viewBox="0 0 25 25">
+                                                <template shadowmode="open">
+                                                    <svg height="25" width="25" viewBox="0 0 25 25">
                                                         <rect x="1.5" y="1.5" rx="3" width="22" height="22" class="check-box"></rect>
                                                         <path d="M6.75 12.5 L10.75 16.25 L18.25 7.5" class="check-mark"></path>
                                                     </svg>
@@ -329,13 +330,14 @@
                                                             <slot></slot>
                                                         </div>
                                                     </sdf-floating-pane>
-
                                                 </template>
+
                                                 <sdf-button id="signin.remembercheckboxBtn" slot="tooltip-target" icon="action-help" variant="text" class="text-action-primary layout-inline size-sm variant-text action-standard emphasis-secondary icon-only hydrated" icon-only="" type="button" tabindex="0" role="button" button-title="" busy-label="busy" size="sm"
                                                     emphasis="secondary" action="standard" toggled-item-added-pending="" aria-describedby="signin.remembercheckboxtooltip" expanded="false">
                                                     <template shadowmode="open">
                                                         <div class="button max-height" part="beta-btn"><sdf-icon aria-hidden="true" role="presentation" class="hydrated">
-                                                                <template shadowmode="open"><span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;</span>
+                                                                <template shadowmode="open">
+                                                                    <span class="text-shim" style="display: inline-block; width: 0; overflow: hidden; line-height: 1.0em;" aria-hidden="true">&nbsp;</span>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1.2em" viewBox="0 0 24 24" width="1.2em" fill="currentColor" style="vertical-align: -0.125em">
                                                                         <path d="M0 0h24v24H0V0z" fill="none"></path>
                                                                         <path
@@ -345,24 +347,25 @@
                                                                 </template>
                                                             </sdf-icon>
                                                         </div>
-
                                                     </template>
+
                                                 </sdf-button>
                                                 Select this option to autofill your user ID when you visit this page using this web browser on this device. Clearing your cache or cookies will remove this value.
                                             </sdf-tooltip>
 
                                         </div>
                                     </div>
+
                                     <div id="frmPassword" class="max-w-xs w-full">
                                         <form>
                                             <sdf-input id="login-form_password" autocomplete="current-password" autofocus="true" value="" label="Password" type="password" class="w-full normal hydrated" auto-complete="current-password" style="min-height: 7rem;">
-                                                <template shadowmode="open" shadowdelegatesfocus="">
+                                                <template shadowmode="open">
                                                     <div class="sdf-form-control-wrapper--container">
                                                         <label for="input" class="sdf-form-control-wrapper--label">Password</label>
                                                     </div>
 
                                                     <div class="sdf-input-container">
-                                                        <slot name="before"></slot><input id="input" aria-describedby="description" autocomplete="current-password" autofocus="" name="sdf-input" placeholder="" tabindex="0" type="password" inputmode="text">
+                                                        <slot name="before"></slot><input id="input" aria-describedby="description" autocomplete="current-password" autofocus="" name="sdf-input" tabindex="0" type="password" inputmode="text">
                                                         <slot name="after"></slot>
                                                     </div>
 
@@ -373,6 +376,7 @@
                                             </sdf-input>
                                         </form>
                                     </div>
+
                                 </div>
                             </div>
 
