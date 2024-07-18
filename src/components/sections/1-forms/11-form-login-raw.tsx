@@ -38,9 +38,12 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
 
 export function A1_FormLogin({ suffix = '' }: { suffix?: string; }) {
     const useWebComponents = useAtomValue(screenLoginOptionAtoms.useWebCompAtom);
+
+    if (useWebComponents) {
+        return <div><web-wrapshadow-login /></div>;
+    }
+    
     return (
-        useWebComponents
-            ? <web-wrapshadow-login />
-            : <A1_FormLogin_Raw suffix={suffix} />
+        <A1_FormLogin_Raw suffix={suffix} />
     );
 }

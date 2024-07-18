@@ -29,11 +29,13 @@ export function Wrap({ children, level = 3, className }: FormWrapperProps) {
                 {level}
             </div>
 
-            <tm-wrap>
-                <div slot="tm-default">
-                    {children}
-                </div>
-            </tm-wrap>
+            <div>
+                <tm-wrap>
+                    <div slot="tm-default">
+                        {children}
+                    </div>
+                </tm-wrap>
+            </div>
         </div>
     </>);
 }
