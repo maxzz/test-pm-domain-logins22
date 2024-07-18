@@ -5,7 +5,7 @@ import { LoginTitle } from "./1-login-title";
 import { FieldUser } from "./2-field-user";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
-import { boxShadow } from "./49-shared-styles";
+import { boxShadow, formClasses } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
 
 export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
@@ -13,11 +13,11 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
 
     return (
         <Wrap level={1}>
-            <form id="tm-login-a-form" className="min-h-[24rem] flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
+            <form id="tm-login-a-form" className={`min-h-[24rem] ${formClasses}`} style={boxShadow}>
 
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
-                    logo={<div className="inset-0"><IconLogin className="w-12 h-12 stroke-slate-400/50" /></div>}
+                    logo={<div className="inset-0"><IconLogin className="size-12 stroke-slate-400/50" /></div>}
                 />
 
                 <Wrap level={2} className="flex-1">

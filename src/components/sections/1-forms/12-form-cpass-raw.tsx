@@ -4,7 +4,7 @@ import { IconCpass } from "@/components/ui/icons";
 import { LoginTitle } from "./1-login-title";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
-import { boxShadow } from "./49-shared-styles";
+import { boxShadow, formClasses } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
 
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
@@ -12,11 +12,11 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
 
     return (
         <Wrap level={1}>
-            <form id="tm-cpass-a-form" className="flex flex-col rounded-sm bg-slate-50 border-slate-300 border" style={boxShadow}>
+            <form id="tm-cpass-a-form" className={formClasses} style={boxShadow}>
 
                 <LoginTitle
                     label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
-                    logo={<div className="inset-0"><IconCpass className="w-12 h-12 stroke-slate-400/50" /></div>}
+                    logo={<div className="inset-0"><IconCpass className="size-12 stroke-slate-400/50" /></div>}
                 />
 
                 <Wrap level={2} className="flex-1">
