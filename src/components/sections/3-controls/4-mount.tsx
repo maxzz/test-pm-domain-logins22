@@ -3,9 +3,9 @@ import { Atom, useAtomValue } from "jotai";
 import { a, easings, useTransition } from "@react-spring/web";
 import { screenLoginOptionAtoms } from "@/store/store";
 
-type MountProps = {
+type MountProps = HTMLAttributes<HTMLDivElement> & {
     showAtom: Atom<boolean>;
-} & HTMLAttributes<HTMLDivElement>;
+};
 
 /* Too many motion * /
 export function MountOptions({ showAtom, children }: MountProps) {

@@ -9,11 +9,15 @@ function CountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
 
-    useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+    useCountdownTimer({ intervalVal, countdownAtom, runCountdownAtom });
 
     const runCountdown = useSetAtom(runCountdownAtom);
-    useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
-    
+    useEffect(
+        () => {
+            runCountdown(doInterval);
+        }, [doInterval, intervalVal]
+    );
+
     return null;
 }
 

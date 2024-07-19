@@ -7,6 +7,7 @@ export function OptionInterval() {
 
     const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
     const [interval, setInterval] = useAtom(intervalAtom);
+    
     return (
         <div className="flex items-center">
             <Checkbox label="Reload interval" checked={doInterval} onChange={() => setDoInterval((v) => !v)} />
