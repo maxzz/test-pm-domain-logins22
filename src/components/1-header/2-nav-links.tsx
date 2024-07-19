@@ -1,4 +1,4 @@
-import { Children, FC, ReactNode } from 'react';
+import { Children, FC, HTMLAttributes, ReactNode, useState } from 'react';
 import { a, useTrail } from '@react-spring/web';
 import { SvgScreenCPass, SvgScreenLogin } from '../ui/icons';
 
@@ -7,7 +7,7 @@ const ALogin = a(SvgScreenLogin);
 const ACPass = a(SvgScreenCPass);
 
 function NavLinks0() {
-    const styles = useSpring({
+    const anim = useSpring({
         from: { backgroundColor: '#0000', scale: 0 },
         to: { backgroundColor: '#3b82f6', scale: 1 }, //bg-blue-500
         config: { duration: 700, easing: easings.easeOutCubic },
@@ -16,10 +16,10 @@ function NavLinks0() {
     return (
         <div className="absolute bottom-1 left-2">
             <div className="flex space-x-2">
-                <ALogin style={styles} className="w-12 h-12" />
-                <ACPass style={styles} className="w-12 h-12" />
-                <ALogin style={styles} className="w-12 h-12" />
-                <ACPass style={styles} className="w-12 h-12" />
+                <ALogin style={anim} className="w-12 h-12" />
+                <ACPass style={anim} className="w-12 h-12" />
+                <ALogin style={anim} className="w-12 h-12" />
+                <ACPass style={anim} className="w-12 h-12" />
             </div>
         </div>
     );
@@ -63,19 +63,25 @@ function Trail({ open, children }: { open: boolean; children: ReactNode; }) {
     </>);
 }
 
-export function NavLinks() {
-    const open = true;
-    //const [open, setOpen] = useState(true);
+function TestReloadButton(props: HTMLAttributes<HTMLInputElement>) {
     return (
-        <div className="absolute bottom-1 left-2 h-12 flex ">
-            {/* 
-            <input
-                className="self-center mr-2 px-2 py-1 text-xs text-yellow-100 border-yellow-100 hover:bg-slate-900/50 border rounded active:scale-[.97] cursor-pointer"
-                type="button"
-                value="Reload"
-                onClick={() => setOpen((v) => !v)}
-            /> 
-            */}
+        <input
+            type="button"
+            className="self-center mr-2 px-2 py-2 h-12 text-xs text-yellow-100 border-yellow-100 hover:bg-blue-500 border rounded active:scale-y-[.97] cursor-pointer"
+            value="Reload"
+            {...props}
+        />
+    );
+}
+
+export function NavLinks() {
+    //const open = true;
+    const [open, setOpen] = useState(true);
+    return (
+        <div className="absolute left-6 bottom-6 h-12 flex ">
+
+            {/* <TestReloadButton onClick={() => setOpen((v) => !v)} /> */}
+
             <div className="flex space-x-2">
                 <Trail open={open}>
                     <SvgScreenLogin className="w-12 h-full overflow-hidden" preserveAspectRatio="none" />

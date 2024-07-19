@@ -45,7 +45,7 @@ export function App_Header() {
             <NavLinks />
         </div>
 
-        <div className="h-1 bg-[#002f87]" style={elevation4Shadow}></div>
+        <div className="mt-px h-px bg-slate-900" style={elevation4Shadow}></div>
     </>);
 }
 

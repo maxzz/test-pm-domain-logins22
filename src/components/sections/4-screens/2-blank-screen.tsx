@@ -5,7 +5,7 @@ import { navOptionAtoms } from "@/store/store";
 export function BlankScreen() {
     const blankScreen = useSetAtom(navOptionAtoms.blankScreenAtom);
 
-    const styles = useSpring({
+    const anim = useSpring({
         from: { scaleY: 1, scaleX: 1, opacity: 1, background: '#94a3b8', },
         to: [
             { scaleY: .1, scaleX: .9, config: { duration: 700, } },
@@ -22,7 +22,7 @@ export function BlankScreen() {
                 Reloading...
             </div>
             
-            <a.div style={styles} className="absolute inset-0"></a.div>
+            <a.div style={anim} className="absolute inset-0"></a.div>
         </div>
     );
 }
