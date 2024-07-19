@@ -23,7 +23,7 @@ export function A2_Controls() {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
 
     return (
-        <div className="mb-4 p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
+        <div className="p-4 w-[290px] self-center bg-slate-100 border-slate-200 border rounded-sm flex justify-center select-none">
             <div className="flex flex-col space-y-4">
                 {/*
                 <MountOptions showAtom={isLoginScreenAtom}>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { PrimitiveAtom, useAtom, useSetAtom } from "jotai";
+import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
+import { countdownAtom, runCountdownAtom, screenLoginOptionAtoms } from "@/store/store";
 
 type useCountdownTimerProps = {
     intervalVal: number;
@@ -9,39 +10,39 @@ type useCountdownTimerProps = {
 
 export function useCountdownTimer({ intervalVal, countdownAtom, runCountdownAtom }: useCountdownTimerProps) {
     const setCounter = useSetAtom(countdownAtom);
-    const [run, setRun] = useAtom(runCountdownAtom);
-    const [runing, setRuning] = useState(false);
+    const [isRunning, setIsRunning] = useAtom(runCountdownAtom);
+    const [running, setRunning] = useState(false);
 
-    const countdownId = useRef<ReturnType<typeof setInterval>>();
+    const intervalIdRef = useRef<ReturnType<typeof setInterval>>();
 
     const stopTimer = useCallback(
         () => {
-            clearInterval(countdownId.current);
-            countdownId.current = undefined;
+            clearInterval(intervalIdRef.current);
+            intervalIdRef.current = undefined;
         }, []
     );
 
     useEffect(
         () => {
-            if (run && intervalVal > 0) {
+            if (isRunning && intervalVal > 0) {
                 stopTimer();
                 setCounter(intervalVal);
-                setRuning(true);
+                setRunning(true);
             } else {
-                setRuning(false);
+                setRunning(false);
             }
-        }, [run, setCounter]
+        }, [isRunning, setCounter]
     );
 
     useEffect(
         () => {
-            if (runing) {
-                countdownId.current = setInterval(
+            if (running) {
+                intervalIdRef.current = setInterval(
                     () => {
                         setCounter(
                             (v) => {
                                 v--;
-                                v < 0 && setRun(false);
+                                v < 0 && setIsRunning(false);
                                 return v;
                             }
                         );
@@ -51,8 +52,24 @@ export function useCountdownTimer({ intervalVal, countdownAtom, runCountdownAtom
                 stopTimer();
                 setCounter(-1);
             }
-        }, [runing, setCounter]
+        }, [running, setCounter]
     );
 
     useEffect(() => stopTimer, []);
+}
+
+export function HiddenCountdownTimer() {
+    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+
+    useCountdownTimer({ intervalVal, countdownAtom, runCountdownAtom });
+
+    const runCountdown = useSetAtom(runCountdownAtom);
+    useEffect(
+        () => {
+            runCountdown(doInterval);
+        }, [doInterval, intervalVal]
+    );
+
+    return null;
 }
