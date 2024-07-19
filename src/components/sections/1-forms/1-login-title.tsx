@@ -1,6 +1,6 @@
 import { HTMLAttributes, ReactNode } from "react";
 import { a, useSpring } from "@react-spring/web";
-import { IconLogin, IconCpass } from "@/components/ui";
+import { IconLogin, IconCpass, IconSearch } from "@/components/ui";
 import { classNames } from "@/utils";
 
 type LoginTitleProps = HTMLAttributes<HTMLDivElement> & {
@@ -52,10 +52,12 @@ export function LoginTitle({ label, logo, className, ...rest }: LoginTitleProps)
     );
 }
 
+const labelClasses = "text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase";
+
 function LoginTitleLogin() {
     return (
         <LoginTitle
-            label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">User login</div>}
+            label={<div className={labelClasses}>User login</div>}
             logo={<div className="inset-0"><IconLogin className="size-12 stroke-slate-400/50" /></div>}
         />
     );
@@ -64,12 +66,33 @@ function LoginTitleLogin() {
 function LoginTitleCpass() {
     return (
         <LoginTitle
-            label={<div className="text-xl tracking-tight text-slate-50 [text-shadow:1px_2px_2px_#8885] uppercase">Password Change</div>}
+            label={<div className={labelClasses}>Password Change</div>}
             logo={<div className="inset-0"><IconCpass className="size-12 stroke-slate-400/50" /></div>}
         />
     );
 }
 
-export function FormHeader({isLogin}: {isLogin: boolean}) {
-    return isLogin ? <LoginTitleLogin /> : <LoginTitleCpass />;
+function LoginTitleSearch() {
+    return (
+        <LoginTitle
+            label={<div className={labelClasses}>Search</div>}
+            logo={<div className="text-orange-500"><IconSearch className="size-12 fill-transparent stroke-slate-100" strokeWidth={2} /></div>}
+        />
+    );
+}
+
+export const enum FormType {
+    login,
+    cpass,
+    search,
+}
+
+export function FormHeader({ formType }: { formType: FormType; }) {
+    return (
+        formType === FormType.login
+            ? <LoginTitleLogin />
+            : formType === FormType.cpass
+                ? <LoginTitleCpass />
+                : <LoginTitleSearch />
+    );
 }

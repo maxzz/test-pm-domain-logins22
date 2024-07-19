@@ -1,6 +1,6 @@
 import { useSetAtom } from "jotai";
 import { doNextScreenAtom, credAtoms } from "@/store/store";
-import { FormHeader } from "./1-login-title";
+import { FormHeader, FormType } from "./1-login-title";
 import { FieldUser } from "./2-field-user";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
@@ -14,7 +14,7 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
         <Wrap level={1}>
             <form id="tm-login-a-form" className={formClasses} style={boxShadow}>
 
-                <FormHeader isLogin />
+                <FormHeader formType={FormType.login} />
 
                 <Wrap level={2} className="flex-1">
                     <div className="flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8">
