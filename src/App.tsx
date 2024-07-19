@@ -1,7 +1,6 @@
-import { App_Main } from './components/2-main';
+import { AppMain } from './components/2-main';
 import { UIToaster } from './components/ui/UiToaster';
 import '@/components/sections/1-forms/50-register-web-components';
-import './App.scss';
 
 function PopperRoot() {
     return (
@@ -11,15 +10,13 @@ function PopperRoot() {
     );
 }
 
-function App() {
+export function App() {
     return (<>
         <UIToaster />
         <PopperRoot />
 
-        <div className="min-h-full overflow-hidden bg-slate-50">
-            <App_Main />
+        <div className="h-screen min-h-full overflow-hidden flex flex-col">
+            <AppMain />
         </div>
     </>);
 }
-
-export default App;

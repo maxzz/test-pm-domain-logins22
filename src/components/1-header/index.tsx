@@ -7,7 +7,7 @@ export const elevation4Shadow = {
     boxShadow: '0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%)',
 };
 
-export function App_Header() {
+export function AppHeader() {
     return (<>
         <div className="h-2/5 relative bg-hid-bg shadow-sm cursor-default">
 

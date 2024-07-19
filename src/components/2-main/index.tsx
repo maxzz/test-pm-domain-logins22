@@ -1,6 +1,6 @@
-import { App_Header } from '../1-header';
+import { AppHeader } from '../1-header';
 import { Section_LoginArea } from '../sections/5-section-login-area';
-import { App3_Footer } from '../3-footer';
+import { AppFooter } from '../3-footer';
 
 const testAreaStyles = {
     overflow: 'overlay',
@@ -11,16 +11,14 @@ const testAreaStyles = {
     // backgroundImage: 'linear-gradient(45deg, #003165, transparent)', // hid-bg
 };
 
-export function App_Main() {
-    return (
-        <div className="h-screen flex flex-col text-[#001845]">
-            <App_Header />
+export function AppMain() {
+    return (<>
+        <AppHeader />
 
-            <div className="flex-1 overflow-y-auto bg-gradient-to-r from-slate-100 to-slate-50" style={testAreaStyles}>
-                <Section_LoginArea />
-            </div>
-
-            <App3_Footer />
+        <div className="flex-1 overflow-y-auto bg-gradient-to-r from-slate-100 to-slate-50" style={testAreaStyles}>
+            <Section_LoginArea />
         </div>
-    );
+
+        <AppFooter />
+    </>);
 }
