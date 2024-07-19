@@ -35,7 +35,7 @@ export function A2_Controls() {
 
                 <div className="h-9 flex items-end justify-between">
 
-                    {/* Show search page */}
+                    {/* Checkbox: Show search page */}
                     <label className="flex items-center justify-center space-x-2 cursor-pointer">
                         <input
                             type="checkbox" 
@@ -50,7 +50,7 @@ export function A2_Controls() {
                         </div>
                     </label>
 
-                    {/* Next */}
+                    {/* Button: Next */}
                     <Mount showAtom={isLoginScreenAtom}>
                         <input
                             type="button"

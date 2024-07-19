@@ -12,7 +12,7 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
 
     return (
         <Wrap level={1}>
-            <form id="tm-login-a-form" className={`min-h-[24rem] ${formClasses}`} style={boxShadow}>
+            <form id="tm-login-a-form" className={formClasses} style={boxShadow}>
 
                 <FormHeader isLogin />
 
