@@ -1,25 +1,17 @@
-import { ChangeEvent, HTMLAttributes } from "react";
+import { ChangeEvent, HTMLAttributes, InputHTMLAttributes } from "react";
 import { useAtom } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 import { classNames } from "@/utils";
 
-type OneRadioProps = {
-    value: number;
-    checked: boolean;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-};
-
-function OneRadio({ value, checked, onChange }: OneRadioProps) {
+function OneRadio(props: InputHTMLAttributes<HTMLInputElement>) {
     return (
         <label className="flex items-center">
             <input
                 type="radio"
                 data-dbg-tm
-                className="form-radio w-2.5 h-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500"
-                value={value}
-                onChange={onChange}
-                checked={checked}
-                name={`nest-level-${value}`}
+                className="form-radio size-2.5 text-slate-400 focus:ring-1 focus:ring-offset-1 focus:ring-slate-500"
+                name={`nest-level-${props.value}`}
+                {...props}
             />
         </label>
     );
