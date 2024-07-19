@@ -5,7 +5,7 @@ import { useCountdownTimer } from '@/util-hooks';
 import { A2_Controls } from '../3-controls';
 import { A3_Screens } from '../4-screens';
 
-function CountdownTimer() {
+function HiddenCountdownTimer() {
     const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
     const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
 
@@ -25,8 +25,8 @@ export function Section_LoginArea() {
     return (
         <div className="flex flex-col justify-between text-slate-800">
             <A3_Screens />
-            <CountdownTimer />
             <A2_Controls />
+            <HiddenCountdownTimer />
         </div>
     );
 }

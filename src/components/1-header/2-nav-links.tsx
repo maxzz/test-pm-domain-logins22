@@ -1,4 +1,4 @@
-import { Children, FC, HTMLAttributes, ReactNode, useState } from 'react';
+import { Children, HTMLAttributes, ReactNode, useState } from 'react';
 import { a, useTrail } from '@react-spring/web';
 import { SvgScreenCPass, SvgScreenLogin } from '../ui/icons';
 
@@ -75,11 +75,10 @@ function TestReloadButton(props: HTMLAttributes<HTMLInputElement>) {
 }
 
 export function NavLinks() {
-    //const open = true;
-    const [open, setOpen] = useState(true);
+    const open = true;
+    // const [open, setOpen] = useState(true);
     return (
         <div className="absolute left-6 bottom-6 h-12 flex ">
-
             {/* <TestReloadButton onClick={() => setOpen((v) => !v)} /> */}
 
             <div className="flex space-x-2">
