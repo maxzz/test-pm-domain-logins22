@@ -1,5 +1,5 @@
 import { AppHeader } from '../1-header';
-import { Section_LoginArea } from '../sections/5-section-login-area';
+import { Section_LoginArea } from '../sections';
 import { AppFooter } from '../3-footer';
 
 const testAreaStyles = {

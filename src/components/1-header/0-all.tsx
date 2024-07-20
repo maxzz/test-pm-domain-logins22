@@ -1,6 +1,7 @@
 import { CountdownDisplay } from './1-countdown-display';
 import { NavLinks } from './2-nav-links';
 import { IconAlienLogo, IconHeroLines, IconHIDLogo } from "../ui/icons";
+import { HiddenCountdownTimer } from '@/util-hooks';
 
 export const textShadow = { textShadow: '1px 1px 2px #000' };
 export const elevation4Shadow = {
@@ -47,6 +48,7 @@ export function AppHeader() {
             <div className="absolute left-0 bottom-px w-full h-px bg-yellow-500" style={elevation4Shadow}></div>
         </div>
        
+       <HiddenCountdownTimer />
     </>);
 }
 
