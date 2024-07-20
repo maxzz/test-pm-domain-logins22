@@ -31,10 +31,10 @@ function LevelSwitch({ className }: React.HTMLAttributes<HTMLUListElement>) {
 }
 
 function FormOptions({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) {
-    const { revealAtom, doIntervalAtom, intervalAtom, pageReloadAtom, useWebCompAtom, } = screenLoginOptionAtoms;
+    const { revealAtom, doRunIntervalAtom, intervalSecAtom, pageReloadAtom, useWebCompAtom, } = screenLoginOptionAtoms;
     const [reveal, setReveal] = useAtom(revealAtom);
-    const [doInterval, setDoInterval] = useAtom(doIntervalAtom);
-    const [interval, setInterval] = useAtom(intervalAtom);
+    const [doInterval, setDoInterval] = useAtom(doRunIntervalAtom);
+    const [interval, setInterval] = useAtom(intervalSecAtom);
     const [pageReload, setPageReload] = useAtom(pageReloadAtom);
     const [useWebComp, setUseWebComp] = useAtom(useWebCompAtom);
     return (
@@ -85,7 +85,7 @@ function MountOptions({ showAtom, children }: { showAtom: Atom<boolean>; } & Rea
 
 function Mount({ showAtom, children }: { showAtom: Atom<boolean>; } & React.HTMLAttributes<HTMLDivElement>) {
     const show = useAtomValue(showAtom);
-    const doIntevel = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
+    const doIntevel = useAtomValue(screenLoginOptionAtoms.doRunIntervalAtom);
     const transitions = useTransition(show && !doIntevel, {
         from: { x: -200, opacity: 0, },
         enter: { x: 0, opacity: 1, config: { duration: 150, easing: easings.easeOutCubic }, },
