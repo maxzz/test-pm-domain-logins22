@@ -3,10 +3,8 @@ import { doNextScreenAtom, credAtoms } from "@/store/store";
 import { FormHeader, FormType } from "./1-login-title";
 import { FieldPass } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
-import { boxShadow, formClasses } from "./49-shared-styles";
+import { boxShadow, formClasses, formFrameCClasses } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
-
-const formFrameCClasses = "px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8";
 
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);

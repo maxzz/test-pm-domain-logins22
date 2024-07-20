@@ -3,9 +3,7 @@ import { navOptionAtoms, credAtoms } from "@/store/store";
 import { FormHeader, FormType } from "./1-login-title";
 import { FieldUser } from "./2-field-user";
 import { FieldSubmit } from "./4-field-submit";
-import { boxShadow } from "./49-shared-styles";
-
-const formFrameSClasses = "px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8";
+import { boxShadow, formFrameSClasses } from "./49-shared-styles";
 
 export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
     const showSearch = useSetAtom(navOptionAtoms.showSearchAtom);
