@@ -16,7 +16,7 @@ active:scale-[.97] \
 cursor-pointer \
 outline-none";
 
-export function A2_Controls() {
+export function OptionsPanel() {
 
     const [showSearch, setShowSearch] = useAtom(navOptionAtoms.showSearchAtom);
     const isLoginScreen = useAtomValue(isLoginScreenAtom);
