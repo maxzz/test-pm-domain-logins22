@@ -3,7 +3,7 @@ import { PrimitiveAtom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import { credAtoms, doNextScreenAtom, navOptionAtoms, screenLoginOptionAtoms } from "@/store/store";
 import { a, useSpring } from "@react-spring/web";
 import { classNames } from "@/utils/classnames";
-import { IconCPass, IconLogin, IconSearch } from "../UI/icons/UIIcons";
+import { IconCPass, IconLogin, IconSearch } from "../ui/icons/UIIcons";
 
 const font = {
     fontFamily: 'Source Sans Pro, sans-serif',
