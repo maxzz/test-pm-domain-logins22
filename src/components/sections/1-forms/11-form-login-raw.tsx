@@ -7,7 +7,7 @@ import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formClasses } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
 
-const formFrameClasses = "flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8";
+const formFrameLClasses = "flex-1 mt-2 px-4 pt-8 pb-2 w-72 flex flex-col space-y-8";
 
 export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
@@ -19,7 +19,7 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
                 <FormHeader formType={FormType.login} />
 
                 <Wrap level={2} className="flex-1">
-                    <div className={formFrameClasses}>
+                    <div className={formFrameLClasses}>
                         <Wrap><FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
                     </div>

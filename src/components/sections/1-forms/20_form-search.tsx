@@ -5,7 +5,7 @@ import { FieldUser } from "./2-field-user";
 import { FieldSubmit } from "./4-field-submit";
 import { boxShadow } from "./49-shared-styles";
 
-const formFrameClasses = "px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8";
+const formFrameSClasses = "px-4 mt-4 pt-4 pb-2 w-72 flex flex-col space-y-8";
 
 export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
     const showSearch = useSetAtom(navOptionAtoms.showSearchAtom);
@@ -16,7 +16,7 @@ export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
 
             <FormHeader formType={FormType.search} />
 
-            <div className={formFrameClasses}>
+            <div className={formFrameSClasses}>
                 <div className="flex items-center space-x-2">
                     <FieldUser fieldAtom={credAtoms.searchAAAtom} fieldId={`sear${suffix}`} placeholder="Search" />
 
