@@ -6,6 +6,8 @@ import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formClasses } from "./49-shared-styles";
 import { Wrap } from "./10-wrap";
 
+const formFrameClasses = "px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8";
+
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
 
@@ -16,7 +18,7 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
                 <FormHeader formType={FormType.cpass} />
 
                 <Wrap level={2} className="flex-1">
-                    <div className="px-4 mt-6 pt-4 pb-2 w-72 flex flex-col space-y-8">
+                    <div className={formFrameClasses}>
                         <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
                         <Wrap><FieldPass fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" /></Wrap>
