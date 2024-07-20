@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { countdownAtom, runCountdownAtom, screenLoginOptionAtoms } from '@/store/store';
 import { useCountdownTimer } from '@/hooks/useCountdownTimer';
@@ -6,13 +6,15 @@ import { A2_Controls } from './A2_Controls';
 import { A3_Screens } from './A3_Screens';
 
 function CountdownTimer() {
-    const doInterval = useAtomValue(screenLoginOptionAtoms.doIntervalAtom);
-    const intervalVal = useAtomValue(screenLoginOptionAtoms.intervalAtom);
+    const doRunInterval = useAtomValue(screenLoginOptionAtoms.doRunIntervalAtom);
+    const intervalSecVal = useAtomValue(screenLoginOptionAtoms.intervalSecAtom);
 
-    useCountdownTimer({ startVal: intervalVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
+    useCountdownTimer({ intervalSecVal, counterAtom: countdownAtom, runAtom: runCountdownAtom });
 
     const runCountdown = useSetAtom(runCountdownAtom);
-    useEffect(() => runCountdown(doInterval), [doInterval, intervalVal]);
+
+    useEffect(() => runCountdown(doRunInterval), [doRunInterval, intervalSecVal]);
+    
     return null;
 }
 

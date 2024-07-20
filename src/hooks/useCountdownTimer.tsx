@@ -1,38 +1,45 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PrimitiveAtom, useAtom, useSetAtom } from "jotai";
 
-export function useCountdownTimer({ startVal, counterAtom, runAtom }: { startVal: number; counterAtom: PrimitiveAtom<number>; runAtom: PrimitiveAtom<boolean>; }) {
+type useCountdownTimerProps = {
+    intervalSecVal: number;
+    counterAtom: PrimitiveAtom<number>;
+    runAtom: PrimitiveAtom<boolean>;
+};
+
+export function useCountdownTimer({ intervalSecVal, counterAtom, runAtom }: useCountdownTimerProps) {
     const setCounter = useSetAtom(counterAtom);
-    const [run, setRun] = useAtom(runAtom);
-    const [runing, setRuning] = useState(false);
-    const countdownId = useRef<ReturnType<typeof setInterval>>();
+    const [isRunning, setIsRunning] = useAtom(runAtom);
 
-    const stopTimer = useCallback(() => (clearInterval(countdownId.current), (countdownId.current = undefined)), []);
+    const [localIsRunning, setLocalIsRunning] = useState(false);
+    const intervalIdRef = useRef<ReturnType<typeof setInterval>>();
+
+    const stopInterval = useCallback(() => { clearInterval(intervalIdRef.current); (intervalIdRef.current = undefined); }, []);
 
     useEffect(() => {
-        if (run && startVal > 0) {
-            stopTimer();
-            setCounter(startVal);
-            setRuning(true);
+        if (isRunning && intervalSecVal > 0) {
+            stopInterval();
+            setCounter(intervalSecVal);
+            setLocalIsRunning(true);
         } else {
-            setRuning(false);
+            setLocalIsRunning(false);
         }
-    }, [run, setCounter]);
+    }, [isRunning, setCounter]);
 
     useEffect(() => {
-        if (runing) {
-            countdownId.current = setInterval(() => {
+        if (localIsRunning) {
+            intervalIdRef.current = setInterval(() => {
                 setCounter((v) => {
                     v--;
-                    v < 0 && setRun(false);
+                    v < 0 && setIsRunning(false);
                     return v;
                 });
             }, 1000);
         } else {
-            stopTimer();
+            stopInterval();
             setCounter(-1);
         }
-    }, [runing, setCounter]);
+    }, [localIsRunning, setCounter]);
 
-    useEffect(() => stopTimer, []);
+    useEffect(() => stopInterval, []);
 }

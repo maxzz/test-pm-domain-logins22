@@ -31,8 +31,8 @@ namespace Storage {
         },
         screenLoginOptions: {
             reveal: false,
-            doInterval: false,
-            interval: 10,
+            doRunInterval: false,
+            intervalSec: 10,
             pageReload: false,
             useWebComp: false,
             nestLevel: CONST.MaxLevel,
@@ -53,6 +53,7 @@ namespace Storage {
             }
         }
     }
+
     load();
 
     export const saveDebounced = debounce(function _save(get: Getter) {
@@ -70,8 +71,8 @@ namespace Storage {
             },
             screenLoginOptions: {
                 reveal: get(screenLoginOptionAtoms.revealAtom),
-                doInterval: get(screenLoginOptionAtoms.doIntervalAtom),
-                interval: get(screenLoginOptionAtoms.intervalAtom),
+                doRunInterval: get(screenLoginOptionAtoms.doRunIntervalAtom),
+                intervalSec: get(screenLoginOptionAtoms.intervalSecAtom),
                 pageReload: get(screenLoginOptionAtoms.pageReloadAtom),
                 useWebComp: get(screenLoginOptionAtoms.useWebCompAtom),
                 nestLevel: get(screenLoginOptionAtoms.nestLevelAtom),
@@ -83,8 +84,8 @@ namespace Storage {
     export const save = ({ get }: { get: Getter; }) => Storage.saveDebounced(get);
 }
 
-console.log('level', CONST.MaxLevel);
-console.log('Storage', Storage.initialData);
+// console.log('level', CONST.MaxLevel);
+// console.log('Storage', Storage.initialData);
 
 //#endregion Storage
 
@@ -117,22 +118,28 @@ type NavOptions = {
 
 const _blankScreenAtom = atom<boolean>(false); // show blank screen before login/cpass screen reload
 
-export const navOptionAtoms: Atomize<NavOptions> & {
-    blankScreenAtom: PrimitiveAtom<boolean>;
-} = {
+export const navOptionAtoms: Atomize<NavOptions> & { blankScreenAtom: PrimitiveAtom<boolean>; } = {
+
     screenIdxAtom: atomWithCallback(Storage.initialData.navOptions.screenIdx, Storage.save),
-    showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch, ({ get, set, nextValue }) => {
-        if (nextValue) {
-            set(screenLoginOptionAtoms.doIntervalAtom, false);
+
+    showSearchAtom: atomWithCallback(Storage.initialData.navOptions.showSearch,
+        ({ get, set, nextValue }) => {
+            if (nextValue) {
+                set(screenLoginOptionAtoms.doRunIntervalAtom, false);
+            }
+            Storage.save({ get });
         }
-        Storage.save({ get });
-    }),
+    ),
+
     blankScreenAtom: atom<boolean, SetStateAction<boolean>>(
         (get) => get(_blankScreenAtom),
-        (get, set, value: SetStateAction<boolean>) => {
-            const show = typeof value === 'function' ? value(get(_blankScreenAtom)) : value;
-            !show && get(screenLoginOptionAtoms.doIntervalAtom) && set(runCountdownAtom, true);
-            set(_blankScreenAtom, show);
+        (get, set, show: SetStateAction<boolean>) => {
+            const v = typeof show === 'function' ? show(get(_blankScreenAtom)) : show;
+            
+            if (!v && get(screenLoginOptionAtoms.doRunIntervalAtom)) {
+                set(runCountdownAtom, true);
+            }
+            set(_blankScreenAtom, v);
         }
     ),
 };
@@ -146,14 +153,21 @@ export const isLoginScreenAtom = atom(
     // }
 );
 
-export const doNextScreenAtom = atom(null, (get, set,) => set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1));
-export const doReloadScreenAtom = atom(null, (get, set,) => {
-    if (get(screenLoginOptionAtoms.pageReloadAtom)) {
-        window.location.reload();
-    } else {
-        set(navOptionAtoms.blankScreenAtom, true);
-    }
-});
+export const doNextScreenAtom = atom(
+    null,
+    (get, set,) => {
+        set(navOptionAtoms.screenIdxAtom, get(navOptionAtoms.screenIdxAtom) ? 0 : 1);
+    });
+
+export const doReloadScreenAtom = atom(
+    null,
+    (get, set,) => {
+        if (get(screenLoginOptionAtoms.pageReloadAtom)) {
+            window.location.reload();
+        } else {
+            set(navOptionAtoms.blankScreenAtom, true);
+        }
+    });
 
 //#endregion NavOptions
 
@@ -161,8 +175,8 @@ export const doReloadScreenAtom = atom(null, (get, set,) => {
 
 type ScreenLoginOptions = {
     reveal: boolean;        // Show or hide password field
-    doInterval: boolean;    // Use reload interval
-    interval: number;       // Interval in seconds
+    doRunInterval: boolean; // Use reload interval
+    intervalSec: number;    // Interval in seconds
     pageReload: boolean;    // Reload page vs. form
     useWebComp: boolean;    // Use WebComponents
     nestLevel: number;      // Show WebComponents at nested level N
@@ -170,8 +184,8 @@ type ScreenLoginOptions = {
 
 export const screenLoginOptionAtoms: Atomize<ScreenLoginOptions> = {
     revealAtom: atomWithCallback(Storage.initialData.screenLoginOptions.reveal, Storage.save),
-    doIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doInterval, Storage.save),
-    intervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.interval, Storage.save),
+    doRunIntervalAtom: atomWithCallback(Storage.initialData.screenLoginOptions.doRunInterval, Storage.save),
+    intervalSecAtom: atomWithCallback(Storage.initialData.screenLoginOptions.intervalSec, Storage.save),
     pageReloadAtom: atomWithCallback(Storage.initialData.screenLoginOptions.pageReload, Storage.save),
     useWebCompAtom: atomWithCallback(Storage.initialData.screenLoginOptions.useWebComp, Storage.save),
     nestLevelAtom: atomWithCallback(Storage.initialData.screenLoginOptions.nestLevel, Storage.save),
@@ -186,9 +200,12 @@ const _countdownAtom = atom(-2); // -1 is for inactive; 0 = for window.location.
 export const countdownAtom = atom<number, SetStateAction<number>>(
     (get) => get(_countdownAtom),
     (get, set, value: SetStateAction<number>) => {
-        const countdown = typeof value === 'function' ? value(get(_countdownAtom)) : value;
-        countdown === 0 && get(screenLoginOptionAtoms.doIntervalAtom) && set(doReloadScreenAtom);
-        set(_countdownAtom, countdown);
+        const v = typeof value === 'function' ? value(get(_countdownAtom)) : value;
+
+        if (v === 0 && get(screenLoginOptionAtoms.doRunIntervalAtom)) {
+            set(doReloadScreenAtom);
+        }
+        set(_countdownAtom, v);
     }
 );
 
