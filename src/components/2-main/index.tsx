@@ -1,6 +1,7 @@
 import { AppHeader } from '../1-header';
-import { Section_LoginArea } from '../sections';
 import { AppFooter } from '../3-footer';
+import { A3_Screens } from '../sections/4-screens';
+import { A2_Controls } from '../sections/3-controls';
 
 const testAreaStyles = {
     overflow: 'overlay',
@@ -16,7 +17,10 @@ export function AppMain() {
         <AppHeader />
 
         <div className="flex-1 overflow-y-auto bg-gradient-to-r from-slate-100 to-slate-50" style={testAreaStyles}>
-            <Section_LoginArea />
+            <div className="pb-4 h-full flex flex-col justify-between text-slate-900">
+                <A3_Screens />
+                <A2_Controls />
+            </div>
         </div>
 
         <AppFooter />
