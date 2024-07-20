@@ -1,10 +1,10 @@
 import { useSetAtom } from "jotai";
 import { doNextScreenAtom, credAtoms } from "@/store/store";
 import { FormHeader, FormType } from "./1-login-title";
-import { FieldPass } from "./3-field-pass";
+import { FieldPassword } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formClasses, formFrameCClasses } from "./49-shared-styles";
-import { Wrap } from "./10-wrap";
+import { Wrap } from "./51-wrap";
 
 export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
@@ -17,9 +17,9 @@ export function A1_FormCPass_Raw({ suffix = '' }: { suffix?: string; }) {
 
                 <Wrap level={2} className="flex-1">
                     <div className={formFrameCClasses}>
-                        <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
-                        <Wrap><FieldPass fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
-                        <Wrap><FieldPass fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" /></Wrap>
+                        <Wrap><FieldPassword fieldAtom={credAtoms.passwordAtom} fieldId={`old-pass${suffix}`} placeholder="Old Password" /></Wrap>
+                        <Wrap><FieldPassword fieldAtom={credAtoms.updtpassAtom} fieldId={`new-pass${suffix}`} placeholder="New Password" /></Wrap>
+                        <Wrap><FieldPassword fieldAtom={credAtoms.confpassAtom} fieldId={`cnf-pass${suffix}`} placeholder="Confirm New Password" /></Wrap>
                     </div>
                 </Wrap>
 

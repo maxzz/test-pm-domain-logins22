@@ -1,11 +1,11 @@
 import { useSetAtom } from "jotai";
 import { doNextScreenAtom, credAtoms } from "@/store/store";
 import { FormHeader, FormType } from "./1-login-title";
-import { FieldUser } from "./2-field-user";
-import { FieldPass } from "./3-field-pass";
+import { FieldUsername } from "./2-field-user";
+import { FieldPassword } from "./3-field-pass";
 import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formClasses, formFrameLClasses } from "./49-shared-styles";
-import { Wrap } from "./10-wrap";
+import { Wrap } from "./51-wrap";
 
 export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
     const doNextLoginOrCPassScreen = useSetAtom(doNextScreenAtom);
@@ -18,8 +18,8 @@ export function A1_FormLogin_Raw({ suffix = '' }: { suffix?: string; }) {
 
                 <Wrap level={2} className="flex-1">
                     <div className={formFrameLClasses}>
-                        <Wrap><FieldUser fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
-                        <Wrap><FieldPass fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
+                        <Wrap><FieldUsername fieldAtom={credAtoms.usernameAtom} fieldId={`user${suffix}`} placeholder="Username" /></Wrap>
+                        <Wrap><FieldPassword fieldAtom={credAtoms.passwordAtom} fieldId={`pass${suffix}`} placeholder="Password" /></Wrap>
                     </div>
                 </Wrap>
 

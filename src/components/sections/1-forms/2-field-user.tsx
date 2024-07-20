@@ -1,12 +1,13 @@
+import { HTMLAttributes } from "react";
 import { PrimitiveAtom, useAtom } from "jotai";
 
-type FieldUserProps = {
+type FieldUserProps = HTMLAttributes<HTMLInputElement> & {
     fieldAtom: PrimitiveAtom<string>;
     fieldId: string;
     placeholder?: string;
 };
 
-export function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: FieldUserProps) {
+export function FieldUsername({ fieldAtom, fieldId, placeholder = ' ', ...rest }: FieldUserProps) {
     const [value, setValue] = useAtom(fieldAtom);
 
     return (
@@ -18,6 +19,7 @@ export function FieldUser({ fieldAtom, fieldId, placeholder = ' ' }: FieldUserPr
                 placeholder={placeholder}
                 value={value}
                 onChange={((e) => setValue(e.target.value))}
+                {...rest}
             />
             
             <div className="float-label">

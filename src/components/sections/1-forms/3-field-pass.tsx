@@ -1,13 +1,14 @@
+import { HTMLAttributes } from "react";
 import { PrimitiveAtom, useAtom, useAtomValue } from "jotai";
 import { screenLoginOptionAtoms } from "@/store/store";
 
-type FieldPassProps = {
+type FieldPassProps = HTMLAttributes<HTMLInputElement> & {
     fieldAtom: PrimitiveAtom<string>;
     fieldId: string;
     placeholder: string;
 };
 
-export function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: FieldPassProps) {
+export function FieldPassword({ fieldAtom, fieldId, placeholder = ' ', ...rest }: FieldPassProps) {
     const [value, setValue] = useAtom(fieldAtom);
     const reveal = useAtomValue(screenLoginOptionAtoms.revealAtom);
     return (
@@ -19,7 +20,10 @@ export function FieldPass({ fieldAtom, fieldId, placeholder = ' ' }: FieldPassPr
                 placeholder={placeholder}
                 autoComplete="current-password"
                 value={value}
-                onChange={((e) => setValue(e.target.value))} />
+                onChange={((e) => setValue(e.target.value))}
+                {...rest}
+            />
+
             <div className="float-label">
                 {placeholder}
             </div>

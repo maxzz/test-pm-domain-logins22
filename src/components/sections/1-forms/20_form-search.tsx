@@ -1,7 +1,7 @@
 import { useSetAtom } from "jotai";
 import { navOptionAtoms, credAtoms } from "@/store/store";
 import { FormHeader, FormType } from "./1-login-title";
-import { FieldUser } from "./2-field-user";
+import { FieldUsername } from "./2-field-user";
 import { FieldSubmit } from "./4-field-submit";
 import { boxShadow, formFrameSClasses } from "./49-shared-styles";
 
@@ -16,7 +16,7 @@ export function A1_FormSearch({ suffix = '' }: { suffix?: string; }) {
 
             <div className={formFrameSClasses}>
                 <div className="flex items-center space-x-2">
-                    <FieldUser fieldAtom={credAtoms.searchAAAtom} fieldId={`sear${suffix}`} placeholder="Search" />
+                    <FieldUsername fieldAtom={credAtoms.searchAAAtom} fieldId={`sear${suffix}`} placeholder="Search" />
 
                     <div>
                         <select className="h-[37px] px-1 py-1.5 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-slate-500 border-slate-300 border" name="state">
